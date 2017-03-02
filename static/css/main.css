@@ -1,0 +1,2263 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+html {
+	height: 100%;
+}
+article, aside, details, figcaption, figure, footer, header, hgroup, main, nav, section, summary {
+	display: block;
+}
+
+*::-webkit-input-placeholder       {color: #8f8e8e; opacity: 1; transition: opacity 0.3s;}
+*::-moz-placeholder                {color: #8f8e8e; opacity: 1; transition: opacity 0.3s;}
+*:-moz-placeholder                 {color: #8f8e8e; opacity: 1; transition: opacity 0.3s;}
+*:-ms-input-placeholder            {color: #8f8e8e; opacity: 1; transition: opacity 0.3s;}
+*:focus::-webkit-input-placeholder {color: #8f8e8e; opacity: 0; transition: opacity 0.3s;}
+*:focus::-moz-placeholder          {color: #8f8e8e; opacity: 0; transition: opacity 0.3s;}
+*:focus:-moz-placeholder           {color: #8f8e8e; opacity: 0; transition: opacity 0.3s;}
+*:focus:-ms-input-placeholder      {color: #8f8e8e; opacity: 0; transition: opacity 0.3s;}
+input, a, textarea {
+	outline: none;
+}
+a {
+	outline: none;
+}
+
+body input:focus:required:invalid,
+body textarea:focus:required:invalid {
+}
+
+body input:required:valid,
+body textarea:required:valid {
+}
+body {
+	font-family: 'Roboto';
+	font-weight: 400;
+	font-size: 16px;
+	overflow-x: hidden;
+	line-height: 1.2;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	margin: 0;
+}
+h1 {
+	font-size: 36px;
+}
+h2 {
+	font-size: 30px;
+}
+h3 {
+	font-size: 28px;
+}
+h4 {
+	font-size: 24px;
+}
+h5 {
+	font-size: 21px;
+}
+h6 {
+	font-size: 18px;
+}
+strong {
+	font-weight: bold;
+}
+em {
+	font-style: italic;
+}
+select {
+	width: 100%;
+	-webkit-appearance: none;
+	background-image: url('../img/select.jpg');
+	background-position: right center;
+	background-repeat: no-repeat;
+	/* for FF */
+	-moz-appearance: none;
+	text-indent: 0.01px;
+	text-overflow: '';
+	/* for IE */
+	-ms-appearance: none;
+	appearance: none!important;
+	cursor: pointer;
+}
+
+select::-ms-expand {
+  display: none;
+}
+
+img {
+	max-width: 100%;
+}
+
+
+
+.wrap_checkbox input[type=checkbox] {
+	display: none;
+}
+.wrap_checkbox label {
+	position: relative;
+	display: inline-block;
+	padding-left: 29px;
+	font-size: 14px;
+	min-height: 18px;
+}
+.wrap_checkbox label:hover {
+	cursor: pointer;
+}
+.wrap_checkbox input[type=checkbox] + label:before {
+	content: "";
+	position: absolute;
+	display: block;
+	width: 18px;
+	height: 18px;
+	top: 1px;
+	left: 0;
+	margin-top: 0;
+	background-color: transparent;
+	border: 1px solid #fff;
+}
+.wrap_checkbox input[type=checkbox]:checked + label:before {
+
+}
+.wrap_checkbox input[type=checkbox]:checked + label:after {
+	content: "\2713";
+	position: absolute;
+	display: block;
+	width: 18px;
+	height: 18px;
+	top: 1px;
+	left: 0;
+	padding-left: 3px;
+	margin-top: 3px;
+	font-size: 14px;
+	color: #fff;
+	font-weight: 700;
+	text-align: left;
+	line-height: 13px;
+}
+
+
+
+
+
+.wrap_radio input[type=radio] {
+	display: none;
+}
+.wrap_radio label {
+	display: inline-block;
+	position: relative;
+	min-height: 21px;
+	padding: 3px 0px 3px 29px;
+	cursor: pointer;
+}
+.wrap_radio label:before {
+	content: "";
+	position: absolute;
+	display: block;
+	width: 18px;
+	height: 18px;
+	left: 0;
+	top: 4px;
+	margin-top: 0;
+	border: 1px solid #444444;
+	border-radius: 50%;
+}
+.wrap_radio input[type=radio]:checked + label:before {
+}
+.wrap_radio input[type=radio]:checked + label:after {
+	content: "";
+	position: absolute;
+	display: block;
+	width: 8px;
+	height: 8px;
+	left: 5px;
+	top: 4px;
+	margin-top: 5px;
+	border-radius: 50%;
+	background-color: #444444;
+}
+
+.login_body {
+	background: url(../img/first_block_bg.png) 50% 50% / cover;
+	background-attachment: fixed;
+}
+
+.login_header {
+	padding: 50px 0;
+}
+
+.login_form_inner_inner {
+	background: #020b26;
+	padding: 83px 216px;
+}
+
+.logo a {
+	outline: none;
+}
+
+.login_form_inner_inner_title {
+    font-family: 'Montserrat';
+	font-size: 35px;
+	font-weight: bold;
+	color: #ffffff;
+	padding-bottom: 35px;
+}
+
+.login_form_inner_inner_register {
+	font-weight: 400;
+	color: #fff;
+	padding-bottom: 30px;
+	font-size: 18px;
+}
+
+.login_form_inner_inner_register a {
+	color: #fff;
+	text-decoration: none;
+	font-size: 17px;
+	font-weight: bold;
+}
+
+.login_form_inner_inner_register a:hover {
+	text-decoration: underline;
+}
+
+.wrap_inputs .wrap_input {
+	padding-bottom: 15px;
+}
+
+.wrap_inputs .wrap_input:last-child {
+	padding-bottom: 0;
+}
+
+.wrap_inputs .wrap_input input {
+	width: 100%;
+	padding: 15px;
+	background: transparent;
+	color: #313131;
+	border: 1px solid #fff;
+}
+
+.wrap_inputs .wrap_button input {
+	width: 100%;
+	height: 100%;
+	border: 1px solid #21e0b2;
+	color: #fff;
+	font-size: 12px;
+	background: #21e0b2;
+	cursor: pointer;
+	text-transform: uppercase;
+	transition: .5s;
+	padding: 15px;
+}
+
+.wrap_inputs .wrap_button input:hover {
+	background: transparent;
+	color: #21e0b2;
+}
+
+.forgot_and_password {
+	padding-top: 15px;
+}
+
+.forgot_and_password a {
+	font-size: 13px;
+	text-decoration: underline;
+	color: #fff;
+	padding-right: 5px;
+}
+
+.forgot_and_password a:last-child {
+	padding-right: 0;
+}
+
+.forgot_and_password a:hover {
+	text-decoration: none;
+}
+
+.login_form_inner  {
+	padding-bottom: 15px;
+}
+
+.wrap_inputs .wrap_file {
+	padding-bottom: 15px;
+    font-family: 'Montserrat';
+    font-weight: bold;
+}
+
+.wrap_file_inner input {
+	opacity: 0;
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	cursor: pointer;
+	bottom: 0;
+}
+
+.wrap_photo {
+	font-weight: bold;
+	text-align: center;
+	color: #fff;
+	padding: 42px 5px;
+    font-family: 'Nexa';
+	background: #cccccc;
+	background-size: cover;
+	background-position: center center;
+	min-height: 103px;
+	cursor: pointer;
+}
+
+.wrap_inputs .wrap_file button {
+	width: 100%;
+	color: #fff;
+	border: none;
+	background: #e83796;
+	padding: 15px;
+}
+
+.wrap_file_inner {
+	position: relative;
+}
+
+.wrap_label {
+	color: #fff;
+	padding-bottom: 15px;
+    font-family: 'Montserrat';
+}
+
+.wrap_check_buttons {
+	padding-bottom: 15px;
+}
+
+.wrap_check_button button {
+	width: 100%;
+	color: #020b26;
+	border: none;
+	background: #fff;
+	transition: .5s;
+	padding: 15px;
+    font-family: 'Montserrat';
+	font-weight: bold;
+	cursor: pointer;
+	outline: none;
+}
+
+.wrap_check_button .active,
+.wrap_check_button button:hover {
+	width: 100%;
+	color: #fff;
+	border: none;
+	background: #e83796;
+	padding: 15px;
+}
+
+.wrap_label_inner_form {
+	-ms-flex-align: center;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    align-items: center;
+    display: flex;
+}
+
+.wrap_label_inner_form .wrap_label {
+	padding-bottom: 0;
+	font-size: 14px;
+}
+
+.wrap_checkbox {
+	padding-bottom: 15px;
+	color: #fff;
+}
+
+.wrap_checkbox a {
+	color: #fff;
+	text-decoration: underline;
+}
+
+.wrap_checkbox a:hover {
+	text-decoration: none;
+}
+
+.portfolio_header {
+	background: #020b26;
+	padding-top: 50px;
+}
+
+.logout {
+	-ms-flex-align: center;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    align-items: center;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.logout a {
+	display: inline-block;
+	color: #fff;
+	border: none;
+	background: #e83796;
+	transition: .5s;
+	padding: 13px 59px;
+	cursor: pointer;
+	outline: none;
+	text-align: center;
+	text-decoration: none;
+    font-family: 'Nexa';
+	font-weight: 300;
+}
+
+.page_title {
+	font-size: 27px;
+	font-weight: 300;
+	color: #fff;
+	padding-top: 50px;
+	padding-bottom: 30px;
+}
+
+.main_menu ul {
+	display: flex;
+}
+
+.main_menu ul li {
+	padding: 0 40px;
+}
+
+.main_menu ul li:first-child {
+	padding-left: 0;
+}
+
+.main_menu ul li:last-child {
+	padding-right: 0;
+}
+
+.main_menu ul li a {
+	display: block;
+	padding-bottom: 10px;
+	border-bottom: 3px solid transparent;
+	text-decoration: none;
+	color: #fff;
+	font-weight: bold;
+	text-transform: uppercase;
+	font-size: 12px;
+	transition: .5s;
+}
+
+.main_menu ul li a:hover,
+.main_menu ul .current-menu-item a {
+	border-bottom: 3px solid #00ffbf;
+}
+
+.portfolio_page {
+	padding: 80px 0;
+}
+
+.page_block_title {
+	font-size: 37px;
+    font-family: 'Montserrat';
+	font-weight: bold;
+	align-items: center;
+}
+
+.heading_block {
+	padding-bottom: 70px;
+}
+
+.row-eq-height {
+	display: flex;
+}
+
+.portfolio_item {
+	display: flex;
+	padding-bottom: 30px;
+}
+
+.portfolio_item_inner {
+	padding: 10px;
+	display: flex;
+	width: 100%;
+	border: 1px solid #979797;
+}
+
+.portfolio_item_content {
+	display: flex;
+	width: 100%;
+	flex-direction: column;
+}
+
+
+.portfolio_item_inner_image {
+	min-height: 230px;
+	background: #d8d8d8;
+}
+
+.portfolio_item_inner_title {
+    font-family: 'Montserrat';
+	font-size: 15px;
+	font-weight: bold;
+	padding: 10px 0;
+	flex: 1;
+}
+
+.portfolio_item_inner_link a {
+	display: block;
+	padding: 15px;
+	background: #e83796;
+	font-size: 10px;
+	color: #fff;
+    font-family: 'Montserrat';
+	text-transform: uppercase;
+	text-align: center;
+}
+
+.city_item .portfolio_item_inner_link {
+	padding-top: 15px;
+}
+
+.city_item .portfolio_item_inner_image {
+	position: relative;
+}
+
+.portfolio_item_inner_image_title {
+	position: absolute;
+	top: 40px;
+	left: 40px;
+	font-size: 27px;
+	font-weight: bold;
+	color: #fff;
+}
+
+.check_image {
+	position: absolute;
+	width: 100px;
+    margin: auto;
+    left: 50%;
+    top: 50%;
+    margin-top: -20px;
+    margin-left: -50px;
+    display: none;
+}
+
+.selected_item .check_image {
+	display: block;
+}
+
+.artist_photo_inner {
+	border: 1px solid #979797;
+	padding: 15px;
+}
+
+.artist_photo_inner_displayed {
+	background: #d8d8d8;
+	height: 250px;
+	position: relative;
+	background-position: center center;
+	background-size: cover;
+}
+
+.artist_photo_inner_displayed input[type=file] {
+	opacity: 0;
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	height: 100%;
+	width: 100%;
+	z-index: 5;
+	cursor: pointer;
+}
+
+.artist_photo_inner_displayed button {
+	background: #e83796;
+	border: none;
+	position: absolute;
+	color: #fff;
+	left: 50%;
+	top: 50%;
+	margin: auto;
+	padding: 15px 20px;
+    font-family: 'Montserrat';
+	font-weight: bold;
+	font-size: 15px;
+	width: 200px;
+	margin-left: -100px;
+	margin-top: -24px;
+	cursor: pointer;
+	//opacity: 0;
+	transition: .5s;
+}
+
+.artist_photo_inner_displayed:hover button {
+	opacity: 1;
+}
+
+.wrap_backend_input {
+	padding-bottom: 15px;
+}
+
+.wrap_backend_input input {
+	width: 100%;
+	padding: 15px 0;
+    font-family: 'Montserrat';
+	font-size: 12px;
+	outline: none;
+	border: none;
+	border-bottom: 1px solid #979797;
+}
+
+.artist_detalis {
+	margin-top: -15px;
+}
+
+.wrap_backend_textarea_label {
+	font-family: 'Montserrat';
+	font-size: 12px;
+	padding-bottom: 15px;
+	position: relative;
+	padding-right: 40px;
+}
+
+.wrap_backend_textarea textarea {
+	width: 100%;
+	resize: none;
+	height: 150px;
+	padding: 15px;
+	border: 1px solid #979797;
+	font-family: 'Montserrat';
+	font-size: 12px;
+}
+
+.maxlenth_texarea {
+	position: absolute;
+	right: 0;
+	top: 1px;
+	color: #c1c1c1;
+	font-size: 13px;
+}
+
+.wrap_backend_textarea {
+	padding-bottom: 15px;
+}
+
+.wrap_backend_button input {
+	background: #e83796;
+	border: none;
+	color: #fff;
+	padding: 15px 20px;
+    font-family: 'Montserrat';
+	font-weight: bold;
+	font-size: 15px;
+	cursor: pointer;
+	width: 100%;
+	text-transform: uppercase;
+}
+
+.artist_page_title div {
+	display: inline-block;
+	padding-bottom: 3px;
+	border-bottom: 3px solid #e83796;
+	font-size: 46px;
+    font-family: 'Montserrat';
+	font-weight: bold;
+}
+
+.header_nav_buttons {
+	text-align: right;
+}
+
+.header_nav_buttons a {
+	font-size: 9px;
+	color: #fff;
+	text-transform: uppercase;
+	text-decoration: none;
+	margin-right: 30px;
+}
+
+.header_nav_buttons a:hover {
+	text-decoration: underline;
+}
+
+.header_nav_buttons a:last-child {
+	margin-right: 0;
+}
+
+.header_nav_buttons .submit_work {
+	background: #e83796;
+	border: none;
+	color: #fff;
+	padding: 15px 10px;
+	font-weight: bold;
+	font-size: 9px;
+	cursor: pointer;
+	text-transform: uppercase;
+	text-decoration: none;
+    font-family: 'Nexa';
+    display: inline-block;
+}
+
+.header_nav_buttons .submit_work:hover {
+	text-decoration: none;
+}
+
+.header_nav_menu_inner {
+	background: #1de9b6;
+	padding: 30px;
+	padding-top: 50px;
+	margin-top: -50px;
+}
+
+.header_nav_menu_inner ul li a {
+	color: #fff;
+	font-size: 15px;
+    font-family: 'Nexa';
+	font-weight: bold;
+}
+
+.header_nav_menu_inner ul li:not(:last-child) {
+	padding-bottom: 15px;
+}
+
+.header_nav_socials {
+	text-align: right;
+}
+
+.header_nav_socials ul li:not(:last-child) {
+	padding-bottom: 15px;
+}
+
+.header_nav_socials ul li a {
+	color: #fff;
+}
+
+.artist_content_photo_inner {
+	padding: 10px;
+	border: 1px solid #979797;
+}
+
+.artist_content_photo_inner_displayed {
+	height: 200px;
+	background: #d8d8d8;
+}
+
+.artist_content_top_text_title {
+    font-family: 'Montserrat';
+	font-size: 23px;
+	padding-bottom: 30px;
+	font-weight: bold;
+}
+
+.artist_content_top_text_mail a {
+	font-family: 'Montserrat';
+	font-size: 23px;
+	color: #373a3c;
+	text-decoration: none;
+}
+
+.artist_content_top_text_mail {
+	padding-bottom: 15px;
+	font-weight: 300;
+}
+
+.artist_content_top_text_description,
+.artist_content_top_text_city {
+	font-family: 'Montserrat';
+	padding-bottom: 15px;
+	font-size: 18px;
+	font-weight: 300;
+}
+
+.share_links {
+	padding: 30px 0;
+	border-bottom: 3px solid #1eddad;
+}
+
+.share_links_item:not(:last-child) {
+	padding-bottom: 15px;
+}
+
+.share_links_item span {
+	width: 30px;
+	display: inline-block;
+	font-size: 20px;
+	vertical-align: middle;
+}
+
+.facebook {
+	color: #3b5998;
+}
+
+.twitter {
+	color: #1da1f2;
+}
+
+.share_links_item a {
+	color: #373a3c;
+	text-decoration: none;
+}
+
+.artist_photoes {
+	padding-top: 30px;
+}
+
+.artist_photoe_item_inner {
+	height: 200px;
+	background: #d8d8d8;
+}
+
+.artist_photoe_item {
+	padding-bottom: 30px;
+}
+
+.artist_page_title .artist_page_top_title {
+	color: #00ffbf;
+	font-size: 12px;
+	padding-bottom: 30px;
+	display: block;
+    font-family: 'Nexa';
+	border-bottom: none;
+}
+
+.artist_page_title  .artist_page_top_links {
+	display: block;
+	padding-bottom: 0;
+	border-bottom: none;
+	padding-top: 30px;
+}
+
+.artist_page_title  .artist_page_top_links a {
+	font-size: 12px;
+	color: #fff;
+	text-decoration: none;
+	padding-bottom: 15px;
+	display: block;
+}
+
+.artist_page_title  .artist_page_top_links a:last-child {
+	padding-bottom: 0;
+}
+
+.artist_page_title  .artist_page_top_links a:hover {
+	text-decoration: underline;
+}
+
+.articles_and_videos_block_item a {
+	font-size: 30px;
+	font-weight: bold;
+	text-decoration: none;
+    font-family: 'Montserrat';
+	color: #000;
+}
+
+.article_block_pages {
+	position: relative;
+	padding-left: 70px;
+	border-bottom: 1px solid #ededed;
+	padding-top: 25px;
+    padding-bottom: 25px;
+}
+
+.article_block_pages:before {
+	content: '';
+	width: 48px;
+	height: 44px;
+	background: url(../img/article.png);
+	background-repeat: no-repeat;
+	position: absolute;
+	left: 0;
+	top: 30px;
+}
+
+.article_video_pages {
+	position: relative;
+	padding-left: 70px;
+	border-bottom: 1px solid #ededed;
+	padding-top: 25px;
+    padding-bottom: 25px;
+}
+
+.article_video_pages:before {
+	content: '';
+	width: 48px;
+	height: 38px;
+	background: url(../img/vid.png);
+	background-repeat: no-repeat;
+	position: absolute;
+	left: 0;
+	top: 30px;
+}
+
+
+.article_video_pages_video {
+	text-align: center;
+}
+
+.article_video_pages_video {
+	padding-top: 25px;
+}
+
+.load_more_press a {
+	font-size: 18px;
+    font-family: 'Nexa';
+	background: #e83796;
+	padding: 30px;
+	display: block;
+	float: right;
+	width: 60%;
+	color: #fff;
+	font-weight: bold;
+	min-width: 220px;
+}
+
+.stay_in_touch {
+	padding-top: 15px;
+	padding-bottom: 50px;
+}
+
+.stay_in_touch_item_title {
+	font-size: 30px;
+	font-weight: bold;
+}
+
+.stay_in_touch_item_inputs_title {
+	padding-bottom: 15px;
+	font-weight: 300;
+	font-size: 18px;
+}
+
+.stay_in_touch_item_inputs_inner input[type=text] {
+	padding: 15px 10px;
+	background: #f8f8f8;
+	border: 1px solid #ededed;
+	width: calc(100% - 215px);
+	float: left;
+}
+
+.stay_in_touch_item_inputs_inner input[type=submit] {
+	text-transform: uppercase;
+    font-family: 'Nexa';
+	color: #fff;
+	background: #e83796;
+	padding: 16px 15px;
+	width: 200px;
+	text-align: center;
+	border: none;
+	float: right;
+	cursor: pointer;
+}
+
+.stay_in_touch_item_menu ul {
+	display: table;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+}
+
+.stay_in_touch_item_menu ul li {
+	display: table-cell;
+	vertical-align: middle;
+}
+
+.stay_in_touch_item_menu,
+.bottom_menu .stay_in_touch_item_title {
+	display: flex;
+}
+
+.stay_in_touch_item_menu ul li a {
+	font-size: 15px;
+	color: #000;
+}
+
+.articles_page_footer {
+	border-top: 1px solid #ededed;
+	padding: 30px 0;
+}
+
+.footer_socials ul {
+	margin-left: -5px;
+	margin-right: -5px;
+}
+
+.footer_socials ul li {
+	display: inline-block;
+}
+
+.footer_socials ul li a {
+	padding: 5px;
+	color: #6f7276;
+	font-size: 16px;
+}
+
+.copyright {
+    font-family: 'Montserrat';
+	font-size: 13px;
+	color: #323232;
+	font-weight: 300;
+}
+
+.artist_general_header {
+	background: #020b26;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+.artist_general_block {
+	background: #020b26;
+}
+
+.artist_general_block_text {
+	color: #fff;
+}
+
+.artist_general_block_text_title {
+    font-family: 'Montserrat';
+	font-weight: bold;
+	font-size: 30px;
+	padding-bottom: 30px;
+}
+
+.artist_general_block_text_inner {
+    font-family: 'Montserrat';
+    font-size: 19px;
+    position: relative;
+}
+
+.artist_general_block_text_inner p {
+	padding-bottom: 20px;
+}
+
+.artist_general_block_image  {
+	margin-bottom: -70px;
+}
+
+.artist_general_block_text_inner:before {
+	position: absolute;
+	content: '';
+	height: 5px;
+	width: 260px;
+	left: -275px;
+	top: 10px;
+	background: #00ffbf;
+}
+
+.artist_detalis_page_block {
+	padding-top: 150px;
+	padding-bottom: 125px;
+}
+
+.the_artist {
+	text-align: center;
+	padding-bottom: 15px;
+	color: #1eddad;
+	text-transform: uppercase;
+	font-family: 'Nexa';
+	font-weight: bold;
+}
+
+.first_title_artist {
+	font-weight: bold;
+	text-align: center;
+    font-family: 'Montserrat';
+	font-size: 30px;
+	padding-bottom: 30px;
+}
+
+.first_subtitle_artist {
+    font-family: 'Montserrat';
+	font-size: 16px;
+	font-weight: 300;
+	text-align: center;
+}
+
+.artist_detalis_page_block_inner {
+	background: url(../img/artistbg.png);
+	background-repeat: no-repeat;
+	background-position: top right;
+}
+
+.list_links_artist {
+	border-top: 1px solid #1eddad;
+	margin-top: 15px;
+	padding-top: 15px;
+}
+
+.list_links_artist li {
+	padding-bottom: 30px;
+}
+
+.list_links_artist li a {
+	position: relative;
+	font-weight: 500;
+	color: #1da8e2;
+	text-decoration: none;
+	padding-left: 20px;
+}
+
+.list_links_artist li a:before {
+	content: '';
+	width: 8px;
+	height: 8px;
+	background: #1da8e2;
+	position: absolute;
+	left: 0;
+	top: 4px;
+	transform: rotate(45deg);
+}
+
+.artist_detalis_page_block_inner_block {
+	padding-bottom: 30px;
+}
+
+.scene_title {
+    font-family: 'Montserrat';
+	font-size: 30px;
+	text-align: center;
+	font-weight: bold;
+	padding-bottom: 60px;
+}
+
+.scene_item_inner {
+	border: 1px solid #979797;
+	padding: 15px;
+}
+
+.scene_item_inner_image {
+	text-align: center;
+}
+
+.scene_item_inner_image img {
+	max-width: 100%;
+	height: 200px;
+}
+
+.scene_item_inner_data {
+	text-align: right;
+}
+
+.scene_item_inner_title,
+.scene_item_inner_data {
+	font-weight: bold;
+    font-family: 'Montserrat';
+}
+
+.scene_item_inner_title_and_data {
+	padding: 10px 0;
+}
+
+.scene_item_inner_link a {
+	display: block;
+    font-family: 'Montserrat';
+	font-weight: bold;
+	text-transform: uppercase;
+	font-size: 14px;
+	text-align: center;
+	color: #fff;
+	padding: 10px;
+	transition: .5s;
+	background: #e83796;
+	border: 1px solid #e83796;
+	text-decoration: none;
+}
+
+.scene_item_inner_link a:hover {
+	background: #fff;
+	color: #e83796;
+}
+
+.scene_item {
+	padding-bottom: 30px;
+}
+
+.col-xl-3 .scene_item_inner_title,
+.col-xl-3 .scene_item_inner_data,
+.col-lg-3 .scene_item_inner_title,
+.col-lg-3 .scene_item_inner_title,
+.col-md-3 .scene_item_inner_title,
+.col-md-3 .scene_item_inner_title,
+.col-sm-4 .scene_item_inner_title,
+.col-sm-4 .scene_item_inner_title {
+	width: 100%;
+	text-align: left;
+	max-width: 100%;
+	flex: 0 0 100%;
+}
+
+.see_all_button {
+	text-align: center;
+	padding-top: 30px;
+	padding-bottom: 100px;
+}
+
+.see_all_button a {
+	display: inline-block;
+	padding: 15px;
+	width: 220px;
+	text-align: center;
+    font-family: 'Montserrat';
+	color: #000;
+	border: 1px solid #1eddad;
+	text-decoration: none;
+	transition: .5s;
+}
+
+.see_all_button a:hover {
+	background: #1eddad;
+}
+
+.testmonials_artist_general_page {
+	background: url(../img/testmonial.png);
+	background-repeat: no-repeat;
+	background-size: 100%;
+	background-position: top center;
+	padding-top: 100px;
+}
+
+.testmonials_artist_general_page_view_more_inner a {
+	display: block;
+	font-family: 'Nexa';
+	background: #1eddad;
+	color: #fff;
+	font-weight: bold;
+	font-size: 18px;
+	text-align: center;
+	padding: 20px;
+}
+
+.testmonials_artist_general_page_testmonial {
+	background: #020b26;
+}
+
+.testmonials_artist_general_page_testmonial_inner {
+	padding: 80px 65px;
+}
+
+.testmonials_artist_general_page_testmonial_inner_bluetitle {
+	color: #00ffbf;
+	font-family: 'Nexa';
+	font-weight: bold;
+	font-size: 14px;
+	padding-bottom: 30px;
+}
+
+.testmonials_artist_general_page_testmonial_inner_bluetitle_text {
+    font-family: 'Montserrat';
+	font-weight: bold;
+	font-size: 27px;
+    color: #fff;
+    line-height: 1.5;
+}
+
+.testmonials_artist_general_page_view_more_inner {
+	margin-right: -30px;
+	padding-top: 102.6%;
+}
+
+.testmonial_autor {
+	padding-top: 30px;
+    font-family: 'Montserrat';
+	font-weight: 300;
+	color: #1eddad;
+	font-size: 20px;
+}
+
+.submit_work {
+    font-family: 'Montserrat';
+	font-weight: bold;
+	font-size: 30px;
+	line-height: 1.4;
+	padding: 30px;
+}
+
+.button_submit_work {
+	text-align: center;
+	position: relative;
+}
+
+.button_submit_work a {
+	display: inline-block;
+	color: #fff;
+	padding: 20px;
+	width: 220px;
+	font-family: 'Nexa';
+	font-weight: bold;
+	background: #e83796;
+	border: 1px solid #e83796;
+	transition: .5s;
+	text-decoration: none;
+	z-index: 5;
+	margin-top: -20px;
+}
+
+.button_submit_work a:hover {
+	background: #fff;
+	color: #e83796;
+}
+
+.testmonials_artist_general_page {
+	padding-bottom: 50px;
+}
+
+.buy_ticket_button a {
+	display: block;
+	width: 50%;
+	float: right;
+	color: #fff;
+	background: #e83796;
+	font-family: 'Nexa';
+	font-weight: bold;
+	font-size: 30px;
+	padding: 20px 30px;
+	min-width: 255px;
+}
+
+.cities_buy_tickets {
+	padding: 50px 0;
+}
+
+.cities_buy_tickets_item_title {
+	font-size: 100px;
+    font-family: 'Montserrat';
+	font-weight: bold;
+	letter-spacing: 22px;
+	padding-bottom: 20px;
+	cursor: pointer;
+	transition: .5s;
+	display: inline-block;
+}
+
+.active_city .cities_buy_tickets_item_title,
+.cities_buy_tickets_item_title:hover {
+	color: #e83796;
+}
+
+.cities_buy_tickets_places_item {
+	position: relative;
+	color: #020b26;
+    font-family: 'Montserrat';
+	font-weight: 300;
+	font-size: 18px;
+	padding-bottom: 20px;
+	padding-left: 30px;
+}
+
+.cities_buy_tickets_places_item:before {
+	content: '+';
+	line-height: 1;
+	position: absolute;
+	left: 0;
+	color: #fff;
+	background: #1bdaad;
+	padding: 1px 5px;
+}
+
+.cities_buy_tickets_places {
+	display: none;
+}
+
+.active_city .cities_buy_tickets_places {
+	display: block;
+}
+
+.cities_buy_tickets_item {
+	clear: both;
+}
+
+.attend_wrap {
+	background: #020b26;
+	-webkit-box-pack: end;
+    -webkit-justify-content: flex-end;
+    -ms-flex-pack: end;
+    justify-content: flex-end;
+    display: flex;
+}
+
+.attend_wrap_link {
+	display: flex;
+	padding: 0;
+}
+
+.about_page {
+	padding-bottom: 50px;
+}
+
+.attend_wrap_link a {
+	display: block;
+	padding: 30px 100px;
+	font-family: 'Nexa';
+	background: #e83796;
+	width: 100%;
+	color: #fff;
+	font-weight: bold;
+	font-size: 24px;
+}
+
+.our_platform {
+	padding: 50px 0;
+	background: #1de9b6;
+}
+
+.our_platform_title {
+    font-family: 'Montserrat';
+	font-weight: bold;
+	font-size: 44px;
+	text-align: center;
+	padding-bottom: 30px;
+}
+
+.our_platform_text {
+	text-align: center;
+
+}
+
+.our_platform_text p:not(:last-child) {
+	padding-bottom: 20px;
+    font-family: 'Montserrat';
+	font-weight: 300;
+}
+
+.our_team {
+	padding: 50px 0;
+}
+
+.portfolio_item_inner_title_title {
+    font-family: 'Montserrat';
+	font-weight: bold;
+	padding-bottom: 5px;
+	font-size: 18px;
+}
+
+.portfolio_item_inner_title_text,
+.portfolio_item_inner_title_job {
+	font-weight: 300;
+    font-family: 'Montserrat';
+    padding-bottom: 15px;
+}
+
+.how_it_begen {
+	color: #fff;
+	background: #020b26;
+}
+
+.stay_in_touch_about {
+	padding-top: 50px;
+}
+
+.our_mission {
+	background-image: -webkit-linear-gradient(left, #1de9b6 50%, #020b26 50%);
+	background-image: -o-linear-gradient(left, #1de9b6 50%, #020b26 50%);
+	background-image: linear-gradient(to right, #1de9b6 50%, #020b26 50%);
+}
+
+.submit_work_about {
+	background: #1de9b6;
+	color: #fff;
+	padding-top: 100px;
+	padding-bottom: 100px;
+}
+
+.submit_work_about_inner {
+	font-family: 'Nexa';
+	font-weight: bold;
+	color: #fff;
+	padding: 0 20px;
+	font-size: 24px;
+}
+
+.submit_work_about_inner_text {
+	padding-bottom: 20px;
+}
+
+.submit_work_about_inner_button a {
+	display: inline-block;
+	padding: 15px 20px;
+	background: #e83796;
+	font-family: 'Nexa';
+	font-weight: bold;
+	color: #fff;
+	text-decoration: none;
+	border: 1px solid #e83796;
+	font-size: 18px;
+	transition: .5s;
+}
+
+.submit_work_about_inner_button a:hover {
+	background: #fff;
+	color: #e83796;
+}
+
+.our_mission_text {
+	background: #020b26;
+	padding-top: 100px;
+	padding-bottom: 100px;
+	color: #fff;
+}
+
+.our_mission_text_title {
+    font-family: 'Montserrat';
+    font-size: 44px;
+	font-weight: bold;
+	padding-bottom: 30px;
+}
+
+.our_mission_text_inner {
+	padding-left: 70px;
+}
+
+.our_mission_text_text {
+    font-family: 'Montserrat';
+	font-weight: 300;
+}
+
+.map_block_title {
+	font-family: 'Montserrat';
+    font-size: 44px;
+	font-weight: bold;
+	padding-bottom: 50px;
+	padding-top: 50px;
+	text-align: center;
+}
+
+.map_block_inner {
+	background: url(../img/map.png) 50% 50% / cover;
+	padding-top: 120px;
+    padding-bottom: 340px;
+}
+
+.map_block_inner_address {
+	width: 230px;
+	margin: 0 auto;
+	padding: 30px;
+	background: #e83796;
+	color: #fff;
+	font-family: 'Montserrat';
+	font-weight: bold;
+	font-size: 30px;
+}
+
+.index_header {
+	/*background: #8a8a8a;*/
+	background: url(../img/dark_first_block_bg.png) 50% 50%;
+}
+
+.index_page_artist div {
+	border-bottom: 3px solid rgba(255,255,255,0.25);
+}
+
+.artist_page_title .art_for {
+	color: #ffffff;
+	font-family: 'Nexa';
+	font-size: 16px;
+	display: block;
+	border-bottom: none;
+	font-weight: bold;
+}
+
+.artist_page_title .art_for a {
+	border: 1px solid #1dddaf;
+	display: inline-block;
+	padding: 15px 40px;
+	text-decoration: none;
+	color: #fff;
+	margin-left: 15px;
+	transition: .5s;
+}
+
+.artist_page_title .art_for a:hover {
+	background: #1dddaf;
+}
+
+.index_page_artist .index_page_artist_scroll {
+	font-size: 14px;
+	color: #fff;
+	border-bottom: none;
+	font-weight: 400;
+	padding: 30px 0;
+	position: relative;
+	padding-left: 40px;
+}
+
+.index_page_artist_scroll:before {
+	width: 30px;
+	height: 1px;
+	background: #fff;
+	content: '';
+	position: absolute;
+	left: 0;
+	top: 50%;
+}
+
+.submit_index_page_wrap {
+	-ms-flex-align: center;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    align-items: center;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.submit_index_page a {
+	display: block;
+	padding: 30px;
+	color: #fff;
+	font-family: 'Nexa';
+	font-size: 20px;
+	font-weight: bold;
+	background: #e83796;
+}
+
+.bringin_art_image_text_title {
+	font-family: 'Montserrat';
+	font-size: 30px;
+	font-weight: bold;
+	position: relative;
+	padding-bottom: 30px;
+}
+
+.bringin_art_image_text {
+	padding-top: 70px;
+	padding-bottom: 70px;
+}
+
+.bringin_art_image_text_text {
+	font-weight: 300;
+	font-family: 'Montserrat';
+}
+
+.bringin_art_image img {
+	width: 100%;
+}
+
+.bringin_art_image  {
+	margin-top: -40px;
+}
+
+.for_artist_and_collectors_first_inner {
+	padding: 100px 30px;
+}
+
+.for_artist_and_collectors_first {
+	background: #020b26;
+	color: #fff;
+}
+
+.for_artist_and_collectors_first_inner_title {
+	font-family: 'Montserrat';
+	font-weight: bold;
+	font-size: 25px;
+	padding-bottom: 20px;
+}
+
+.for_artist_and_collectors_first_inner_title_text {
+	font-weight: 300;
+	font-family: 'Montserrat';
+	font-size: 20px;
+	padding-bottom: 100px;
+}
+
+.for_artist_and_collectors_first_inner_signup_title {
+	font-size: 17px;
+	font-family: 'Roboto';
+	font-weight: 300;
+	padding-bottom: 10px;
+}
+
+.for_artist_and_collectors_first_inner_signup_input input[type=text] {
+	padding: 10px;
+	width: calc(100% - 200px);
+	border: none;
+	font-family: 'Montserrat';
+	color: #323232;
+	font-weight: 300;
+	float: left;
+}
+
+.for_artist_and_collectors_first_inner_signup_input input[type=submit] {
+	float: left;
+	width: 200px;
+	text-align: center;
+	font-family: 'Nexa';
+	padding: 9px;
+	background: #21e0b2;
+	border: none;
+	color: #fff;
+	font-weight: bold;
+	cursor: pointer;
+	transition: .5s;
+	border: 1px solid #21e0b2;
+}
+
+.for_artist_and_collectors_first_inner_signup_input input[type=submit]:hover {
+	background: #fff;
+	color: #21e0b2;
+}
+
+.for_artist_and_collectors_last {
+	background: #1de9b6;
+}
+
+.more_whats_new a {
+	display: block;
+	padding: 30px;
+	color: #fff;
+	background: #020b26;
+	font-weight: bold;
+	font-family: 'Nexa';
+	font-size: 18px;
+}
+
+.check_out {
+	background: url(../img/check.png);
+	background-size: 100%;
+	background-repeat: no-repeat;
+	background-position: top center;
+	padding-top: 250px;
+}
+
+.check_out_block {
+	background: #020b26;
+	padding: 50px;
+	padding: 130px;
+}
+
+.small_title {
+	color: #00ffbf;
+	font-weight: bold;
+	font-size: 14px;
+	font-family: 'Nexa';
+	padding-bottom: 15px;
+}
+
+.check_out_block_inner .page_text,
+.check_out_block_inner .medium_title {
+	color: #fff;
+}
+
+.medium_title {
+	font-family: 'Montserrat';
+	font-weight: bold;
+	font-size: 30px;
+	padding-bottom: 40px;
+}
+
+.page_text {
+	font-family: 'Montserrat';
+	font-weight: 300;
+	padding-bottom: 30px;
+}
+
+.blue_link a {
+	color: #1eddad;
+	text-decoration: none;
+	font-family: 'Nexa';
+	font-weight: bold;
+	font-size: 14px;
+}
+
+.blue_link:hover {
+	text-decoration: underline;
+}
+
+.more_whats_new  {
+	padding: 0;
+}
+
+.index_cities .cities_buy_tickets_item_title {
+	padding-left: 0!important;
+}
+
+.view_more_shows a {
+	text-align: right;
+}
+
+.view_more_shows .submit_index_page {
+	padding: 0;
+}
+
+.index_testmonials {
+	padding: 50px 0;
+	background-image: url(../img/artistbg.png);
+    background-repeat: no-repeat;
+    background-position: top 10px right;
+    background-color: transparent;
+    position: relative;
+    z-index: 2;
+}
+
+.index_testmonial_item {
+	padding-bottom: 60px;
+}
+
+.index_testmonial_item_text {
+	padding-bottom: 15px;
+	font-family: 'Nexa';
+	font-weight: bold;
+}
+
+.index_testmonial_item_job {
+	color: #e83796;
+	font-weight: 500;
+}
+
+.featured_on {
+	background-color: #f8f8f8;
+	padding: 50px;
+	position: relative;
+    margin-top: -60px;
+}
+
+.featured_on_title {
+	font-size: 18px;
+	padding-top: 35px;
+}
+
+.collector_header {
+	padding-top: 30px;
+}
+
+.big_title {
+	font-family: 'Montserrat';
+	font-weight: bold;
+	font-size: 44px;
+	padding-bottom: 25px;
+}
+
+.collector_text_title .big_title {
+	color: #fff;
+	border-bottom: 3px solid #00ffbf;
+	display: inline-block;
+	padding-bottom: 10px;
+}
+
+.collector_text_title_text {
+	color: #fff;
+	font-family: 'Montserrat';
+	font-weight: bold;
+	font-size: 25px;
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+
+.discover_art a {
+	display: block;
+	text-align: center;
+	font-family: 'Nexa';
+	font-weight: bold;
+	padding: 30px;
+	font-size: 20px;
+	color: #fff;
+	text-decoration: none;
+	background-color: #1eddad;
+}
+
+.discover_art {
+	margin-left: -30px;
+	margin-right: -30px;
+}
+
+.collector_page_text {
+	padding: 50px 0;
+	padding-top: 90px;
+	text-align: center;
+}
+
+.collector_page_text_title {
+	border-bottom: 3px solid #e83796;
+	padding-bottom: 15px;
+	font-size: 44px;
+	font-family: 'Montserrat';
+	font-weight: bold;
+	max-width: 660px;
+	margin: 0 auto;
+	margin-bottom: 30px;
+}
+
+.collector_page_text_text p {
+	padding-bottom: 20px;
+}
+
+.collector_page_text_text {
+	font-family: 'Montserrat';
+	font-weight: 300;
+	font-size: 22px;
+}
+
+.category_filter {
+	padding: 50px 0;
+}
+
+.block_small_title {
+	text-align: center;
+	font-family: 'Montserrat';
+	font-size: 22px;
+	font-weight: 300;
+	padding-bottom: 30px;
+}
+
+.category_filter_head_item {
+	display: inline-block;
+	padding: 15px 20px;
+	font-family: 'Montserrat';
+	font-weight: bold;
+	font-size: 18px;
+	border-radius: 3px;
+	border: 1px solid #1eddad;
+	cursor: pointer;
+	transition: .5s;
+}
+
+.category_filter_head {
+	text-align: center;
+}
+
+.category_filter_head_item:hover {
+	background-color: #1eddad;
+}
+
+.portfolio_item_inner_title_place,
+.portfolio_item_inner_title_street {
+	font-weight: 300;
+}
+
+.see_all_artist_button a {
+	text-align: center;
+	color: #000;
+	text-decoration: none;
+}
+
+.see_all_artist_button {
+	padding: 50px 0;
+	text-align: center;
+}
+
+.upcoming_show {
+	background: url(../img/upcoming.png) 50% 50% / cover;
+	padding-top: 100px;
+	background-position: top 185px center;
+	background-repeat: no-repeat;
+	margin-bottom: 50px;
+}
+
+.upcoming_show_block {
+	background-color: #1eddad;
+	padding: 50px 0;
+	text-align: center;
+	padding-top: 0;
+	color: #fff;
+}
+
+.upcoming_show_block_pink {
+	padding: 30px;
+	max-width: 50%;
+	margin: 0 auto;
+	background-color: #e83796;
+	color: #fff;
+	text-align: center;
+	font-weight: bold;
+	font-family: 'Montserrat';
+
+}
+
+.upcoming_show_block .big_title {
+	padding-top: 50px;
+}
+
+.upcoming_show .block_small_title {
+	margin-top: -50px;
+	position: relative;
+}
+
+.upcoming_show_text {
+	color: #fff;
+	background-color: #020b26;
+	padding: 50px;
+	font-family: 'Montserrat';
+	font-weight: 300;
+	text-align: center;
+	line-height: 1.4;
+	font-size: 21px;
+	margin-top: 100px;
+}
+
+.faq_block {
+	padding: 50px 0;
+}
+
+.faq_block_tilte {
+	text-align: center;
+	color: #e83796;
+	padding-bottom: 30px;
+}
+
+.faq_block_ask {
+	font-weight: bold;
+	font-family: 'Montserrat';
+}
+
+.faq_block_answer {
+	font-weight: 300;
+	font-family: 'Montserrat';
+}
+
+.faq_block_item {
+	padding-bottom: 30px;
+}
+
+.faq_block:nth-child(even) {
+	background-color: #f8f8f8;
+}
+
+.ticket_tracker_page_block {
+	font-size: 22px;
+	font-weight: 400;
+	font-family: 'Montserrat';
+	padding-bottom: 50px;
+	color: #000;
+}
+
+.opentracker {
+	display: inline-block;
+	border: 1px solid #1eddad;
+	font-family: 'Montserrat';
+	font-size: 22px;
+	text-decoration: none;
+	padding: 15px 74px;
+	color: #000;
+	transition: .5s;
+	margin-right: 10px;
+	border-radius: 3px;
+}
+
+.buyout {
+	display: inline-block;
+	border: 1px solid #e83796;
+	background-color: #e83796;
+	color: #fff;
+	padding: 15px 70px;
+	font-family: 'Montserrat';
+	font-size: 22px;
+	text-decoration: none;
+	transition: .5s;
+	border-radius: 3px;
+}
+
+.buyout:hover {
+	text-decoration: none;
+	color: #e83796;
+	background-color: #fff;
+}
+
+.opentracker:hover {
+	text-decoration: none;
+	background-color: #1eddad;
+	color: #000;
+}
+
+.ticket_tracker_detalis {
+	padding: 50px 0;
+}
+
+.ticket_tracker_detalis_head_item {
+	display: inline-block;
+	color: #fff;
+	font-size: 15px;
+	font-family: 'Montserrat';
+	background-color: #e83796;
+	padding: 10px 15px;
+	width: 140px;
+	text-align: center;
+}
+
+.ticket_tracker_total {
+	padding-bottom: 50px;
+}
+
+.ticket_tracker_total_inner {
+	padding-left: 15px;
+}
+
+.ticket_tracker_total_inner_item {
+	padding-bottom: 15px;
+	font-family: 'Montserrat';
+	font-weight: 300;
+	font-size: 22px;
+}
+
+.ticket_tracker_detalis_head_items {
+	justify-content: space-between;
+    display: flex;
+}
+
+.show_header {
+	padding-bottom: 70px;
+}
+
+.shows_city_detalis {
+	padding: 50px 0;
+}
+
+.shows_city_detalis_title_title {
+	font-size: 120px;
+	font-family: 'Montserrat';
+	color:  #e83796;
+	font-weight: bold;
+}
+
+.shows_city_detalis_title_date {
+	font-family: 'Montserrat';
+	font-weight: 300;
+	font-size: 22px;
+	padding-bottom: 5px;
+}
+
+.shows_city_detalis_title_time {
+	font-family: 'Montserrat';
+	font-weight: 300;
+	font-size: 22px;
+}
+
+.shows_city_detalis_text_only {
+	font-family: 'Montserrat';
+	font-size: 22px;
+	padding-top: 30px;
+	padding-bottom: 50px;
+	font-weight: 300;
+}
+
+.purchache_tickets_title {
+	font-size: 60px;
+	font-family: 'Montserrat';
+	color:  #e83796;
+	font-weight: bold;
+	padding-bottom: 30px;
+}
+
+.purchache_tickets_sub_title {
+	padding-bottom: 20px;
+	font-weight: bold;
+	font-family: 'Montserrat';
+	font-size: 34px;
+}
+
+.purchase_without {
+	font-family: 'Montserrat';
+	font-weight: 300;
+	padding-bottom: 50px;
+	font-size: 18px;
+}
+
+.purchase_without a {
+	color: #000;
+	font-family: 'Montserrat';
+	font-weight: 300;
+	text-decoration: underline;
+}
+
+.purchase_without a:hover {
+	text-decoration: none;
+}
+
+.select_and_buy_tickets {
+	-webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    display: flex;
+}
+
+.select_and_buy_tickets_select select {
+	width: 100%;
+	border: 1px solid #eeeeee;
+	font-family: 'Montserrat';
+	padding: 17px 15px;
+	height: 51px;
+	outline: none;
+}
+
+.select_and_buy_tickets_button input {
+	width: 100%;
+	border: none;
+    padding: 16px 15px;
+	background:  #e83796;
+	cursor: pointer;
+    color: #fff;
+	font-family: 'Montserrat';
+    font-weight: bold;
+    border: 1px solid #e83796;
+    transition: .5s;
+    height: 51px;
+}
+
+.select_and_buy_tickets_button input:hover {
+	background: #fff;
+	color: #e83796;
+}
+
+.select_and_buy_tickets {
+	padding-bottom: 50px;
+}
+
+.portfolio_item_inner_title_shows_category {
+	font-weight: 300;
+}
+
+.shows_artists {
+	padding-bottom: 50px;
+}
+
+.shows_all_artist {
+	padding-top: 50px;
+	text-align: center;
+}
+
+.shows_all_artist button {
+	border: 1px solid #1eddad;
+	border-radius: 3px;
+	padding: 15px 30px;
+	font-weight: bold;
+	font-family: 'Montserrat';
+	color: #000000;
+	background: #fff;
+	cursor: pointer;
+	transition: .5s;
+}
+
+.shows_all_artist button:hover {
+	background: #1eddad;
+}

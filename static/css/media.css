@@ -1,0 +1,392 @@
+@media only screen and (max-width : 1500px) {
+	.testmonials_artist_general_page_view_more_inner {
+	    padding-top: 96.2%;
+	}
+}
+
+/* Large Devices, Wide Screens */
+@media only screen and (max-width : 1200px) {
+	.login_form_inner_inner {
+	    padding: 83px 166px;
+	}
+
+	.wrap_photo {
+		padding: 60px 5px;
+	}
+
+	.testmonials_artist_general_page_view_more_inner {
+	    padding-top: 87.2%;
+	}
+	
+	.check_out {
+		padding-top: 60px;
+	}
+
+	.shows_city_detalis_title_title {
+		font-size: 	90px;
+	}
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (max-width : 992px) {
+	.login_form_inner_inner {
+	    padding: 83px 136px;
+	}
+
+	.wrap_photo {
+    	padding: 50px 5px;
+	}
+
+	.heading_block .logout a {
+		padding: 13px 50px;
+	}
+
+	.artist_general_block {
+    	margin-top: -1px;
+	}
+
+	.artist_detalis_page_block {
+		padding-bottom: 0;
+	}
+
+	.testmonials_artist_general_page_view_more_inner {
+		padding-top: 0;
+	}
+
+	.artist_detalis_page_block {
+		padding-top: 50px;
+	}
+
+	.artist_detalis_page_block_inner {
+		background-position: top 110px right;
+	}
+
+	.cities_buy_tickets_item_title {
+		font-size: 40px;
+	}
+
+	.bringin_art_image {
+		margin-top: 0;
+		padding-top: 30px;
+	}
+
+	.bringin_art_image_text {
+		padding-top: 30px;
+		padding-bottom: 30px;
+	}
+
+	.artist_respons {
+		display: block;
+	}
+
+	.check_out_block {
+		padding: 80px;
+	}
+
+	.featured_on_resp {
+		display: block;
+	}
+
+	.featured_on_title  {
+		padding-top: 0;
+		padding-bottom: 20px;
+		text-align: center;
+	}
+
+	.discover_art {
+		margin-left: 0;
+		margin-right: 0;
+	}
+
+	.shows_city_detalis_title_title {
+    	font-size: 60px;
+	}
+
+	.shows_city_detalis_title_time,
+	.shows_city_detalis_title_date {
+		font-size: 20px;
+	}
+}
+
+/* Small Devices, Tablets */
+@media only screen and (max-width : 768px) {
+	.login_form_inner_inner {
+    	padding: 83px 15px;
+	}
+
+	.wrap_inputs .wrap_button {
+		padding-top: 15px;
+	}
+
+	.wrap_file_inner {
+		padding-top: 15px;
+	}
+
+	.wrap_check_button  {
+		padding-bottom: 15px;
+	}
+
+	.page_block_title {
+		justify-content: center;
+		padding-bottom: 15px;
+	}
+
+	.heading_block .logout {
+		justify-content: center;
+	}
+
+	.page_block_title {
+		text-align: center;
+	}
+
+	.artist_photo_inner_displayed button {
+		width: 170px;
+		margin-left: -85px;
+	}
+
+	.header_nav_menu_inner {
+		padding: 10px;
+		padding-top: 50px;
+	}
+
+	.header_nav_buttons a {
+		margin-right: 5px;
+	}
+
+	.stay_in_touch_item_inputs_title,
+	.stay_in_touch_item .stay_in_touch_item_title {
+		text-align: center;
+	}
+
+	.bottom_menu .stay_in_touch_item_title,
+	.stay_in_touch_item .stay_in_touch_item_title {
+		padding-bottom: 15px;
+		text-align: center;
+	}
+
+	.footer_socials {
+		text-align: center;
+	}
+
+	.copyright  {
+		text-align: center;
+		padding-top: 15px;
+	}
+
+	.artist_general_block_image {
+		margin-bottom: 0;
+		padding-bottom: 10px;
+	}
+
+	.artist_general_block_text_inner:before {
+		width: 50px;
+		left: -75px;
+	}
+
+	.cities_buy_tickets_item_title {
+		font-size: 20px;
+	}
+
+	.attend_wrap_link a {
+		padding: 30px;
+		text-align: center;
+	}
+
+	.responvive_flex {
+		display: block;
+	}
+
+	.our_mission {
+		background-image: linear-gradient(#1de9b6 50%, #020b26 50%);	
+	}
+	
+	.our_mission_text {
+	    padding-top: 62px;
+    	padding-bottom: 79px;
+    }
+
+    .our_mission_text_inner {
+    	padding-left: 0;
+    }
+
+    .check_out {
+    	background-size: cover;
+    }
+
+    .block_eq {
+    	display: block;
+    }
+
+    .select_and_buy_tickets {
+    	display: block;
+    }
+
+    .select_and_buy_tickets .select_and_buy_tickets_select  {
+		padding-bottom: 15px;
+    }
+
+    .shows_city_detalis_title_time {
+    	padding-bottom: 15px;
+    }
+}
+
+@media only screen and (max-width : 640px) {
+	.buyout,
+	.opentracker {
+		display: block;
+		width: 100%;
+		padding: 15px;
+		margin-bottom: 15px;
+		text-align: center;
+	}
+}
+
+@media only screen and (max-width : 576px) {
+	.logo {
+		text-align: center;
+		padding-bottom: 15px;
+	}
+
+	.logout {
+		justify-content: center;
+	}
+
+	.main_menu ul li {
+	    padding: 0 20px;
+	}
+
+	.artist_detalis {
+		margin-top: 0;
+		padding-top: 15px;
+	}
+
+	.header_nav_menu_inner {
+		margin-top: 0;
+		padding: 15px;
+	}
+
+	.header_nav_menu {
+		padding: 15px;
+	}
+
+	.header_nav_buttons {
+		text-align: center;
+	}
+
+	.header_nav_socials {
+		text-align: center;
+	}
+
+	.header_nav_socials ul {
+		display: flex;
+		justify-content: center;
+	}
+
+	.header_nav_socials ul li {
+		padding: 5px;
+	}
+
+	.stay_in_touch_item_inputs_inner input[type=text] {
+		width: 100%;
+		margin-bottom: 15px;
+	}
+
+	.stay_in_touch_item_inputs_inner input[type=submit] {
+		width: 100%;
+	}
+
+	.for_artist_and_collectors_first_inner_signup_input input {
+		width: 100%!important;
+		margin-top: 5px;
+	}
+}
+
+/* Extra Small Devices, Phones */
+@media only screen and (max-width : 480px) {
+	.main_menu ul li {
+	    padding: 0 10px;
+	}	
+
+	.main_menu ul li a {
+		font-size: 11px;
+	}
+
+	.our_mission_text {
+	    padding-top: 71px;
+	    padding-bottom: 60px;
+	}
+
+	.submit_index_page a {
+		padding: 20px;
+	}
+
+	.check_out_block {
+		padding: 30px;
+	}
+
+	.cities_buy_tickets_item_title {
+   		font-size: 17px;
+	}
+
+	.artist_page_title .art_for {
+		text-align: center;
+	}
+
+	.artist_page_title .art_for a {
+		display: block;
+		margin-top: 10px;
+		margin-left: 0;
+		margin-bottom: 10px;
+	}
+
+	.ticket_tracker_detalis_head_item {
+		padding: 5px;
+		width: auto;
+		font-size: 13px;
+	}
+}
+
+/* Custom, iPhone Retina */
+@media only screen and (max-width : 320px) {
+	.our_mission_text {
+	    padding-top: 20px;
+	    padding-bottom: 30px;
+	}
+}
+
+
+/*==========  Mobile First Method  ==========*/
+
+/* Custom, iPhone Retina */
+@media only screen and (min-width : 320px) {
+
+}
+
+/* Extra Small Devices, Phones */
+@media only screen and (min-width : 480px) {
+
+}
+
+/* Small Devices, Tablets */
+@media only screen and (min-width : 769px) {
+
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (min-width : 992px) {
+	.for_artist_and_collectors_last {
+		margin-top: 100px;
+	}
+
+
+	.collector_image  {
+		margin-bottom: -40px;
+	}
+}
+
+ /* Large Devices, Wide Screens */
+@media only screen and (min-width : 1200px) {
+	.ticket_tracker_detalis_head_items {
+		max-width: 64.5%;
+	}
+}
