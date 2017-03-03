@@ -1387,13 +1387,13 @@ img {
 	padding: 1px 5px;
 }
 
-.cities_buy_tickets_places {
+/*.cities_buy_tickets_places {
 	display: none;
 }
 
 .active_city .cities_buy_tickets_places {
 	display: block;
-}
+}*/
 
 .cities_buy_tickets_item {
 	clear: both;

@@ -4,50 +4,26 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _extends2 = require('babel-runtime/helpers/extends');
+
+var _extends3 = _interopRequireDefault(_extends2);
+
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
 var _lodash = require('lodash');
 
+var _city = require('./city');
+
+var _city2 = _interopRequireDefault(_city);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var _jsxFileName = '/Users/parker.ituk/dev/with-redux/components/Home/EventCities/index.js';
-
-
 function EventCities(props) {
-  var events = (0, _lodash.map)(props, function (event) {
-    return _react2.default.createElement('div', { className: 'cities_buy_tickets_item index_cities clearfix', key: event.id, __source: {
-        fileName: _jsxFileName,
-        lineNumber: 7
-      }
-    }, _react2.default.createElement('div', { className: 'cities_buy_tickets_item_title', __source: {
-        fileName: _jsxFileName,
-        lineNumber: 8
-      }
-    }, event.name.text));
-  });
-  return _react2.default.createElement('div', { className: 'cities_buy_tickets', __source: {
-      fileName: _jsxFileName,
-      lineNumber: 14
-    }
-  }, _react2.default.createElement('div', { className: 'container', __source: {
-      fileName: _jsxFileName,
-      lineNumber: 15
-    }
-  }, _react2.default.createElement('div', { className: 'small_title', __source: {
-      fileName: _jsxFileName,
-      lineNumber: 16
-    }
-  }, 'Click To Expand'), events, _react2.default.createElement('div', { className: 'cities_buy_tickets_item index_cities clearfix', __source: {
-      fileName: _jsxFileName,
-      lineNumber: 35
-    }
-  }, _react2.default.createElement('div', { className: 'cities_buy_tickets_item_title', __source: {
-      fileName: _jsxFileName,
-      lineNumber: 36
-    }
-  }, 'New York City'))));
+  return _react2.default.createElement('div', { className: 'cities_buy_tickets' }, _react2.default.createElement('div', { className: 'container' }, _react2.default.createElement('div', { className: 'small_title' }, 'Click To Expand'), (0, _lodash.map)(props, function (event) {
+    return _react2.default.createElement(_city2.default, (0, _extends3.default)({}, event, { key: event.id }));
+  })));
 }
 
 exports.default = EventCities;

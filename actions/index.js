@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { FETCH_EVENTS } from './types';
+// import { FETCH_EVENTS } from './types';
 
 // let githubApi = "https://api.github.com";
 // if (__CLIENT__) {
@@ -7,18 +7,11 @@ import { FETCH_EVENTS } from './types';
 // 	githubApi = `${protocol}//${hostname}:${port}/api/github`;
 // }
 
-export function getEvents() {
-  return (dispatch) => {
-    dispatch({
-      type: FETCH_EVENTS,
-      payload: { name: 'parker' },
-    });
-    // axios.get('/api/events').then(response => {
-    //   dispatch({
-    //     type: FETCH_EVENTS,
-    //     payload: response.data.events,
-    //   });
-    // })
-		// .catch(err => console.log(err));
-  };
+export async function getVenue(venueId) {
+  const response = await axios.get(`https://conceptionarts-api.herokuapp.com/api/venues/${venueId}`);
+
+  return response.then((res) => {
+    console.log(res);
+    return res ? res.name : '';
+  });
 }

@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Link from 'next/link';
 import Head from 'next/head';
 import axios from 'axios';
-import { getEvents } from '../actions';
 import { FETCH_EVENTS } from '../actions/types';
 import { nextConnect } from '../store';
 
@@ -19,39 +18,17 @@ import HeaderSocial from '../components/HeaderSocial';
 import HeaderNav from '../components/HeaderNav';
 import HeaderLogin from '../components/HeaderLogin';
 
+const BASE_URL = 'https://conceptionarts-api.herokuapp.com/api/events';
+
 class Home extends Component {
 
-  static getInitialProps({ store }) {
-    const response = ('/api/events');
-
-    console.log(response);
-
-    // response.then((data) => {
-    //   console.log(data);
-    // })
-    // .catch(err => console.log('cant get data', err));
-
-    // store.dispatch({
-    //   type: FETCH_EVENTS,
-    //   payload: response.data.events,
-    // });
-
-    return {};
+  static async getInitialProps({ store }) {
+    const response = await axios.get(BASE_URL);
+    return store.dispatch({
+      type: FETCH_EVENTS,
+      payload: response.data.events,
+    });
   }
-
-  constructor(props) {
-    super(props);
-    this.state = { events: [], name: 'Parker' };
-  }
-
-  // componentWillMount() {
-  //   this.props.getEvents();
-  // }
-
-  // componentWillReceiveProps(nextProps) {
-  //   const { events } = nextProps;
-  //   this.setState({ events });
-  // }
 
   render() {
     return (
@@ -117,7 +94,7 @@ class Home extends Component {
             </div>
           </div>
           <WhatsNew />
-          <EventCities {...this.state.events} />
+          <EventCities {...this.props.events} />
           <div className="view_more_shows clearfix">
             <div className="submit_index_page col-lg-4 col-md-6 col-sm-6 col-xs-12">
               <Link href="/shows">
@@ -146,4 +123,4 @@ function mapStateToProps(state) {
 /**
  * Connect to Redux store.
  */
-export default nextConnect(mapStateToProps, { getEvents })(Home);
+export default nextConnect(mapStateToProps, null)(Home);

@@ -3,15 +3,23 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.getEvents = getEvents;
+exports.getVenue = undefined;
+
+var _regenerator = require('babel-runtime/regenerator');
+
+var _regenerator2 = _interopRequireDefault(_regenerator);
+
+var _asyncToGenerator2 = require('babel-runtime/helpers/asyncToGenerator');
+
+var _asyncToGenerator3 = _interopRequireDefault(_asyncToGenerator2);
 
 var _axios = require('axios');
 
 var _axios2 = _interopRequireDefault(_axios);
 
-var _types = require('./types');
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+// import { FETCH_EVENTS } from './types';
 
 // let githubApi = "https://api.github.com";
 // if (__CLIENT__) {
@@ -19,18 +27,32 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 // 	githubApi = `${protocol}//${hostname}:${port}/api/github`;
 // }
 
-function getEvents() {
-  return function (dispatch) {
-    dispatch({
-      type: _types.FETCH_EVENTS,
-      payload: { name: 'parker' }
-    });
-    // axios.get('/api/events').then(response => {
-    //   dispatch({
-    //     type: FETCH_EVENTS,
-    //     payload: response.data.events,
-    //   });
-    // })
-    // .catch(err => console.log(err));
+var getVenue = exports.getVenue = function () {
+  var _ref = (0, _asyncToGenerator3.default)(_regenerator2.default.mark(function _callee(venueId) {
+    var response;
+    return _regenerator2.default.wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            _context.next = 2;
+            return _axios2.default.get('https://conceptionarts-api.herokuapp.com/api/venues/' + venueId);
+
+          case 2:
+            response = _context.sent;
+            return _context.abrupt('return', response.then(function (res) {
+              console.log(res);
+              return res ? res.name : '';
+            }));
+
+          case 4:
+          case 'end':
+            return _context.stop();
+        }
+      }
+    }, _callee, this);
+  }));
+
+  return function getVenue(_x) {
+    return _ref.apply(this, arguments);
   };
-}
+}();
