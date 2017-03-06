@@ -2,7 +2,7 @@
   "name": "with-redux",
   "version": "1.0.0",
   "scripts": {
-    "dev": "forever --minUptime 1000 --spinSleepTime 1000 -c \"node --harmony\" ./server.js",
+    "dev": "node server.js",
     "build": "next build",
     "start": "next build && next start",
     "production": "cross-env NODE_ENV=production next build",
