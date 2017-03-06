@@ -6,8 +6,8 @@ export default() => (
     <Link href="/login">
       <a>login</a>
     </Link>
-    <Link href="/register" className="submit_work">
-      <a>SUBMIT YOUR WORK</a>
+    <Link href="/register">
+      <a className="submit_work">SUBMIT YOUR WORK</a>
     </Link>
   </div>
 );
