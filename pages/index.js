@@ -34,7 +34,7 @@ class Home extends Component {
     return (
       <div>
         <Head>
-          <title>Conception arts</title>
+          <title>About Conception arts</title>
           <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         </Head>
         <header className="page_header portfolio_header index_header">
@@ -57,7 +57,7 @@ class Home extends Component {
               <div className="art_for">
                 Art for art’s sake.
                 <Link href="/collector"><a>COLLECTOR</a></Link>
-                <Link href="/artist-general"><a>ARTIST</a></Link>
+                <Link href="/artist-info"><a>ARTIST</a></Link>
               </div>
               <div>
                 We are that art that you want to know more about art.
