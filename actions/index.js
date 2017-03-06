@@ -7,11 +7,19 @@ import axios from 'axios';
 // 	githubApi = `${protocol}//${hostname}:${port}/api/github`;
 // }
 
-export async function getVenue(venueId) {
-  const response = await axios.get(`https://conceptionarts-api.herokuapp.com/api/venues/${venueId}`);
+export function getVenue(venueId, next) {
+  axios.get(`https://conceptionarts-api.herokuapp.com/api/venues/${venueId}`)
+  .then((res) => {
+    next(res.data);
+  })
+  .catch(err => console.log(err));
+}
 
-  return response.then((res) => {
-    console.log(res);
-    return res ? res.name : '';
-  });
+
+export function getArtists(showId, next) {
+  axios.get(`https://conceptionarts-api.herokuapp.com/api/artists/${showId}`)
+  .then((res) => {
+    next(res.data);
+  })
+  .catch(err => console.log(err));
 }

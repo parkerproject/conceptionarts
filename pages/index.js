@@ -114,6 +114,10 @@ class Home extends Component {
 
 }
 
+Home.propTypes = {
+  events: React.PropTypes.object,
+};
+
 function mapStateToProps(state) {
   return {
     events: state.events,

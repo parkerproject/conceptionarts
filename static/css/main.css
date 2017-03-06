@@ -778,10 +778,11 @@ img {
 }
 
 .artist_content_top_text_title {
-    font-family: 'Montserrat';
+  font-family: 'Montserrat';
 	font-size: 23px;
 	padding-bottom: 30px;
 	font-weight: bold;
+	text-transform: capitalize;
 }
 
 .artist_content_top_text_mail a {
@@ -1363,7 +1364,7 @@ img {
 }
 
 .active_city .cities_buy_tickets_item_title,
-.cities_buy_tickets_item_title:hover {
+.cities_buy_tickets_item_title:hover, a:hover {
 	color: #e83796;
 }
 
@@ -2260,4 +2261,12 @@ img {
 
 .shows_all_artist button:hover {
 	background: #1eddad;
+}
+
+a{
+	color: #373a3c
+}
+
+a:hover{
+	text-decoration: none
 }

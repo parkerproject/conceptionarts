@@ -38,9 +38,6 @@ var _server2 = _interopRequireDefault(_server);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var _jsxFileName = '/Users/parker.ituk/dev/with-redux/pages/_document.js?entry';
-
-
 var MyDocument = function (_Document) {
   (0, _inherits3.default)(MyDocument, _Document);
 
@@ -53,67 +50,19 @@ var MyDocument = function (_Document) {
   (0, _createClass3.default)(MyDocument, [{
     key: 'render',
     value: function render() {
-      return _react2.default.createElement('html', {
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 14
-        }
-      }, _react2.default.createElement(_document.Head, {
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 15
-        }
-      }, _react2.default.createElement('link', {
+      return _react2.default.createElement('html', null, _react2.default.createElement(_document.Head, null, _react2.default.createElement('link', {
         rel: 'stylesheet',
         type: 'text/css',
-        href: '/static/libs/bootstrap4/css/bootstrap.min.css',
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 16
-        }
+        href: '/static/libs/bootstrap4/css/bootstrap.min.css'
       }), _react2.default.createElement('link', {
         rel: 'stylesheet',
         type: 'text/css',
-        href: '/static/libs/bootstrap4/css/bootstrap-flex.css',
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 21
-        }
+        href: '/static/libs/bootstrap4/css/bootstrap-flex.css'
       }), _react2.default.createElement('link', {
         rel: 'stylesheet',
         type: 'text/css',
-        href: '/static/libs/font-awesome/css/font-awesome.min.css',
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 26
-        }
-      }), _react2.default.createElement('link', { rel: 'stylesheet', type: 'text/css', href: '/static/css/fonts.css', __source: {
-          fileName: _jsxFileName,
-          lineNumber: 31
-        }
-      }), _react2.default.createElement('link', { rel: 'stylesheet', type: 'text/css', href: '/static/css/main.css', __source: {
-          fileName: _jsxFileName,
-          lineNumber: 32
-        }
-      }), _react2.default.createElement('link', { rel: 'stylesheet', type: 'text/css', href: '/static/css/media.css', __source: {
-          fileName: _jsxFileName,
-          lineNumber: 33
-        }
-      })), _react2.default.createElement('body', { className: 'custom_class', __source: {
-          fileName: _jsxFileName,
-          lineNumber: 35
-        }
-      }, this.props.customValue, _react2.default.createElement(_document.Main, {
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 37
-        }
-      }), _react2.default.createElement(_document.NextScript, {
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 38
-        }
-      })));
+        href: '/static/libs/font-awesome/css/font-awesome.min.css'
+      }), _react2.default.createElement('link', { rel: 'stylesheet', type: 'text/css', href: '/static/css/fonts.css' }), _react2.default.createElement('link', { rel: 'stylesheet', type: 'text/css', href: '/static/css/main.css' }), _react2.default.createElement('link', { rel: 'stylesheet', type: 'text/css', href: '/static/css/media.css' })), _react2.default.createElement('body', { className: 'custom_class' }, this.props.customValue, _react2.default.createElement(_document.Main, null), _react2.default.createElement(_document.NextScript, null)));
     }
   }], [{
     key: 'getInitialProps',

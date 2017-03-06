@@ -1,50 +1,35 @@
+const express = require('express');
 const next = require('next');
-const Hapi = require('hapi');
-const Good = require('good');
-const { pathWrapper, defaultHandlerWrapper } = require('./next-wrapper');
 
 const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });
-const server = new Hapi.Server();
+const handle = app.getRequestHandler();
 
-const pluginOptions = [
-  {
-    register: Good,
-    options: {
-      reporters: {
-        console: [{
-          module: 'good-console',
-        }, 'stdout'],
-      },
-    },
-  },
+const envset = {
+  production: process.env.NODE_ENV === 'production',
+};
 
-];
+const hostname = envset.production ? (process.env.HOSTNAME || process.env.HOSTNAME) : 'localhost';
+const port = envset.production ? (process.env.PORT || process.env.PORT) : 3000;
 
 app.prepare()
 .then(() => {
-  server.connection({ port: 3000 });
-  server.register(pluginOptions)
-  .then(() => {
-    // server.route({
-    //   method: 'GET',
-    //   path: '/a',
-    //   handler: pathWrapper(app, '/a'),
-    // });
-    //
+  const server = express();
 
-    server.route({
-      method: 'GET',
-      path: '/{p*}', /* catch all route */
-      handler: defaultHandlerWrapper(app),
-    });
+  server.get('/shows/:id/:city', (req, res) => {
+    app.render(req, res, '/shows', req.query);
+  });
 
+  server.get('/artist/:user_token', (req, res) => {
+    app.render(req, res, '/artist', req.query);
+  });
 
-    server.start().catch(error => {
-      console.log('Error starting server');
-      console.log(error);
-    }).then(() => {
-      console.log('> Ready on http://localhost:3000');
-    });
+  // server.get('/b', (req, res) => app.render(req, res, '/a', req.query));
+
+  server.get('*', (req, res) => handle(req, res));
+
+  server.listen(port, (err) => {
+    if (err) throw err;
+    console.info('==> ✅  Server is listening');
   });
 });
