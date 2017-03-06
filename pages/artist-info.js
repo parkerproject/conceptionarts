@@ -16,9 +16,10 @@ class ArtistInfo extends Component {
           <div className="container">
             <div className="row">
               <div className="logo col-sm-6 col-xs-12">
-                <a href="">
-                  <img src="/static/img/logo_white.png" alt="" />
-                </a>
+                <Link href="/index">
+                  <a>
+                    <img src="/static/img/logo_white.png" alt="" />
+                  </a></Link>
               </div>
             </div>
           </div>
@@ -253,9 +254,12 @@ class ArtistInfo extends Component {
                 </div>
               </div>
               <div className="button_submit_work clearfix">
-                <a href="">
-                  Submit Your Work
-                </a>
+                <Link href="/register">
+                  <a>
+                    Submit Your Work
+                  </a>
+                </Link>
+
               </div>
             </div>
           </div>
