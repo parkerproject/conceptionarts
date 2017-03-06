@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 
 export default() => (
   <div className="bottom_menu clearfix">
@@ -9,10 +10,11 @@ export default() => (
         </div>
         <div className="stay_in_touch_item_menu col-xl-10 col-lg-9 col-md-8 col-sm-12">
           <ul>
-            <li><a href="">About Us</a></li>
-            <li><a href="">What’s New</a></li>
-            <li><a href="">Press</a></li>
-            <li><a href="">Shows</a></li>
+            <li><Link href="/about"><a>About Us</a></Link></li>
+            <li><Link href="/whats-new"><a>What’s New</a></Link></li>
+            <li><Link href="/press"><a>Press</a></Link></li>
+            <li><Link href="/shows"><a>Shows</a></Link></li>
+            <li><Link href="/faq"><a>FAQ</a></Link></li>
           </ul>
         </div>
       </div>
