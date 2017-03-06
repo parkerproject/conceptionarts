@@ -55,9 +55,11 @@ class About extends Component {
         <main className="main_block_page about_page">
           <div className="attend_wrap clearfix">
             <div className="attend_wrap_link col-lg-6 col-md-8 col-xs-12">
-              <a href="">
-                ATTEND AN EVENT
-              </a>
+              <Link href="/shows">
+                <a>
+                  ATTEND A SHOW
+                </a>
+              </Link>
             </div>
           </div>
 
@@ -70,9 +72,12 @@ class About extends Component {
                       We welcome submissions from artists/ musicians/ performers of ALL mediums.
                     </div>
                     <div className="submit_work_about_inner_button">
-                      <a href="">
-                        SUBMIT WORK
-                      </a>
+                      <Link href="/register">
+                        <a>
+                          SUBMIT WORK
+                        </a>
+                      </Link>
+
                     </div>
                   </div>
                 </div>
