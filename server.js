@@ -16,8 +16,8 @@ app.prepare()
 .then(() => {
   const server = express();
 
-  server.get('/shows/:id/:city', (req, res) => {
-    app.render(req, res, '/shows', req.query);
+  server.get('/show/:id/:city', (req, res) => {
+    app.render(req, res, '/show', req.query);
   });
 
   server.get('/artist/:user_token', (req, res) => {

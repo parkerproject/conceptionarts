@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Link from 'next/link';
 import Head from 'next/head';
 import axios from 'axios';
+import { chunk } from 'lodash';
 import { FETCH_EVENTS } from '../actions/types';
 import { nextConnect } from '../store';
 
@@ -31,6 +32,11 @@ class Home extends Component {
   }
 
   render() {
+    const events = {
+      0: this.props.events[0],
+      1: this.props.events[1],
+      2: this.props.events[2],
+    };
     return (
       <div>
         <Head>
@@ -94,7 +100,7 @@ class Home extends Component {
             </div>
           </div>
           <WhatsNew />
-          <EventCities {...this.props.events} />
+          <EventCities {...events} />
           <div className="view_more_shows clearfix">
             <div className="submit_index_page col-lg-4 col-md-6 col-sm-6 col-xs-12">
               <Link href="/shows">
