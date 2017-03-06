@@ -20,11 +20,6 @@ class ArtistInfo extends Component {
                   <img src="/static/img/logo_white.png" alt="" />
                 </a>
               </div>
-              <div className="logout col-sm-6 col-xs-12">
-                <a href="">
-                  Logout
-                </a>
-              </div>
             </div>
           </div>
         </header>
