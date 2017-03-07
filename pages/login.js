@@ -1,10 +1,46 @@
 import React, { Component } from 'react';
 import Link from 'next/link';
 import Head from 'next/head';
+import Router from 'next/router';
+
 
 import Footer from '../components/Footer';
+import AuthService from '../components/Auth/auth-service';
+
+const auth = new AuthService();
 
 class Login extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = { email: '', password: '' };
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  componentDidMount() {
+    if (auth.loggedIn()) {
+    //  this.props.url.replaceTo('/admin')   // redirect if you're already logged in
+    }
+  }
+
+  async handleSubmit(e) {
+    const { email, password } = this.state;
+    e.preventDefault();
+    const res = await auth.login(email, password);
+
+    console.log(res);
+
+    if (res === 0) {
+      Router.push('/about');
+    }
+      // .then(res => {
+      //   console.log(res);
+      //   // this.props.url.replaceTo('/admin')
+      // })
+      // .catch(err => console.log(err));
+  }
+
+
   render() {
     return (
       <div className="login_body">
@@ -37,19 +73,31 @@ class Login extends Component {
                       Not a member of this community? <a href="">Register Here</a>
                     </div>
                     <div className="login_form_inner_inner_inputs">
-                      <div className="wrap_inputs row">
-                        <div className="col-md-8 col-sm-12">
-                          <div className="wrap_input">
-                            <input type="text" placeholder="Email" />
+                      <form onSubmit={this.handleSubmit} >
+                        <div className="wrap_inputs row">
+                          <div className="col-md-8 col-sm-12">
+                            <div className="wrap_input">
+                              <input
+                                type="text"
+                                placeholder="Email"
+                                value={this.state.email}
+                                onChange={evt => this.setState({ email: evt.target.value })}
+                              />
+                            </div>
+                            <div className="wrap_input">
+                              <input
+                                type="password"
+                                placeholder="Password"
+                                value={this.state.password}
+                                onChange={evt => this.setState({ password: evt.target.value })}
+                              />
+                            </div>
                           </div>
-                          <div className="wrap_input">
-                            <input type="password" placeholder="Password" />
+                          <div className="wrap_button col-md-4 col-sm-12">
+                            <input type="submit" value="Login" />
                           </div>
                         </div>
-                        <div className="wrap_button col-md-4 col-sm-12">
-                          <input type="submit" value="Login" />
-                        </div>
-                      </div>
+                      </form>
                     </div>
                     <div className="forgot_and_password">
                       <a href="">Forgot password?</a>
