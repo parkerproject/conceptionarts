@@ -1,5 +1,6 @@
 // HOC for protected pages
 import React, { Component } from 'react';
+import Router from 'next/router';
 import AuthService from './auth-service';
 
 export default function withAuth(AuthComponent) {
@@ -13,10 +14,12 @@ export default function withAuth(AuthComponent) {
     }
 
     componentDidMount() {
-      // if (!Auth.loggedIn()) {
-      //   this.props.url.replaceTo('/');
-      // }
-      // this.setState({ isLoading: false });
+      if (!Auth.loggedIn()) {
+        Router.replaceTo('/login');
+      }
+      /*eslint-disable */
+      this.setState({ isLoading: false });
+      /*eslint-enable */
     }
 
     render() {

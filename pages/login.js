@@ -13,31 +13,61 @@ class Login extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { email: '', password: '' };
+    this.state = {
+      email: '',
+      password: '',
+      newPassword: '',
+      newPassword2: '',
+      resetPassword: false,
+      error: false,
+      errMessage: '',
+    };
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handlePasswordSubmit = this.handlePasswordSubmit.bind(this);
   }
 
   componentDidMount() {
     if (auth.loggedIn()) {
-    //  this.props.url.replaceTo('/admin')   // redirect if you're already logged in
+      Router.replace('/dashboard');
     }
   }
 
   async handleSubmit(e) {
     const { email, password } = this.state;
     e.preventDefault();
+
+    if (email === '' || password === '') {
+      return this.setState({ error: true, errMessage: 'All fields required.' });
+    }
+
     const res = await auth.login(email, password);
 
-    console.log(res);
-
     if (res === 0) {
-      Router.push('/about');
+      return this.setState({ resetPassword: true, errMessage: 'Password mismatch.' });
     }
-      // .then(res => {
-      //   console.log(res);
-      //   // this.props.url.replaceTo('/admin')
-      // })
-      // .catch(err => console.log(err));
+
+    if (res.error) {
+      return this.setState({ error: true, errMessage: res.message });
+    }
+
+    return Router.push('/dashboard');
+  }
+
+  async handlePasswordSubmit(e) {
+    const { email, newPassword, newPassword2 } = this.state;
+    e.preventDefault();
+
+    if ((newPassword !== newPassword2) || newPassword === '') {
+      this.setState({ error: true });
+      return false;
+    }
+
+    this.setState({ error: false });
+    const response = await auth.resetPassword(email, newPassword);
+    if (response) {
+      return Router.push('/dashboard');
+    }
+    return false;
   }
 
 
@@ -67,42 +97,81 @@ class Login extends Component {
                 <div className="login_form_inner col-xl-9 col-lg-10 col-md-12 col-sm-12 col-xs-12">
                   <div className="login_form_inner_inner">
                     <div className="login_form_inner_inner_title">
-                      Login
+                      {!this.state.resetPassword ? 'Login' : 'Change Password'}
                     </div>
-                    <div className="login_form_inner_inner_register">
+                    {!this.state.resetPassword && <div className="login_form_inner_inner_register">
                       Not a member of this community? <a href="">Register Here</a>
-                    </div>
+                    </div>}
+
                     <div className="login_form_inner_inner_inputs">
-                      <form onSubmit={this.handleSubmit} >
+                      <form
+                        onSubmit={!this.state.resetPassword ?
+                        this.handleSubmit : this.handlePasswordSubmit}
+                      >
                         <div className="wrap_inputs row">
                           <div className="col-md-8 col-sm-12">
-                            <div className="wrap_input">
-                              <input
-                                type="text"
-                                placeholder="Email"
-                                value={this.state.email}
-                                onChange={evt => this.setState({ email: evt.target.value })}
-                              />
-                            </div>
-                            <div className="wrap_input">
-                              <input
-                                type="password"
-                                placeholder="Password"
-                                value={this.state.password}
-                                onChange={evt => this.setState({ password: evt.target.value })}
-                              />
-                            </div>
+                            {!this.state.resetPassword && <div>
+                              <div className="wrap_input">
+                                <input
+                                  type="text"
+                                  placeholder="Email"
+                                  value={this.state.email}
+                                  onChange={evt => this.setState({ email: evt.target.value })}
+                                />
+                              </div>
+                              <div className="wrap_input">
+                                <input
+                                  type="password"
+                                  placeholder="Password"
+                                  value={this.state.password}
+                                  onChange={evt => this.setState({ password: evt.target.value })}
+                                />
+                              </div>
+                            </div>}
+
+                            {this.state.resetPassword &&
+                              <div>
+                                <div className="wrap_input">
+                                  <input
+                                    type="password"
+                                    placeholder="New Password"
+                                    value={this.state.newPassword}
+                                    onChange={evt => this.setState({
+                                      newPassword: evt.target.value,
+                                    })}
+                                  />
+                                </div>
+                                <div className="wrap_input">
+                                  <input
+                                    type="password"
+                                    placeholder="Confirm Password"
+                                    value={this.state.newPassword2}
+                                    onChange={evt => this.setState({
+                                      newPassword2: evt.target.value,
+                                    })}
+                                  />
+                                </div>
+                              </div>
+                            }
+
                           </div>
                           <div className="wrap_button col-md-4 col-sm-12">
-                            <input type="submit" value="Login" />
+                            <input
+                              type="submit"
+                              value={!this.state.resetPassword ? 'Login' : 'Reset'}
+                            />
                           </div>
                         </div>
                       </form>
                     </div>
-                    <div className="forgot_and_password">
+                    {!this.state.resetPassword && <div className="forgot_and_password">
                       <a href="">Forgot password?</a>
                       <a href="">Support</a>
-                    </div>
+                    </div>}
+                    {this.state.error && <div className="alert alert-danger">
+                      <strong>Error!</strong> {this.state.errMessage}
+                    </div>}
+
                   </div>
                 </div>
               </div>

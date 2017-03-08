@@ -473,11 +473,12 @@ img {
 	padding-bottom: 10px;
 	border-bottom: 3px solid transparent;
 	text-decoration: none;
-	color: #fff;
+	color: #fff!important;
 	font-weight: bold;
 	text-transform: uppercase;
 	font-size: 12px;
 	transition: .5s;
+	cursor: pointer;
 }
 
 .main_menu ul li a:hover,
@@ -623,6 +624,19 @@ img {
 	cursor: pointer;
 	//opacity: 0;
 	transition: .5s;
+}
+.change-upload{
+	background: #e83796;
+	border: none;
+	color: #fff;
+	padding: 15px 20px;
+  font-family: 'Montserrat';
+	font-weight: bold;
+	font-size: 15px;
+	width: 200px;
+	cursor: pointer;
+	transition: .5s;
+	margin-top: 10px;
 }
 
 .artist_photo_inner_displayed:hover button {
