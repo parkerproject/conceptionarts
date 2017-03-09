@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 import Dropzone from 'react-dropzone';
+import { forEach } from 'lodash';
+import { updateProfile } from '../../actions';
+import { dataURItoBlob } from '../../helpers';
+import { nextConnect } from '../../store';
 
 const PHOTO_URL = 'https://res.cloudinary.com/conceptionarts/image/fetch/w_318,h_250,c_fill/https://artistworks.s3-us-west-2.amazonaws.com/artists_images';
 
@@ -17,6 +21,23 @@ class Profile extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
+    const keys = Object.keys(this.state);
+    const formData = new FormData();
+    if (keys.file) {
+      const blob = dataURItoBlob(this.state.file);
+      formData.append('fileUpload', blob, 'filename.jpg');
+    }
+
+
+    forEach(keys, (key) => {
+      if (!key._id) {
+        formData.append(key, this.state[key]);
+      }
+    });
+
+    console.log('test');
+
+    this.props.updateProfile(formData);
   }
 
 
@@ -25,13 +46,11 @@ class Profile extends Component {
     const file = filesToUpload[0];
 
     reader.onloadend = () => {
-      console.log(reader.result);
       this.setState({
         file: reader.result,
         preview: 'show',
       });
     };
-
     reader.readAsDataURL(file);
   }
 
@@ -41,29 +60,31 @@ class Profile extends Component {
     return (
       <main className="main_block_page portfolio_page">
         <div className="container">
-          <form onSubmit={this.handleSubmit}>
-            <div className="row">
 
-              <div className="artist_photo col-xl-4 col-lg-6 col-sm-6 col-xs-12">
-                <div className="artist_photo_inner">
-                  <div className="artist_photo_inner_displayed">
-                    {photo && !file && <img src={`${PHOTO_URL}/${photo}`} alt="" />}
-                    {file && <img src={file} alt="" />}
+          <div className="row">
 
-                  </div>
+            <div className="artist_photo col-xl-4 col-lg-6 col-sm-6 col-xs-12">
+              <div className="artist_photo_inner">
+                <div className="artist_photo_inner_displayed">
+                  {photo && !file && <img src={`${PHOTO_URL}/${photo}`} alt="" />}
+                  {file && <img src={file} alt="" />}
+
                 </div>
-
-                <Dropzone
-                  className="image-upload"
-                  onDrop={filesToUpload => this.handleImageChange(filesToUpload)}
-                >
-                  <button className="change-upload">
-                    Change Photo
-                  </button>
-                  {/* <span className="ion-upload" style={innerStyles.icon}></span> */}
-                </Dropzone>
               </div>
-              <div className="artist_detalis col-xl-4 col-lg-6 col-sm-6 col-xs-12">
+
+              <Dropzone
+                className="image-upload"
+                multiple={false}
+                onDrop={filesToUpload => this.handleImageChange(filesToUpload)}
+              >
+                <button className="change-upload">
+                  Change Photo
+                </button>
+                {/* <span className="ion-upload" style={innerStyles.icon}></span> */}
+              </Dropzone>
+            </div>
+            <div className="artist_detalis col-xl-4 col-lg-6 col-sm-6 col-xs-12">
+              <form onSubmit={this.handleSubmit}>
                 <div className="artist_detalis_inner">
                   <div className="wrap_backend_inputs">
                     <div className="wrap_backend_input">
@@ -110,13 +131,17 @@ class Profile extends Component {
                     </div>
                   </div>
                 </div>
-              </div>
+              </form>
             </div>
-          </form>
+          </div>
         </div>
       </main>
     );
   }
 }
 
-export default Profile;
+Profile.propTypes = {
+  updateProfile: React.PropTypes.func,
+};
+
+export default nextConnect(null, { updateProfile })(Profile);

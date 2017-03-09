@@ -11,7 +11,7 @@ import { FETCH_USER_PROFILE, FETCH_USER_TICKETS } from '../actions/types';
 const BASE_URL = 'http://localhost:4000/api';// 'https://conceptionarts-api.herokuapp.com/api';
 
 export function getVenue(venueId, next) {
-  axios.get(`https://conceptionarts-api.herokuapp.com/api/venues/${venueId}`)
+  axios.get(`${BASE_URL}/venues/${venueId}`)
   .then((res) => {
     next(res.data);
   })
@@ -20,7 +20,7 @@ export function getVenue(venueId, next) {
 
 
 export function getArtists(showId, next) {
-  axios.get(`https://conceptionarts-api.herokuapp.com/api/artists/${showId}`)
+  axios.get(`${BASE_URL}/artists/${showId}`)
   .then((res) => {
     next(res.data);
   })
@@ -38,5 +38,20 @@ export function getProfile() {
           payload: response.data,
         });
       });
+  };
+}
+
+export function updateProfile(formProps) {
+  return (dispatch) => {
+    axios.post(`${BASE_URL}/artist/update`, formProps, {
+      headers: { authorization: localStorage.getItem('conception_token') },
+    })
+      .then(response => {
+        dispatch({
+          type: FETCH_USER_PROFILE,
+          payload: response.data,
+        });
+      })
+      .catch(err => console.log(err));
   };
 }
