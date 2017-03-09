@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import Dropzone from 'react-dropzone';
-import { forEach } from 'lodash';
-import { updateProfile } from '../../actions';
+import randtoken from 'rand-token';
+import { forEach, pull } from 'lodash';
+import { updateProfile, updateProfileImage } from '../../actions';
 import { dataURItoBlob } from '../../helpers';
 import { nextConnect } from '../../store';
 
@@ -23,21 +24,22 @@ class Profile extends Component {
     event.preventDefault();
     const keys = Object.keys(this.state);
     const formData = new FormData();
-    if (keys.file) {
+    const data = {};
+    pull(keys, '_id', 'updateProfile', 'file');
+
+    if (this.state.file) {
+      const filename = `${randtoken.generate(20)}.jpg`;
       const blob = dataURItoBlob(this.state.file);
-      formData.append('fileUpload', blob, 'filename.jpg');
+      formData.append('photo', blob, filename);
+      formData.append('user_token', this.state.user_token);
     }
 
-
     forEach(keys, (key) => {
-      if (!key._id) {
-        formData.append(key, this.state[key]);
-      }
+      data[key] = this.state[key];
     });
 
-    console.log('test');
-
-    this.props.updateProfile(formData);
+    this.props.updateProfileImage(formData);
+    this.props.updateProfile(data);
   }
 
 
@@ -48,15 +50,23 @@ class Profile extends Component {
     reader.onloadend = () => {
       this.setState({
         file: reader.result,
-        preview: 'show',
       });
     };
+
     reader.readAsDataURL(file);
+  }
+
+  handleTextChange(val, evt) {
+    const updates = {};
+    updates[val] = evt.target.value;
+    // updates['full_name']: true
+    this.setState(updates);
+    console.log(this.state);
   }
 
 
   render() {
-    const { photo, full_name: fullName, genre, email, url, story, file } = this.state;
+    const { photo, full_name: fullName, genre, email, url, story } = this.state;
     return (
       <main className="main_block_page portfolio_page">
         <div className="container">
@@ -66,8 +76,8 @@ class Profile extends Component {
             <div className="artist_photo col-xl-4 col-lg-6 col-sm-6 col-xs-12">
               <div className="artist_photo_inner">
                 <div className="artist_photo_inner_displayed">
-                  {photo && !file && <img src={`${PHOTO_URL}/${photo}`} alt="" />}
-                  {file && <img src={file} alt="" />}
+                  {photo && !this.state.file && <img src={`${PHOTO_URL}/${photo}`} alt="" />}
+                  {this.state.file && <img src={this.state.file} alt="" />}
 
                 </div>
               </div>
@@ -92,7 +102,7 @@ class Profile extends Component {
                         type="text"
                         placeholder="Beca Smith"
                         value={fullName || ''}
-                        onChange={evt => this.setState({ full_name: evt.target.value })}
+                        onChange={evt => this.handleTextChange('full_name', evt)}
                       />
                     </div>
                     <div className="wrap_backend_input">
@@ -142,6 +152,7 @@ class Profile extends Component {
 
 Profile.propTypes = {
   updateProfile: React.PropTypes.func,
+  updateProfileImage: React.PropTypes.func,
 };
 
-export default nextConnect(null, { updateProfile })(Profile);
+export default nextConnect(null, { updateProfile, updateProfileImage })(Profile);

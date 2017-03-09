@@ -55,3 +55,18 @@ export function updateProfile(formProps) {
       .catch(err => console.log(err));
   };
 }
+
+export function updateProfileImage(formProps) {
+  return (dispatch) => {
+    axios.post(`${BASE_URL}/artist/image`, formProps, {
+      headers: { authorization: localStorage.getItem('conception_token') },
+    })
+      .then(response => {
+        dispatch({
+          type: FETCH_USER_PROFILE,
+          payload: response.data,
+        });
+      })
+      .catch(err => console.log(err));
+  };
+}
