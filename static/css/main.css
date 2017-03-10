@@ -591,6 +591,9 @@ img {
 	position: relative;
 	background-position: center center;
 	background-size: cover;
+	text-align: center;
+	width: 318px;
+	overflow: hidden;
 }
 
 .artist_photo_inner_displayed input[type=file] {
@@ -691,7 +694,7 @@ img {
 	padding-bottom: 15px;
 }
 
-.wrap_backend_button input {
+.wrap_backend_button input, .wrap_backend_button button {
 	background: #e83796;
 	border: none;
 	color: #fff;

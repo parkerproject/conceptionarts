@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
 import Dropzone from 'react-dropzone';
 import randtoken from 'rand-token';
-import { forEach, pull } from 'lodash';
+import { forEach } from 'lodash';
 import { updateProfile, updateProfileImage } from '../../actions';
 import { dataURItoBlob } from '../../helpers';
 import { nextConnect } from '../../store';
 
-const PHOTO_URL = 'https://res.cloudinary.com/conceptionarts/image/fetch/w_318,h_250,c_fill/https://artistworks.s3-us-west-2.amazonaws.com/artists_images';
+const PHOTO_URL = 'https://artistworks.s3-us-west-2.amazonaws.com/artists_images';
 
 class Profile extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = { disabled: true };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleImageChange = this.handleImageChange.bind(this);
   }
@@ -23,23 +23,25 @@ class Profile extends Component {
   handleSubmit(event) {
     event.preventDefault();
     const keys = Object.keys(this.state);
-    const formData = new FormData();
     const data = {};
-    pull(keys, '_id', 'updateProfile', 'file');
+    const formData = new FormData();
 
     if (this.state.file) {
-      const filename = `${randtoken.generate(20)}.jpg`;
+      const filename = this.state.photo || `${randtoken.generate(20)}.jpg`;
       const blob = dataURItoBlob(this.state.file);
       formData.append('photo', blob, filename);
       formData.append('user_token', this.state.user_token);
+      this.props.updateProfileImage(formData);
     }
 
-    forEach(keys, (key) => {
-      data[key] = this.state[key];
-    });
-
-    this.props.updateProfileImage(formData);
-    this.props.updateProfile(data);
+    if (this.state.changes) {
+      forEach(keys, (key) => {
+        if (this.state.changes[key]) {
+          data[key] = this.state[key];
+        }
+      });
+      this.props.updateProfile(data);
+    }
   }
 
 
@@ -47,26 +49,38 @@ class Profile extends Component {
     const reader = new FileReader();
     const file = filesToUpload[0];
 
+    if (file.size > (1024 * 1024 * 5)) {
+      alert('Holly molly! That photo is to large');
+
+      return false;
+    }
+
     reader.onloadend = () => {
       this.setState({
         file: reader.result,
+        disabled: false,
       });
     };
 
     reader.readAsDataURL(file);
+
+    return true;
   }
 
   handleTextChange(val, evt) {
-    const updates = {};
-    updates[val] = evt.target.value;
-    // updates['full_name']: true
-    this.setState(updates);
-    console.log(this.state);
+    const changes = {};
+    const newStates = {};
+    changes[val] = true; // hashing what has changed
+    newStates[val] = evt.target.value;
+    newStates.disabled = false;
+    newStates.changes = { ...this.state.changes, ...changes };
+    this.setState(newStates);
   }
 
 
   render() {
-    const { photo, full_name: fullName, genre, email, url, story } = this.state;
+    const { photo, full_name: fullName, genre, email, url, story, disabled } = this.state;
+
     return (
       <main className="main_block_page portfolio_page">
         <div className="container">
@@ -78,13 +92,13 @@ class Profile extends Component {
                 <div className="artist_photo_inner_displayed">
                   {photo && !this.state.file && <img src={`${PHOTO_URL}/${photo}`} alt="" />}
                   {this.state.file && <img src={this.state.file} alt="" />}
-
                 </div>
               </div>
 
               <Dropzone
                 className="image-upload"
                 multiple={false}
+                maxSize={5242880}
                 onDrop={filesToUpload => this.handleImageChange(filesToUpload)}
               >
                 <button className="change-upload">
@@ -110,7 +124,7 @@ class Profile extends Component {
                         type="text"
                         placeholder="Artist"
                         value={genre || ''}
-                        onChange={evt => this.setState({ genre: evt.target.value })}
+                        onChange={evt => this.handleTextChange('genre', evt)}
                       />
                     </div>
                     <div className="wrap_backend_input">
@@ -121,7 +135,7 @@ class Profile extends Component {
                         type="text"
                         placeholder="Link"
                         value={url || ''}
-                        onChange={evt => this.setState({ url: evt.target.value })}
+                        onChange={evt => this.handleTextChange('url', evt)}
                       />
                     </div>
                     <div className="wrap_backend_textarea">
@@ -133,11 +147,15 @@ class Profile extends Component {
                         maxLength="150"
                         className="textarea_change"
                         value={story || ''}
-                        onChange={evt => this.setState({ story: evt.target.value })}
+                        onChange={evt => this.handleTextChange('story', evt)}
                       />
                     </div>
                     <div className="wrap_backend_button">
-                      <input type="submit" value="Update Profile" />
+                      <button
+                        type="submit"
+                        className={`btn ${disabled && 'disabled'}`}
+                      >
+                      Update Profile</button>
                     </div>
                   </div>
                 </div>
