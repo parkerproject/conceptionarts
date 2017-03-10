@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Dropzone from 'react-dropzone';
 import randtoken from 'rand-token';
 import { forEach } from 'lodash';
-import { updateProfile, updateProfileImage } from '../../actions';
+import { updateProfile, updateProfileImage, hideFlash } from '../../actions';
 import { dataURItoBlob } from '../../helpers';
 import { nextConnect } from '../../store';
 
@@ -11,19 +11,29 @@ const PHOTO_URL = 'https://artistworks.s3-us-west-2.amazonaws.com/artists_images
 class Profile extends Component {
   constructor(props) {
     super(props);
-    this.state = { disabled: true };
+    this.state = { disabled: true, indicator: 'update profile' };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleImageChange = this.handleImageChange.bind(this);
   }
 
+  componentDidMount() {
+    /* eslint-disable */
+    this.setState({ ...this.props });
+    /* eslint-enable */
+  }
+
   componentWillReceiveProps(nextProps) {
     this.setState({ ...nextProps });
+    if (nextProps.flash.show) {
+      this.props.hideFlash();
+      this.setState({ indicator: 'update profile' });
+    }
   }
 
   handleSubmit(event) {
     event.preventDefault();
     const keys = Object.keys(this.state);
-    const data = {};
+    const data = { user_token: this.state.user_token };
     const formData = new FormData();
 
     if (this.state.file) {
@@ -36,12 +46,14 @@ class Profile extends Component {
 
     if (this.state.changes) {
       forEach(keys, (key) => {
-        if (this.state.changes[key]) {
+        if (this.state.changes[key] && this.state[key]) {
           data[key] = this.state[key];
         }
       });
       this.props.updateProfile(data);
     }
+
+    this.setState({ disabled: true, indicator: 'updating...' });
   }
 
 
@@ -79,14 +91,24 @@ class Profile extends Component {
 
 
   render() {
-    const { photo, full_name: fullName, genre, email, url, story, disabled } = this.state;
+    const { photo,
+      full_name: fullName,
+      genre,
+      email,
+      url,
+      story,
+      disabled,
+      indicator } = this.state;
+
 
     return (
       <main className="main_block_page portfolio_page">
+        {this.props.flash.show &&
+          <div className="alert alert-success" role="alert">
+            <strong>Well done!</strong> You have successfully updated your profile.
+          </div>}
         <div className="container">
-
           <div className="row">
-
             <div className="artist_photo col-xl-4 col-lg-6 col-sm-6 col-xs-12">
               <div className="artist_photo_inner">
                 <div className="artist_photo_inner_displayed">
@@ -98,7 +120,6 @@ class Profile extends Component {
               <Dropzone
                 className="image-upload"
                 multiple={false}
-                maxSize={5242880}
                 onDrop={filesToUpload => this.handleImageChange(filesToUpload)}
               >
                 <button className="change-upload">
@@ -114,7 +135,7 @@ class Profile extends Component {
                     <div className="wrap_backend_input">
                       <input
                         type="text"
-                        placeholder="Beca Smith"
+                        placeholder="Sarah Lee"
                         value={fullName || ''}
                         onChange={evt => this.handleTextChange('full_name', evt)}
                       />
@@ -128,12 +149,16 @@ class Profile extends Component {
                       />
                     </div>
                     <div className="wrap_backend_input">
-                      <input type="text" placeholder="Beca@gmail.com" value={email || ''} />
+                      <input
+                        type="text"
+                        placeholder="sarah@gmail.com" value={email || ''}
+                        onChange={evt => this.handleTextChange('email', evt)}
+                      />
                     </div>
                     <div className="wrap_backend_input">
                       <input
                         type="text"
-                        placeholder="Link"
+                        placeholder="sarahlee.com"
                         value={url || ''}
                         onChange={evt => this.handleTextChange('url', evt)}
                       />
@@ -155,7 +180,7 @@ class Profile extends Component {
                         type="submit"
                         className={`btn ${disabled && 'disabled'}`}
                       >
-                      Update Profile</button>
+                        {indicator}</button>
                     </div>
                   </div>
                 </div>
@@ -171,6 +196,15 @@ class Profile extends Component {
 Profile.propTypes = {
   updateProfile: React.PropTypes.func,
   updateProfileImage: React.PropTypes.func,
+  hideFlash: React.PropTypes.func,
+  flash: React.PropTypes.object,
 };
 
-export default nextConnect(null, { updateProfile, updateProfileImage })(Profile);
+function mapStateToProps(state) {
+  return {
+    flash: state.flash,
+  };
+}
+
+export default nextConnect(mapStateToProps,
+  { updateProfile, updateProfileImage, hideFlash })(Profile);

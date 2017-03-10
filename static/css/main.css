@@ -527,6 +527,10 @@ img {
 .portfolio_item_inner_image {
 	min-height: 230px;
 	background: #d8d8d8;
+	background-size: cover;
+	overflow: hidden;
+	height: 230px;
+	width: 233px;
 }
 
 .portfolio_item_inner_title {
@@ -594,6 +598,11 @@ img {
 	text-align: center;
 	width: 318px;
 	overflow: hidden;
+}
+
+artist_photo_inner_displayed img{
+	width: 318px;
+	height: 250px;
 }
 
 .artist_photo_inner_displayed input[type=file] {

@@ -15,7 +15,7 @@ export default function withAuth(AuthComponent) {
 
     componentDidMount() {
       if (!Auth.loggedIn()) {
-        Router.replaceTo('/login');
+        Router.replace('/login');
       }
       /*eslint-disable */
       this.setState({ isLoading: false });

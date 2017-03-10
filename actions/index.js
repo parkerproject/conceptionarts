@@ -1,4 +1,5 @@
 import axios from 'axios';
+import Router from 'next/router';
 // import { FETCH_EVENTS } from './types';
 
 // let githubApi = "https://api.github.com";
@@ -6,9 +7,9 @@ import axios from 'axios';
 // 	const { protocol, hostname, port } = window.location;
 // 	githubApi = `${protocol}//${hostname}:${port}/api/github`;
 // }
-import { FETCH_USER_PROFILE, FETCH_USER_TICKETS } from '../actions/types';
+import { FETCH_USER_PROFILE, FETCH_USER_TICKETS, FLASH_MESSAGE } from '../actions/types';
 
-const BASE_URL = 'http://localhost:4000/api';// 'https://conceptionarts-api.herokuapp.com/api';
+const BASE_URL = 'https://conceptionarts-api.herokuapp.com/api';// 'http://localhost:4000/api';
 
 export function getVenue(venueId, next) {
   axios.get(`${BASE_URL}/venues/${venueId}`)
@@ -41,6 +42,22 @@ export function getProfile() {
   };
 }
 
+
+export function getAttendees(eventId) {
+  return (dispatch) => {
+    axios.get(`${BASE_URL}/attendees/${eventId}`, {
+      headers: { authorization: localStorage.getItem('conception_token') },
+    })
+      .then(response => {
+        dispatch({
+          type: FETCH_USER_TICKETS,
+          payload: response.data,
+        });
+      });
+  };
+}
+
+
 export function updateProfile(formProps) {
   return (dispatch) => {
     axios.post(`${BASE_URL}/artist/update`, formProps, {
@@ -50,6 +67,10 @@ export function updateProfile(formProps) {
         dispatch({
           type: FETCH_USER_PROFILE,
           payload: response.data,
+        });
+        dispatch({
+          type: FLASH_MESSAGE,
+          payload: { show: true },
         });
       })
       .catch(err => console.log(err));
@@ -66,7 +87,22 @@ export function updateProfileImage(formProps) {
           type: FETCH_USER_PROFILE,
           payload: response.data,
         });
+        dispatch({
+          type: FLASH_MESSAGE,
+          payload: { show: true },
+        });
       })
       .catch(err => console.log(err));
+  };
+}
+
+export function hideFlash() {
+  return (dispatch) => {
+    window.setTimeout(() => {
+      dispatch({
+        type: FLASH_MESSAGE,
+        payload: { show: false },
+      });
+    }, 2000);
   };
 }

@@ -27,9 +27,10 @@ class Login extends Component {
   }
 
   componentDidMount() {
-    if (auth.loggedIn()) {
-      Router.replace('/dashboard');
-    }
+    // if (auth.loggedIn()) {
+    //   Router.push('/dashboard');
+    // }
+    auth.logout();
   }
 
   async handleSubmit(e) {

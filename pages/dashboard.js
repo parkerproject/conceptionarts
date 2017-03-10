@@ -12,13 +12,19 @@ import { getProfile } from '../actions';
 
 class Dashboard extends Component {
 
+  static async getInitialProps() {
+    return {};
+  }
+
   constructor(props) {
     super(props);
-    this.state = { active: false, page: Profile, profile: {} };
+    this.state = { active: false, page: 'Profile', profile: {} };
+
     // current-menu-item
   }
 
-  componentDidMount() {
+
+  componentWillMount() {
     this.props.getProfile();
   }
 
@@ -28,23 +34,16 @@ class Dashboard extends Component {
   }
 
   screen(page) {
-    const pageMapping = {
-      Profile,
-      Portfolio,
-      Tracker,
-      Events,
-    };
-    this.setState({ page: pageMapping[page] });
+    this.setState({ page });
   }
 
   render() {
-    const View = this.state.page;
-
     return (
       <div>
         <Head>
           <title>Artist Dashboard - Conception Arts</title>
           <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+          <link href="/static/css/react-widgets.css" rel="stylesheet" />
         </Head>
         <header className="page_header portfolio_header">
           <div className="container">
@@ -55,9 +54,12 @@ class Dashboard extends Component {
                 </Link>
               </div>
               <div className="logout col-sm-6 col-xs-12">
-                <a href="">
-                  Logout
-                </a>
+                <Link href="/login" >
+                  <a>
+                    Logout
+                  </a>
+                </Link>
+
               </div>
             </div>
             <div className="page_title">
@@ -73,7 +75,19 @@ class Dashboard extends Component {
             </div>
           </div>
         </header>
-        <View {...this.state.profile} />
+        {this.state.page === 'Profile' &&
+          <Profile {...this.state.profile} />
+        }
+        {this.state.page === 'Portfolio' &&
+          <Portfolio {...this.state.profile} />
+        }
+        {this.state.page === 'Tracker' &&
+          <Tracker {...this.state.profile} />
+        }
+        {this.state.page === 'Events' &&
+          <Events {...this.state.profile} />
+        }
+
         <Footer />
       </div>
     );

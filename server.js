@@ -9,8 +9,9 @@ const envset = {
   production: process.env.NODE_ENV === 'production',
 };
 
-const hostname = envset.production ? (process.env.HOSTNAME || process.env.HOSTNAME) : 'localhost';
+// const hostname = envset.production ? (process.env.HOSTNAME || process.env.HOSTNAME) : 'localhost';
 const port = envset.production ? (process.env.PORT || process.env.PORT) : 3000;
+
 
 app.prepare()
 .then(() => {

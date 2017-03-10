@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Link from 'next/link';
 import Head from 'next/head';
 import axios from 'axios';
-import { chunk } from 'lodash';
 import { FETCH_EVENTS } from '../actions/types';
 import { nextConnect } from '../store';
 

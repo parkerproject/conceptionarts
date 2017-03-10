@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { validateStatus } from '../../helpers';
 
-const AUTH_URL = 'https://conceptionarts-api.herokuapp.com/api/auth';
+const AUTH_URL = 'http://localhost:4000/api/auth';// 'https://conceptionarts-api.herokuapp.com/api/auth';
 export default class AuthService {
   constructor() {
     // this.fetch = this.fetch.bind(this);
@@ -57,11 +57,10 @@ export default class AuthService {
     return localStorage.getItem('conception_token');
   }
 
-  // logout(){
-  //   // Clear user token and profile data from localStorage
-  //   localStorage.removeItem('id_token');
-  //   localStorage.removeItem('profile');
-  // }
+  logout() {
+    // Clear user token and profile data from localStorage
+    localStorage.removeItem('conception_token');
+  }
 
   // checkStatus(response) {
   //   // raises an error in case response status is not a success
