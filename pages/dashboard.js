@@ -40,7 +40,7 @@ class Dashboard extends Component {
         <Head>
           <title>Artist Dashboard - Conception Arts</title>
           <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-          <link href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" />
+          <link href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" />
         </Head>
         <header className="page_header portfolio_header">
           <div className="container">
