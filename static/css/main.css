@@ -578,6 +578,8 @@ img {
     margin-top: -20px;
     margin-left: -50px;
     display: none;
+		font-size: 6em;
+		color: #2ecc71;
 }
 
 .selected_item .check_image {
@@ -2117,7 +2119,7 @@ artist_photo_inner_displayed img{
 }
 
 .ticket_tracker_detalis {
-	padding: 50px 0;
+	padding: 10px 0;
 }
 
 .ticket_tracker_detalis_head_item {
@@ -2295,4 +2297,12 @@ a{
 
 a:hover{
 	text-decoration: none
+}
+
+.thead-inverse th{
+	background-color: #e83796;
+}
+
+small{
+	font-size: 10px
 }

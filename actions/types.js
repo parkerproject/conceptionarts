@@ -2,3 +2,4 @@ export const FETCH_EVENTS = 'FETCH_EVENTS';
 export const FETCH_USER_PROFILE = 'FETCH_USER_PROFILE';
 export const FETCH_USER_TICKETS = 'FETCH_USER_TICKETS';
 export const FLASH_MESSAGE = 'FLASH_MESSAGE';
+export const AUTH_USER = 'AUTH_USER';

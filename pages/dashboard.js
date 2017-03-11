@@ -8,13 +8,9 @@ import Tracker from '../components/Dashboard/Tracker';
 import Events from '../components/Dashboard/Events';
 import requireAuth from '../components/Auth/require-auth';
 import Footer from '../components/Footer';
-import { getProfile } from '../actions';
+import { getProfile, getEvents } from '../actions';
 
 class Dashboard extends Component {
-
-  static async getInitialProps() {
-    return {};
-  }
 
   constructor(props) {
     super(props);
@@ -26,6 +22,7 @@ class Dashboard extends Component {
 
   componentWillMount() {
     this.props.getProfile();
+    this.props.getEvents();
   }
 
   componentWillReceiveProps(nextProps) {
@@ -43,7 +40,7 @@ class Dashboard extends Component {
         <Head>
           <title>Artist Dashboard - Conception Arts</title>
           <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-          <link href="/static/css/react-widgets.css" rel="stylesheet" />
+          <link href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" />
         </Head>
         <header className="page_header portfolio_header">
           <div className="container">
@@ -82,7 +79,7 @@ class Dashboard extends Component {
           <Portfolio {...this.state.profile} />
         }
         {this.state.page === 'Tracker' &&
-          <Tracker {...this.state.profile} />
+          <Tracker {...this.state.profile} data={this.props.events} />
         }
         {this.state.page === 'Events' &&
           <Events {...this.state.profile} />
@@ -98,6 +95,7 @@ class Dashboard extends Component {
 Dashboard.propTypes = {
   events: React.PropTypes.object,
   getProfile: React.PropTypes.func,
+  getEvents: React.PropTypes.func,
 };
 
 function mapStateToProps(state) {
@@ -110,4 +108,4 @@ function mapStateToProps(state) {
 /**
  * Connect to Redux store.
  */
-export default nextConnect(mapStateToProps, { getProfile })(requireAuth(Dashboard));
+export default nextConnect(mapStateToProps, { getProfile, getEvents })(requireAuth(Dashboard));

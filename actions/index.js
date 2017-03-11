@@ -1,15 +1,14 @@
 import axios from 'axios';
-import Router from 'next/router';
-// import { FETCH_EVENTS } from './types';
 
-// let githubApi = "https://api.github.com";
-// if (__CLIENT__) {
-// 	const { protocol, hostname, port } = window.location;
-// 	githubApi = `${protocol}//${hostname}:${port}/api/github`;
-// }
-import { FETCH_USER_PROFILE, FETCH_USER_TICKETS, FLASH_MESSAGE } from '../actions/types';
+import {
+  FETCH_USER_PROFILE,
+  FETCH_USER_TICKETS,
+  FLASH_MESSAGE,
+  AUTH_USER,
+  FETCH_EVENTS,
+ } from '../actions/types';
 
-const BASE_URL = 'https://conceptionarts-api.herokuapp.com/api';// 'http://localhost:4000/api';
+const BASE_URL = 'https://conceptionarts-api.herokuapp.com/api';
 
 export function getVenue(venueId, next) {
   axios.get(`${BASE_URL}/venues/${venueId}`)
@@ -17,6 +16,18 @@ export function getVenue(venueId, next) {
     next(res.data);
   })
   .catch(err => console.log(err));
+}
+
+export function getEvents() {
+  return (dispatch) => {
+    axios.get(`${BASE_URL}/events`)
+    .then(res => {
+      dispatch({
+        type: FETCH_EVENTS,
+        payload: res.data.events,
+      });
+    });
+  };
 }
 
 
@@ -104,5 +115,14 @@ export function hideFlash() {
         payload: { show: false },
       });
     }, 2000);
+  };
+}
+
+export function authUser(status) {
+  return (dispatch) => {
+    dispatch({
+      type: AUTH_USER,
+      payload: { authenticated: status },
+    });
   };
 }

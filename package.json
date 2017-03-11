@@ -28,7 +28,7 @@
     "react-dropzone": "^3.11.0",
     "react-helmet": "^3.2.2",
     "react-redux": "^5.0.1",
-    "react-widgets": "^3.4.6",
+    "react-tabs": "^0.8.2",
     "redux": "^3.6.0",
     "redux-logger": "^2.8.1",
     "redux-thunk": "^2.1.0",

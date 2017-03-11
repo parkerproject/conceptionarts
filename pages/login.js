@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import Link from 'next/link';
 import Head from 'next/head';
 import Router from 'next/router';
-
-
+import { authUser } from '../actions';
+import { nextConnect } from '../store';
 import Footer from '../components/Footer';
 import AuthService from '../components/Auth/auth-service';
 
@@ -30,7 +30,7 @@ class Login extends Component {
     // if (auth.loggedIn()) {
     //   Router.push('/dashboard');
     // }
-    auth.logout();
+    // auth.logout();
   }
 
   async handleSubmit(e) {
@@ -50,7 +50,7 @@ class Login extends Component {
     if (res.error) {
       return this.setState({ error: true, errMessage: res.message });
     }
-
+    this.props.authUser(true);
     return Router.push('/dashboard');
   }
 
@@ -66,6 +66,7 @@ class Login extends Component {
     this.setState({ error: false });
     const response = await auth.resetPassword(email, newPassword);
     if (response) {
+      this.props.authUser(true);
       return Router.push('/dashboard');
     }
     return false;
@@ -185,4 +186,8 @@ class Login extends Component {
   }
 }
 
-export default Login;
+Login.propTypes = {
+  authUser: React.PropTypes.func,
+};
+
+export default nextConnect(null, { authUser })(Login);
