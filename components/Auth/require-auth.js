@@ -26,7 +26,7 @@ export default function withAuth(AuthComponent) {
       return (
         <div>
           {this.state.isLoading ?
-            <div>LOADING....</div> :
+            <div className="processing">LOADING....</div> :
             <AuthComponent {...this.props} auth={Auth} />
           }
         </div>

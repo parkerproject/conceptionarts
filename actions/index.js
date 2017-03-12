@@ -8,7 +8,7 @@ import {
   FETCH_EVENTS,
  } from '../actions/types';
 
-const BASE_URL = 'https://conceptionarts-api.herokuapp.com/api';
+export const BASE_URL = 'https://conceptionarts-api.herokuapp.com/api';
 
 export function getVenue(venueId, next) {
   axios.get(`${BASE_URL}/venues/${venueId}`)
@@ -124,5 +124,19 @@ export function authUser(status) {
       type: AUTH_USER,
       payload: { authenticated: status },
     });
+  };
+}
+
+export function selectEvent(text, eventId, userToken) {
+  return (dispatch) => {
+    axios.post(`${BASE_URL}/artist-select`, { text, eventId, userToken }, {
+      headers: { authorization: localStorage.getItem('conception_token') },
+    })
+      .then(response => {
+        dispatch({
+          type: FETCH_USER_PROFILE,
+          payload: response.data,
+        });
+      });
   };
 }

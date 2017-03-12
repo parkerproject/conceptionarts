@@ -4,6 +4,7 @@ import Head from 'next/head';
 import axios from 'axios';
 import { FETCH_EVENTS } from '../actions/types';
 import { nextConnect } from '../store';
+import { BASE_URL } from '../actions';
 
 import Footer from '../components/Footer';
 import BottomMenu from '../components/Home/BottomMenu';
@@ -18,12 +19,10 @@ import HeaderSocial from '../components/HeaderSocial';
 import HeaderNav from '../components/HeaderNav';
 import HeaderLogin from '../components/HeaderLogin';
 
-const BASE_URL = 'https://conceptionarts-api.herokuapp.com/api/events';
-
 class Home extends Component {
 
   static async getInitialProps({ store }) {
-    const response = await axios.get(BASE_URL);
+    const response = await axios.get(`${BASE_URL}/events`);
     return store.dispatch({
       type: FETCH_EVENTS,
       payload: response.data.events,

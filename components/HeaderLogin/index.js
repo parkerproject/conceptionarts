@@ -1,14 +1,43 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Link from 'next/link';
+import AuthService from '../Auth/auth-service';
 
-export default() => (
-  <div className="header_nav_buttons col-md-6 col-sm-6 col-xs-12">
-    <Link href="/login">
-      <a>login</a>
-    </Link>
+const auth = new AuthService();
 
-    <Link href="/register">
-      <a className="submit_work">SUBMIT YOUR WORK</a>
-    </Link>
-  </div>
-);
+class HeaderLogin extends Component {
+  constructor() {
+    super();
+    this.state = { authenticated: false };
+  }
+
+  componentDidMount() {
+    if (auth.loggedIn()) {
+      /* eslint-disable */
+      this.setState({ authenticated: true });
+      /* eslint-enable */
+    }
+  }
+
+  render() {
+    return (
+      <div className="header_nav_buttons col-md-6 col-sm-6 col-xs-12">
+        {this.state.authenticated ?
+          <Link href="/dashboard">
+            <a>Dashboard</a>
+          </Link>
+          :
+          <Link href="/login">
+            <a>login</a>
+          </Link>
+        }
+
+        <Link href="/register">
+          <a className="submit_work">SUBMIT YOUR WORK</a>
+        </Link>
+      </div>
+    );
+  }
+
+}
+
+export default HeaderLogin;

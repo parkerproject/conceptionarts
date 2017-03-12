@@ -64,10 +64,18 @@ class Dashboard extends Component {
             </div>
             <div className="main_menu">
               <ul>
-                <li><a onClick={() => this.screen('Profile')}>PROFILE</a></li>
-                <li><a onClick={() => this.screen('Portfolio')}>PORTFOLIO</a></li>
-                <li><a onClick={() => this.screen('Tracker')}>TICKET TRACKER</a></li>
-                <li><a onClick={() => this.screen('Events')}>Events</a></li>
+                <li className={this.state.page === 'Profile' && 'current-menu-item'}>
+                  <a onClick={() => this.screen('Profile')}>PROFILE</a>
+                </li>
+                <li className={this.state.page === 'Portfolio' && 'current-menu-item'}>
+                  <a onClick={() => this.screen('Portfolio')}>PORTFOLIO</a>
+                </li>
+                <li className={this.state.page === 'Tracker' && 'current-menu-item'}>
+                  <a onClick={() => this.screen('Tracker')}>TICKET TRACKER</a>
+                </li>
+                <li className={this.state.page === 'Events' && 'current-menu-item'}>
+                  <a onClick={() => this.screen('Events')}>Events</a>
+                </li>
               </ul>
             </div>
           </div>

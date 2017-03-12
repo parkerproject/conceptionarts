@@ -21,6 +21,7 @@ class Login extends Component {
       resetPassword: false,
       error: false,
       errMessage: '',
+      show: false,
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handlePasswordSubmit = this.handlePasswordSubmit.bind(this);
@@ -36,6 +37,8 @@ class Login extends Component {
   async handleSubmit(e) {
     const { email, password } = this.state;
     e.preventDefault();
+
+    this.setState({ show: true });
 
     if (email === '' || password === '') {
       return this.setState({ error: true, errMessage: 'All fields required.' });
@@ -98,13 +101,13 @@ class Login extends Component {
               <div className="row flex-items-xs-center">
                 <div className="login_form_inner col-xl-9 col-lg-10 col-md-12 col-sm-12 col-xs-12">
                   <div className="login_form_inner_inner">
+                    {this.state.show && <div className="processing">Processing...</div>}
                     <div className="login_form_inner_inner_title">
                       {!this.state.resetPassword ? 'Login' : 'Change Password'}
                     </div>
                     {!this.state.resetPassword && <div className="login_form_inner_inner_register">
                       Not a member of this community? <a href="">Register Here</a>
                     </div>}
-
                     <div className="login_form_inner_inner_inputs">
                       <form
                         onSubmit={!this.state.resetPassword ?

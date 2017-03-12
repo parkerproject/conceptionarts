@@ -732,7 +732,7 @@ artist_photo_inner_displayed img{
 }
 
 .header_nav_buttons a {
-	font-size: 9px;
+	font-size: 10px;
 	color: #fff;
 	text-transform: uppercase;
 	text-decoration: none;
@@ -753,7 +753,7 @@ artist_photo_inner_displayed img{
 	color: #fff;
 	padding: 15px 10px;
 	font-weight: bold;
-	font-size: 9px;
+	font-size: 10px;
 	cursor: pointer;
 	text-transform: uppercase;
 	text-decoration: none;
@@ -2305,4 +2305,10 @@ a:hover{
 
 small{
 	font-size: 10px
+}
+
+.processing{
+	float: right;
+  display: block;
+  color: red;
 }

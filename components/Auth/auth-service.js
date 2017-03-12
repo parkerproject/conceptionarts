@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { validateStatus } from '../../helpers';
+import { BASE_URL } from '../../actions';
 
-const AUTH_URL = 'https://conceptionarts-api.herokuapp.com/api/auth';
 export default class AuthService {
   constructor() {
     // this.fetch = this.fetch.bind(this);
@@ -11,7 +11,7 @@ export default class AuthService {
 
   async login(email, password) {
     // Get a token
-    const res = await axios.post(AUTH_URL, { email, password }, { validateStatus });
+    const res = await axios.post(`${BASE_URL}/auth`, { email, password }, { validateStatus });
 
     if (res.data && res.data.token) {
       this.setToken(res.data.token);
@@ -28,7 +28,7 @@ export default class AuthService {
 
   async resetPassword(email, password) {
     // Get a token
-    const res = await axios.post(`${AUTH_URL}/resetpassword`, { email, password });
+    const res = await axios.post(`${BASE_URL}/auth/resetpassword`, { email, password });
 
     if (res.data && res.data.token) {
       this.setToken(res.data.token);
