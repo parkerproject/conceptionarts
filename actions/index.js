@@ -107,6 +107,25 @@ export function updateProfileImage(formProps) {
   };
 }
 
+export function sendGalleryFile(formData) {
+  return (dispatch) => {
+    axios.post(`${BASE_URL}/artist/gallery`, formData, {
+      headers: { authorization: localStorage.getItem('conception_token') },
+    })
+    .then(response => {
+      dispatch({
+        type: FETCH_USER_PROFILE,
+        payload: response.data,
+      });
+      dispatch({
+        type: FLASH_MESSAGE,
+        payload: { show: true },
+      });
+    })
+    .catch(err => console.log(err));
+  };
+}
+
 export function hideFlash() {
   return (dispatch) => {
     window.setTimeout(() => {

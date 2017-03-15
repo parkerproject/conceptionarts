@@ -62,7 +62,7 @@ class Profile extends Component {
     const file = filesToUpload[0];
 
     if (file.size > (1024 * 1024 * 5)) {
-      alert('Holly molly! That photo is to large');
+      alert('Holly molly! That photo is too large');
 
       return false;
     }
