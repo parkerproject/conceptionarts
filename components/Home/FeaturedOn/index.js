@@ -10,7 +10,7 @@ export default() => (
           </span>
         </div>
         <div className="featured_on_img col-xl-10 col-lg-9 col-md-8 col-sm-12">
-          <img src="/static/img/brand.png" alt="" />
+          <img src="/static/img/brand.jpg" alt="" />
         </div>
       </div>
     </div>

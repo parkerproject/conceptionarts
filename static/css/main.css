@@ -335,9 +335,8 @@ img {
 	font-weight: bold;
 	text-align: center;
 	color: #fff;
-	padding: 42px 5px;
-    font-family: 'Nexa';
-	background: #cccccc;
+  font-family: 'Nexa';
+	border: 1px solid #cccccc;
 	background-size: cover;
 	background-position: center center;
 	min-height: 103px;
@@ -732,7 +731,7 @@ artist_photo_inner_displayed img{
 }
 
 .header_nav_buttons a {
-	font-size: 10px;
+	font-size: 12px;
 	color: #fff;
 	text-transform: uppercase;
 	text-decoration: none;
@@ -753,7 +752,7 @@ artist_photo_inner_displayed img{
 	color: #fff;
 	padding: 15px 10px;
 	font-weight: bold;
-	font-size: 10px;
+	font-size: 12px;
 	cursor: pointer;
 	text-transform: uppercase;
 	text-decoration: none;
@@ -2311,4 +2310,9 @@ small{
 	float: right;
   display: block;
   color: red;
+}
+
+.icon-confirm{
+	color: #2ecc71;
+	font-size:16px;
 }
