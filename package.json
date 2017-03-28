@@ -4,10 +4,10 @@
   "scripts": {
     "dev": "node server.js",
     "build": "next build",
-    "start": "next build && next start",
+    "start": "next start",
     "production": "cross-env NODE_ENV=production next build",
     "dev-start": "concurrently --kill-others \"npm run dev\"",
-    "postinstall": "npm run build"
+    "postinstall": "npm run production && npm run dev"
   },
   "dependencies": {
     "axios": "^0.15.3",
