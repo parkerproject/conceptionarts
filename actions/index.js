@@ -8,7 +8,7 @@ import {
   FETCH_EVENTS,
  } from '../actions/types';
 
-export const BASE_URL = 'https://conceptionarts-api.herokuapp.com/api';
+export const BASE_URL = 'https://conceptionarts-api.herokuapp.com/api'; // api
 
 export function getVenue(venueId, next) {
   axios.get(`${BASE_URL}/venues/${venueId}`)
