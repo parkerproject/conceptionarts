@@ -10,7 +10,7 @@ const envset = {
 };
 
 // const hostname = envset.production ? (process.env.HOSTNAME || process.env.HOSTNAME) : 'localhost';
-const port = envset.production ? (process.env.PORT || process.env.PORT) : 3000;
+const port = envset.production ? (process.env.PORT || process.env.PORT) : 5000;
 
 
 app.prepare()

@@ -4,10 +4,10 @@
   "scripts": {
     "dev": "node server.js",
     "build": "next build",
-    "start": "next start",
+    "start": "next build && next start",
     "production": "cross-env NODE_ENV=production next build",
     "dev-start": "concurrently --kill-others \"npm run dev\"",
-    "postinstall": "npm run production && npm run dev"
+    "postinstall": "npm run dev"
   },
   "dependencies": {
     "axios": "^0.15.3",
@@ -17,7 +17,7 @@
     "express": "^4.15.0",
     "forever": "^0.15.3",
     "lodash": "^4.17.4",
-    "next": "^2.0.0-beta",
+    "next": "^2.0.0",
     "next-connect-redux": "^0.1.2",
     "next-redux-wrapper": "^1.0.0",
     "path-match": "^1.2.4",
