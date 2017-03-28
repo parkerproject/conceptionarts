@@ -18,34 +18,49 @@ class Register extends Component {
       artwork_1: null,
       artwork_2: null,
       artwork_3: null,
-      terms: '',
-      permission: '',
+      terms: false,
+      referral: '',
+      url: '',
     };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleSubmit(event) {
     event.preventDefault();
+
+    const { email, terms, name } = this.state;
+    if (email === '' || !terms || name === '') {
+      return false;
+    }
+
     const keys = Object.keys(this.state);
-    const data = { user_token: randtoken.generate(5) };
     const formData = new FormData();
     formData.append('user_token', randtoken.generate(5));
 
-    console.log(this.state);
+    const files = {
+      artwork_3: true,
+      artwork_2: true,
+      artwork_1: true,
+      photo: true,
+    };
+
+    keys.forEach((key) => {
+      if (files[key]) {
+        const blob = dataURItoBlob(this.state[key]);
+        const filename = `${randtoken.generate(20)}.jpg`;
+        formData.append(key, blob, filename);
+      } else {
+        formData.append(key, this.state[key]);
+      }
+    });
+
+    console.log(formData);
+
 
     // if (this.state.photo) {
     //   const filename = this.state.photo || `${randtoken.generate(20)}.jpg`;
     //   const blob = dataURItoBlob(this.state.photo);
     //   formData.append('photo', blob, filename);
-    // }
-
-    // if (this.state.changes) {
-    //   forEach(keys, (key) => {
-    //     if (this.state.changes[key] && this.state[key]) {
-    //       data[key] = this.state[key];
-    //     }
-    //   });
-    //   console.log(data);
     // }
   }
 
@@ -173,6 +188,8 @@ class Register extends Component {
                               required
                               pattern="https?://.+"
                               placeholder="Your Website"
+                              value={this.state.url}
+                              onChange={(evt) => this.setState({ url: evt.target.value })}
                             />
                           </div>
                           <div className="wrap_file">
@@ -246,28 +263,22 @@ class Register extends Component {
                             </div>
                           </div>
                           <div className="wrap_input">
-                            <input type="text" placeholder="Where did you hear about Conception?" />
+                            <input
+                              type="text"
+                              placeholder="Where did you hear about Conception?"
+                              value={this.state.referral}
+                              onChange={(evt) => this.setState({ referral: evt.target.value })}
+                            />
                           </div>
                           <div className="wrap_checkbox">
                             <input
                               type="checkbox"
                               id="checkbox1"
-                              value={this.state.terms}
-                              onChange={(evt) => this.setState({ terms: evt.target.value })}
+                              checked={this.state.terms}
+                              onChange={(evt) => this.setState({ terms: evt.target.checked })}
                             />
                             <label htmlFor="checkbox1">
                               I agree to the <a href="">terms</a> and <a href="">conditions</a>.
-                            </label>
-                          </div>
-                          <div className="wrap_checkbox">
-                            <input
-                              type="checkbox"
-                              id="checkbox2"
-                              value={this.state.permission}
-                              onChange={(evt) => this.setState({ permission: evt.target.value })}
-                            />
-                            <label htmlFor="checkbox1">
-                              I authorize Conception to have permission to email me.
                             </label>
                           </div>
                           <div className="wrap_file"><button onClick={this.handleSubmit}>Submit</button></div>
