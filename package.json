@@ -2,7 +2,7 @@
   "name": "with-redux",
   "version": "1.0.0",
   "scripts": {
-    "dev": "node server.js -p ${PORT}",
+    "dev": "node server.js",
     "build": "next build",
     "prestart": "next build",
     "start": "next start -p ${PORT}"
