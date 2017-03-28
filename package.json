@@ -4,10 +4,10 @@
   "scripts": {
     "dev": "node server.js",
     "build": "next build",
-    "start": "forever --minUptime 1000 --spinSleepTime 1000 -c \"node --harmony\" ./server.js",
-    "production": "cross-env NODE_ENV=production next build && next start",
+    "start": "next build && next start",
+    "production": "cross-env NODE_ENV=production next build",
     "dev-start": "concurrently --kill-others \"npm run dev\"",
-    "postinstall": "npm run build && npm run start"
+    "postinstall": "npm run build"
   },
   "dependencies": {
     "axios": "^0.15.3",
