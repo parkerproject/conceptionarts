@@ -2,12 +2,12 @@
   "name": "with-redux",
   "version": "1.0.0",
   "scripts": {
-    "dev": "node server.js",
+    "dev": "next build && node server.js",
     "build": "next build",
     "start": "next build && next start",
-    "production": "cross-env NODE_ENV=production next build",
+    "production": "cross-env NODE_ENV=production next build && next start",
     "dev-start": "concurrently --kill-others \"npm run dev\"",
-    "postinstall": "npm run build"
+    "postinstall": "npm run dev"
   },
   "dependencies": {
     "axios": "^0.15.3",
