@@ -5,14 +5,16 @@ import randtoken from 'rand-token';
 import Dropzone from 'react-dropzone';
 
 import Footer from '../components/Footer';
+import { nextConnect } from '../store';
 import { dataURItoBlob } from '../helpers';
+import { register, hideFlash } from '../actions';
 
 class Register extends Component {
   constructor() {
     super();
     this.state = {
-      oldEnough: false,
-      name: '',
+      oldEnough: '',
+      full_name: '',
       email: '',
       photo: null,
       artwork_1: null,
@@ -25,8 +27,17 @@ class Register extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.flash.show) {
+      this.props.hideFlash();
+      this.setState({ processing: false });
+    }
+  }
+
   handleSubmit(event) {
     event.preventDefault();
+
+    this.setState({ processing: true });
 
     const { email, terms, name } = this.state;
     if (email === '' || !terms || name === '') {
@@ -54,14 +65,9 @@ class Register extends Component {
       }
     });
 
-    console.log(formData);
+    this.props.register(formData);
 
-
-    // if (this.state.photo) {
-    //   const filename = this.state.photo || `${randtoken.generate(20)}.jpg`;
-    //   const blob = dataURItoBlob(this.state.photo);
-    //   formData.append('photo', blob, filename);
-    // }
+    return true;
   }
 
 
@@ -113,6 +119,11 @@ class Register extends Component {
               <div className="row flex-items-xs-center">
                 <div className="login_form_inner col-xl-9 col-lg-10 col-md-12 col-sm-12 col-xs-12">
                   <div className="login_form_inner_inner">
+                    {this.props.flash.show &&
+                      <div className="alert alert-success" role="alert">
+                        <strong>Registration successfully!</strong>
+                        <p>Check your email for your password.</p>
+                      </div>}
                     <div className="login_form_inner_inner_title">
                       Artist Registration
                     </div>
@@ -127,7 +138,7 @@ class Register extends Component {
                               type="text"
                               placeholder="Name"
                               value={this.state.name}
-                              onChange={evt => this.setState({ name: evt.target.value })}
+                              onChange={evt => this.setState({ full_name: evt.target.value })}
                             />
                           </div>
                           <div className="wrap_input">
@@ -179,9 +190,6 @@ class Register extends Component {
                               </div>
                             </div>
                           </div>
-                          <div className="wrap_label">
-                            Upload your artwork (up to 3 pieces max)
-                          </div>
                           <div className="wrap_input">
                             <input
                               type="url"
@@ -191,6 +199,9 @@ class Register extends Component {
                               value={this.state.url}
                               onChange={(evt) => this.setState({ url: evt.target.value })}
                             />
+                          </div>
+                          <div className="wrap_label">
+                            Upload your artwork (up to 3 pieces max)
                           </div>
                           <div className="wrap_file">
                             <div className="row">
@@ -281,7 +292,11 @@ class Register extends Component {
                               I agree to the <a href="">terms</a> and <a href="">conditions</a>.
                             </label>
                           </div>
-                          <div className="wrap_file"><button onClick={this.handleSubmit}>Submit</button></div>
+                          <div className="wrap_file">
+                            <button
+                              onClick={this.handleSubmit}
+                            >{this.state.processing ? 'Submitting...' : 'Submit'}</button>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -297,4 +312,16 @@ class Register extends Component {
   }
 }
 
-export default Register;
+Register.propTypes = {
+  hideFlash: React.PropTypes.func,
+  register: React.PropTypes.func,
+  flash: React.PropTypes.object,
+};
+
+function mapStateToProps(state) {
+  return {
+    flash: state.flash,
+  };
+}
+
+export default nextConnect(mapStateToProps, { register, hideFlash })(Register);

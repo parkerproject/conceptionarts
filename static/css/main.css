@@ -367,9 +367,9 @@ img {
 
 .wrap_check_button button {
 	width: 100%;
-	color: #020b26;
-	border: none;
-	background: #fff;
+	color: #fff;
+	border: 1px solid white;
+	background: transparent;
 	transition: .5s;
 	padding: 15px;
     font-family: 'Montserrat';

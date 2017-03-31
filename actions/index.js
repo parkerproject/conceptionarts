@@ -8,7 +8,20 @@ import {
   FETCH_EVENTS,
  } from '../actions/types';
 
-export const BASE_URL = 'https://conceptionarts-api.herokuapp.com/api'; // api
+export const BASE_URL = 'http://localhost:4000/api';// 'https://conceptionarts-api.herokuapp.com/api'; // api
+
+export function register(formData) {
+  return (dispatch) => {
+    axios.post(`${BASE_URL}/register`, formData)
+      .then(res => {
+        console.log(res);
+        dispatch({
+          type: FLASH_MESSAGE,
+          payload: { show: true },
+        });
+      });
+  };
+}
 
 export function getVenue(venueId, next) {
   axios.get(`${BASE_URL}/venues/${venueId}`)
