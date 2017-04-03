@@ -119,11 +119,6 @@ class Register extends Component {
               <div className="row flex-items-xs-center">
                 <div className="login_form_inner col-xl-9 col-lg-10 col-md-12 col-sm-12 col-xs-12">
                   <div className="login_form_inner_inner">
-                    {this.props.flash.show &&
-                      <div className="alert alert-success" role="alert">
-                        <strong>Registration successfully!</strong>
-                        <p>Check your email for your password.</p>
-                      </div>}
                     <div className="login_form_inner_inner_title">
                       Artist Registration
                     </div>
@@ -297,6 +292,14 @@ class Register extends Component {
                               onClick={this.handleSubmit}
                             >{this.state.processing ? 'Submitting...' : 'Submit'}</button>
                           </div>
+                          {this.props.flash.show &&
+                            <div className="alert alert-success" role="alert">
+                              {this.props.flash.msg && this.props.flash.msg}
+                              {!this.props.flash.msg &&
+                                <div><strong>Registration successfully!</strong>
+                                  <p>Check your email for your password.</p></div>
+                              }
+                            </div>}
                         </div>
                       </div>
                     </div>

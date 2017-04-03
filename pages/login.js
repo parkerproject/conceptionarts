@@ -25,13 +25,7 @@ class Login extends Component {
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handlePasswordSubmit = this.handlePasswordSubmit.bind(this);
-  }
-
-  componentDidMount() {
-    // if (auth.loggedIn()) {
-    //   Router.push('/dashboard');
-    // }
-    // auth.logout();
+    this.handleForgotPassword = this.handleForgotPassword.bind(this);
   }
 
   async handleSubmit(e) {
@@ -47,7 +41,14 @@ class Login extends Component {
     const res = await auth.login(email, password);
 
     if (res === 0) {
-      return this.setState({ resetPassword: true, errMessage: 'Password mismatch.' });
+      return this.setState({
+        resetPassword: true,
+        errMessage: 'Password mismatch.',
+        show: false,
+        forgotPassword: false,
+        error: false,
+        success: false,
+      });
     }
 
     if (res.error) {
@@ -60,6 +61,8 @@ class Login extends Component {
   async handlePasswordSubmit(e) {
     const { email, newPassword, newPassword2 } = this.state;
     e.preventDefault();
+
+    this.setState({ show: true });
 
     if ((newPassword !== newPassword2) || newPassword === '') {
       this.setState({ error: true });
@@ -76,7 +79,29 @@ class Login extends Component {
   }
 
 
+  async handleForgotPassword(e) {
+    e.preventDefault();
+    if (this.state.email === '') {
+      return false;
+    }
+    const res = await auth.forgotPassword(this.state.email);
+    if (res.data === 1) {
+      this.setState({ email: '', success: true });
+    }
+    return true;
+  }
+
+
   render() {
+    let submitFunc = this.handleSubmit;
+    if (this.state.forgotPassword) {
+      submitFunc = this.handleForgotPassword;
+    }
+
+    if (this.state.resetPassword) {
+      submitFunc = this.handlePasswordSubmit;
+    }
+
     return (
       <div className="login_body">
         <Head>
@@ -103,19 +128,19 @@ class Login extends Component {
                   <div className="login_form_inner_inner">
                     {this.state.show && <div className="processing">Processing...</div>}
                     <div className="login_form_inner_inner_title">
-                      {!this.state.resetPassword ? 'Login' : 'Change Password'}
+                      {!this.state.resetPassword && !this.state.forgotPassword && 'Login'}
+                      {this.state.resetPassword && 'Change Password'}
+                      {this.state.forgotPassword && 'Reset Password'}
                     </div>
                     {!this.state.resetPassword && <div className="login_form_inner_inner_register">
-                      Not a member of this community? <a href="">Register Here</a>
+                      Not a member of this community?
+                      <Link href="/register"><a>Register Here</a></Link>
                     </div>}
                     <div className="login_form_inner_inner_inputs">
-                      <form
-                        onSubmit={!this.state.resetPassword ?
-                        this.handleSubmit : this.handlePasswordSubmit}
-                      >
+                      <form onSubmit={submitFunc}>
                         <div className="wrap_inputs row">
                           <div className="col-md-8 col-sm-12">
-                            {!this.state.resetPassword && <div>
+                            {!this.state.resetPassword && !this.state.forgotPassword && <div>
                               <div className="wrap_input">
                                 <input
                                   type="text"
@@ -134,7 +159,7 @@ class Login extends Component {
                               </div>
                             </div>}
 
-                            {this.state.resetPassword &&
+                            {this.state.resetPassword && !this.state.forgotPassword &&
                               <div>
                                 <div className="wrap_input">
                                   <input
@@ -159,19 +184,37 @@ class Login extends Component {
                               </div>
                             }
 
+                            {this.state.forgotPassword &&
+                              <div>
+                                <div className="wrap_input">
+                                  <input
+                                    type="text"
+                                    placeholder="Email"
+                                    value={this.state.email}
+                                    onChange={evt => this.setState({ email: evt.target.value })}
+                                  />
+                                </div>
+                                {this.state.success && <div className="alert alert-success">
+                                  <strong>Success!</strong><br />
+                                  Please check your email for a temporary password
+                                </div>}
+                              </div>
+                            }
                           </div>
                           <div className="wrap_button col-md-4 col-sm-12">
                             <input
                               type="submit"
-                              value={!this.state.resetPassword ? 'Login' : 'Reset'}
+                              value={!this.state.resetPassword &&
+                              !this.state.forgotPassword ? 'Login' : 'Reset'}
                             />
                           </div>
                         </div>
                       </form>
                     </div>
                     {!this.state.resetPassword && <div className="forgot_and_password">
-                      <a href="">Forgot password?</a>
-                      <a href="">Support</a>
+                      <a href="#" onClick={() => this.setState({ forgotPassword: true })}>
+                      Forgot password?</a>
+                      <a href="mailto:info@conceptionevents.com">Support</a>
                     </div>}
                     {this.state.error && <div className="alert alert-danger">
                       <strong>Error!</strong> {this.state.errMessage}

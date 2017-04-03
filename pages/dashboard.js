@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Link from 'next/link';
 import Head from 'next/head';
+import Router from 'next/router';
 import { nextConnect } from '../store';
 import Portfolio from '../components/Dashboard/Portfolio';
 import Profile from '../components/Dashboard/Profile';
@@ -8,14 +9,17 @@ import Tracker from '../components/Dashboard/Tracker';
 import Events from '../components/Dashboard/Events';
 import requireAuth from '../components/Auth/require-auth';
 import Footer from '../components/Footer';
-import { getProfile, getEvents } from '../actions';
+import { getProfile, getEvents, authUser } from '../actions';
+import AuthService from '../components/Auth/auth-service';
+
+const auth = new AuthService();
 
 class Dashboard extends Component {
 
   constructor(props) {
     super(props);
     this.state = { active: false, page: 'Profile', profile: {} };
-
+    this.logout = this.logout.bind(this);
     // current-menu-item
   }
 
@@ -32,6 +36,14 @@ class Dashboard extends Component {
 
   screen(page) {
     this.setState({ page });
+  }
+
+  logout(e) {
+    e.preventDefault();
+    auth.logout();
+    console.log(this.props);
+    this.props.authUser(false);
+    Router.push('/login');
   }
 
   render() {
@@ -51,16 +63,15 @@ class Dashboard extends Component {
                 </Link>
               </div>
               <div className="logout col-sm-6 col-xs-12">
-                <Link href="/login" >
-                  <a>
-                    Logout
-                  </a>
-                </Link>
+
+                <a onClick={this.logout} href="#">
+                  Logout
+                </a>
 
               </div>
             </div>
             <div className="page_title">
-              Welcome Beca
+              Welcome {this.state.profile.full_name}
             </div>
             <div className="main_menu">
               <ul>
@@ -104,6 +115,7 @@ Dashboard.propTypes = {
   events: React.PropTypes.object,
   getProfile: React.PropTypes.func,
   getEvents: React.PropTypes.func,
+  authUser: React.PropTypes.func,
 };
 
 function mapStateToProps(state) {
@@ -116,4 +128,5 @@ function mapStateToProps(state) {
 /**
  * Connect to Redux store.
  */
-export default nextConnect(mapStateToProps, { getProfile, getEvents })(requireAuth(Dashboard));
+export default nextConnect(mapStateToProps,
+  { getProfile, getEvents, authUser })(requireAuth(Dashboard));

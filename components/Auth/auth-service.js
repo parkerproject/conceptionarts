@@ -39,7 +39,12 @@ export default class AuthService {
     return false;
   }
 
-  // /api/auth/resetpassword
+  // auth/forgotpassword
+
+  async forgotPassword(email) {
+    const res = await axios.post(`${BASE_URL}/auth/forgotpassword`, { email });
+    return res;
+  }
 
 
   setToken(idToken) {

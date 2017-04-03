@@ -8,7 +8,7 @@ export default() => (
         <div className="for_artist_and_collectors_first col-xl-6 col-lg-6 col-md-12 col-sm-12">
           <div className="for_artist_and_collectors_first_inner">
             <div className="for_artist_and_collectors_first_inner_title">
-              For Collectors
+              <Link href="/collector"><a>For Collectors</a></Link>
             </div>
             <div className="for_artist_and_collectors_first_inner_title_text">
               Learn how your investment in art helps the local community
@@ -28,7 +28,7 @@ export default() => (
         <div className="for_artist_and_collectors_first for_artist_and_collectors_last col-xl-6 col-lg-6 col-md-12 col-sm-12">
           <div className="for_artist_and_collectors_first_inner">
             <div className="for_artist_and_collectors_first_inner_title">
-              For Artists
+              <Link href="/artist-info"><a>For Artists</a></Link>
             </div>
             <div className="for_artist_and_collectors_first_inner_title_text">
               Let us work with you to get your art in front of the right people

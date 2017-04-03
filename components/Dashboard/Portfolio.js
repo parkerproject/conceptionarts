@@ -16,11 +16,11 @@ function PorfolioItem(props) {
           <div className="portfolio_item_inner_image">
             <img src={`${PHOTO_URL}/${props.art}`} alt="" />
           </div>
-          <div className="portfolio_item_inner_link">
+          {/* <div className="portfolio_item_inner_link">
             <a href="">
               view
             </a>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

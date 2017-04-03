@@ -1,4 +1,5 @@
 import axios from 'axios';
+import Router from 'next/router';
 
 import {
   FETCH_USER_PROFILE,
@@ -8,20 +9,37 @@ import {
   FETCH_EVENTS,
  } from '../actions/types';
 
-export const BASE_URL = 'http://localhost:4000/api';// 'https://conceptionarts-api.herokuapp.com/api'; // api
+export const BASE_URL = 'https://conceptionarts-api.herokuapp.com/api'; // api
 
 export function register(formData) {
   return (dispatch) => {
     axios.post(`${BASE_URL}/register`, formData)
       .then(res => {
-        console.log(res);
-        dispatch({
-          type: FLASH_MESSAGE,
-          payload: { show: true },
-        });
+        if (res.data === 1) {
+          dispatch({
+            type: FLASH_MESSAGE,
+            payload: { show: true },
+          });
+          Router.push('/login');
+        } else {
+          dispatch({
+            type: FLASH_MESSAGE,
+            payload: { show: true, msg: 'Email already registered' },
+          });
+        }
       });
   };
 }
+
+export function authUser(status) {
+  return (dispatch) => {
+    dispatch({
+      type: AUTH_USER,
+      payload: { authenticated: status },
+    });
+  };
+}
+
 
 export function getVenue(venueId, next) {
   axios.get(`${BASE_URL}/venues/${venueId}`)
@@ -146,18 +164,10 @@ export function hideFlash() {
         type: FLASH_MESSAGE,
         payload: { show: false },
       });
-    }, 2000);
+    }, 5000);
   };
 }
 
-export function authUser(status) {
-  return (dispatch) => {
-    dispatch({
-      type: AUTH_USER,
-      payload: { authenticated: status },
-    });
-  };
-}
 
 export function selectEvent(text, eventId, userToken) {
   return (dispatch) => {
