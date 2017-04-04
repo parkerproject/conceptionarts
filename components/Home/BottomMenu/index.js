@@ -11,7 +11,7 @@ export default() => (
         <div className="stay_in_touch_item_menu col-xl-10 col-lg-9 col-md-8 col-sm-12">
           <ul>
             <li><Link href="/about"><a>About Us</a></Link></li>
-            <li><Link href="/whats-new"><a>What’s New</a></Link></li>
+            <li><a href="http://hiconceptmag.com">Magazine</a></li>
             <li><Link href="/press"><a>Press</a></Link></li>
             <li><Link href="/shows"><a>Shows</a></Link></li>
             <li><Link href="/faq"><a>FAQ</a></Link></li>

@@ -1,15 +1,58 @@
 import React, { Component } from 'react';
 import Link from 'next/link';
 import Head from 'next/head';
-
+import Modal from 'react-modal';
+import { map } from 'lodash';
 import Footer from '../components/Footer';
 import BottomMenu from '../components/Home/BottomMenu';
 import BottomLatestNews from '../components/Home/BottomLatestNews';
 import HeaderSocial from '../components/HeaderSocial';
 import HeaderNav from '../components/HeaderNav';
 import HeaderLogin from '../components/HeaderLogin';
+import team from '../static/team';
+
+const customStyles = {
+  content: {
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    marginRight: '-50%',
+    transform: 'translate(-50%, -50%)',
+    width: '50%',
+    lineHeight: '2',
+    fontSize: '13px',
+    border: '2px solid #e83796',
+    padding: '20px',
+  },
+};
 
 class About extends Component {
+  constructor() {
+    super();
+    this.state = {
+      modalIsOpen: false,
+      modalContent: '',
+      modalName: '',
+    };
+
+    this.openModal = this.openModal.bind(this);
+    this.afterOpenModal = this.afterOpenModal.bind(this);
+    this.closeModal = this.closeModal.bind(this);
+  }
+
+  openModal(modalName, modalContent) {
+    this.setState({ modalIsOpen: true, modalName, modalContent });
+  }
+
+  afterOpenModal() {
+
+  }
+
+  closeModal() {
+    this.setState({ modalIsOpen: false });
+  }
+
   render() {
     return (
       <div>
@@ -100,7 +143,7 @@ class About extends Component {
             </div>
           </div>
 
-          <div className="map_block">
+          {/* <div className="map_block">
             <div className="map_block_title">
               Highlighted Cities
             </div>
@@ -109,7 +152,7 @@ class About extends Component {
                 2049 Western St. Denver, CO 89699
               </div>
             </div>
-          </div>
+          </div> */}
 
           <div className="our_platform clearfix">
             <div className="container">
@@ -163,191 +206,37 @@ class About extends Component {
               <div className="our_team_inner">
                 <div className="portfolio_items clearfix">
                   <div className="row row-eq-height">
-                    <div className="portfolio_item col-lg-4 col-md-6 col-xs-12">
-                      <div className="portfolio_item_inner">
-                        <div className="portfolio_item_content">
-                          <div className="portfolio_item_inner_image">
-
-                          </div>
-
-                          <div className="portfolio_item_inner_title">
-                            <div className="portfolio_item_inner_title_title">
-                              Rachel Wilkins
+                    {map(team, (person, key) => (
+                      <div className="portfolio_item col-lg-3 col-md-3 col-xs-12" key={key}>
+                        <div className="portfolio_item_inner">
+                          <div className="portfolio_item_content">
+                            <div className="portfolio_item_inner_image" >
+                              <img
+                                onClick={() => this.openModal(person.name, person.bio)}
+                                src={person.photo}
+                                alt={person.name}
+                              />
                             </div>
-                            <div className="portfolio_item_inner_title_job">
-                              PRESIDENT
-                            </div>
-                            <div className="portfolio_item_inner_title_text">
-                              Rachel is the Co-Founder and Preseident of Conception Events.
-                              She has been working with art for her whole life.
-                              She loves art and wants everyone out there to be apart of it.
-                              Here is a closing sentence about how anyone can get started.
-                            </div>
-                          </div>
 
-                          <div className="portfolio_item_inner_link">
-                            <a href="">
-                              VIEW PROFILE
-                            </a>
+                            <div className="portfolio_item_inner_title">
+                              <div
+                                className="portfolio_item_inner_title_title"
+                              >
+                                {person.name}
+                              </div>
+                              {/* <div className="portfolio_item_inner_title_job">
+                                PRESIDENT
+                              </div> */}
+                            </div>
+                            <div className="portfolio_item_inner_link">
+                              <a onClick={() => this.openModal(person.name, person.bio)}>
+                                VIEW PROFILE
+                              </a>
+                            </div>
                           </div>
                         </div>
                       </div>
-                    </div>
-
-                    <div className="portfolio_item col-lg-4 col-md-6 col-xs-12">
-                      <div className="portfolio_item_inner">
-                        <div className="portfolio_item_content">
-                          <div className="portfolio_item_inner_image">
-
-                          </div>
-
-                          <div className="portfolio_item_inner_title">
-                            <div className="portfolio_item_inner_title_title">
-                              Rachel Wilkins
-                            </div>
-                            <div className="portfolio_item_inner_title_job">
-                              PRESIDENT
-                            </div>
-                            <div className="portfolio_item_inner_title_text">
-                              Rachel is the Co-Founder and Preseident of Conception Events.
-                              She has been working with art for her whole life.
-                              She loves art and wants everyone out there to be apart of it.
-                              Here is a closing sentence about how anyone can get started.
-                            </div>
-                          </div>
-
-                          <div className="portfolio_item_inner_link">
-                            <a href="">
-                              VIEW PROFILE
-                            </a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="portfolio_item col-lg-4 col-md-6 col-xs-12">
-                      <div className="portfolio_item_inner">
-                        <div className="portfolio_item_content">
-                          <div className="portfolio_item_inner_image">
-
-                          </div>
-
-                          <div className="portfolio_item_inner_title">
-                            <div className="portfolio_item_inner_title_title">
-                              Rachel Wilkins
-                            </div>
-                            <div className="portfolio_item_inner_title_job">
-                              PRESIDENT
-                            </div>
-                            <div className="portfolio_item_inner_title_text">
-                              Rachel is the Co-Founder and Preseident of Conception Events.
-                              She has been working with art for her whole life. She loves art and
-                              wants everyone out there to be apart of it. Here is a closing sentence
-                              about how anyone can get started.
-                            </div>
-                          </div>
-
-                          <div className="portfolio_item_inner_link">
-                            <a href="">
-                              VIEW PROFILE
-                            </a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="portfolio_item col-lg-4 col-md-6 col-xs-12">
-                      <div className="portfolio_item_inner">
-                        <div className="portfolio_item_content">
-                          <div className="portfolio_item_inner_image">
-
-                          </div>
-
-                          <div className="portfolio_item_inner_title">
-                            <div className="portfolio_item_inner_title_title">
-                              Rachel Wilkins
-                            </div>
-                            <div className="portfolio_item_inner_title_job">
-                              PRESIDENT
-                            </div>
-                            <div className="portfolio_item_inner_title_text">
-                              Rachel is the Co-Founder and Preseident of Conception Events.
-                              She has been working with art for her whole life.
-                              She loves art and wants everyone out there to be apart of it.
-                              Here is a closing sentence about how anyone can get started.
-                            </div>
-                          </div>
-
-                          <div className="portfolio_item_inner_link">
-                            <a href="">
-                              VIEW PROFILE
-                            </a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="portfolio_item col-lg-4 col-md-6 col-xs-12">
-                      <div className="portfolio_item_inner">
-                        <div className="portfolio_item_content">
-                          <div className="portfolio_item_inner_image">
-
-                          </div>
-
-                          <div className="portfolio_item_inner_title">
-                            <div className="portfolio_item_inner_title_title">
-                              Rachel Wilkins
-                            </div>
-                            <div className="portfolio_item_inner_title_job">
-                              PRESIDENT
-                            </div>
-                            <div className="portfolio_item_inner_title_text">
-                              Rachel is the Co-Founder and Preseident of Conception Events.
-                              She has been working with art for her whole life. She loves art and wants
-                              everyone out there to be apart of it. Here is a closing sentence
-                              about how anyone can get started.
-                            </div>
-                          </div>
-
-                          <div className="portfolio_item_inner_link">
-                            <a href="">
-                              VIEW PROFILE
-                            </a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="portfolio_item col-lg-4 col-md-6 col-xs-12">
-                      <div className="portfolio_item_inner">
-                        <div className="portfolio_item_content">
-                          <div className="portfolio_item_inner_image">
-
-                          </div>
-
-                          <div className="portfolio_item_inner_title">
-                            <div className="portfolio_item_inner_title_title">
-                              Rachel Wilkins
-                            </div>
-                            <div className="portfolio_item_inner_title_job">
-                              PRESIDENT
-                            </div>
-                            <div className="portfolio_item_inner_title_text">
-                              Rachel is the Co-Founder and Preseident of Conception Events.
-                              She has been working with art for her whole life.
-                              She loves art and wants everyone out there to be apart of it.
-                              Here is a closing sentence about how anyone can get started.
-                            </div>
-                          </div>
-
-                          <div className="portfolio_item_inner_link">
-                            <a href="">
-                              VIEW PROFILE
-                            </a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                    ))}
                   </div>
                 </div>
               </div>
@@ -383,6 +272,15 @@ class About extends Component {
 
           <BottomLatestNews />
           <BottomMenu />
+          <Modal
+            isOpen={this.state.modalIsOpen}
+            onAfterOpen={this.afterOpenModal}
+            onRequestClose={this.closeModal}
+            style={customStyles}
+            contentLabel="Example Modal"
+          > <h3>{this.state.modalName}</h3>
+            <p>{this.state.modalContent}</p>
+          </Modal>
         </main>
         <Footer />
       </div>

@@ -545,10 +545,11 @@ img {
 	padding: 15px;
 	background: #e83796;
 	font-size: 10px;
-	color: #fff;
+	color: #fff!important;
     font-family: 'Montserrat';
 	text-transform: uppercase;
 	text-align: center;
+	cursor: pointer;
 }
 
 .city_item .portfolio_item_inner_link {
@@ -2319,4 +2320,21 @@ small{
 
 .for_artist_and_collectors a{
 	color: #fff;
+}
+
+.stay_in_touch_item_menu {
+	padding-bottom: 20px;
+}
+
+.modalBox{
+	position: absolute;
+	background: white
+}
+
+.portfolio_item_inner_image img{
+	cursor: pointer;
+}
+
+.upcoming_show_block_pink a{
+	color: white;
 }

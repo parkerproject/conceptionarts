@@ -1,10 +1,33 @@
 import React, { Component } from 'react';
 import Link from 'next/link';
 import Head from 'next/head';
+import axios from 'axios';
+import moment from 'moment';
+import { map } from 'lodash';
+import BottomMenu from '../components/Home/BottomMenu';
+import { nextConnect } from '../store';
+import { FETCH_EVENTS } from '../actions/types';
+import { BASE_URL } from '../actions';
 
 import Footer from '../components/Footer';
 
 class ArtistInfo extends Component {
+  static async getInitialProps({ req, store }) {
+    if (req) {
+      const response = await axios.get(`${BASE_URL}/events`);
+      console.log('data=>', response.data.events);
+      store.dispatch({
+        type: FETCH_EVENTS,
+        payload: response.data.events,
+      });
+
+      const shows = response.data.events;
+
+      return { shows };
+    }
+    return {};
+  }
+
   render() {
     return (
       <div>
@@ -29,7 +52,8 @@ class ArtistInfo extends Component {
           <div className="artist_general_block">
             <div className="container">
               <div className="artist_general_block_image col-xl-5 col-lg-4 col-md-6 col-sm-12 col-xs-12">
-                <img src="/static/img/mask.png" alt="" />
+                <img src="/static/img/IMG_1447.JPG" alt="Martin Baran" />
+                <small>Martin Baran</small>
               </div>
               <div className="artist_general_block_text col-xl-7 col-lg-8 col-md-6 col-sm-12 col-xs-12">
                 <div className="artist_general_block_text_title">
@@ -77,149 +101,40 @@ class ArtistInfo extends Component {
                   </div>
                   <div className="scene_items">
                     <div className="row">
-                      <div className="scene_item col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                        <div className="scene_item_inner">
-                          <div className="scene_item_inner_image">
-                            <img src="/static/img/scene.png" alt="" />
-                          </div>
-                          <div className="scene_item_inner_title_and_data">
-                            <div className="row">
-                              <div className="scene_item_inner_title col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                Los Angeles, CA
-                              </div>
-                              <div className="scene_item_inner_data col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                October 16, 2016
+                      {this.props.shows && map(this.props.shows, (show) => (
+                        <div
+                          className="scene_item col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-12"
+                          key={show.id}
+                        >
+                          <div className="scene_item_inner">
+                            <div className="scene_item_inner_image">
+                              <img src={show.logo.original.url} alt="" />
+                            </div>
+                            <div className="scene_item_inner_title_and_data">
+                              <div className="row">
+                                <div className="scene_item_inner_title col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                  {show.name.text}
+                                </div>
+                                <div className="scene_item_inner_data col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                  {moment(show.start.local).format('MMMM Do')}
+                                </div>
                               </div>
                             </div>
-                          </div>
-                          <div className="scene_item_inner_link">
-                            <a href="">
-                              SEE MORE DETAILS
-                            </a>
-                          </div>
-                        </div>
-                      </div>
+                            <div className="scene_item_inner_link">
+                              <Link
+                                href="/show"
+                                as={`/show/${show.id}/${show.name.text}`}
+                              >
+                                <a>
+                                  SEE MORE DETAILS
+                                </a>
+                              </Link>
 
-                      <div className="scene_item col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                        <div className="scene_item_inner">
-                          <div className="scene_item_inner_image">
-                            <img src="/static/img/scene.png" alt="" />
-                          </div>
-                          <div className="scene_item_inner_title_and_data">
-                            <div className="row">
-                              <div className="scene_item_inner_title col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                Los Angeles, CA
-                              </div>
-                              <div className="scene_item_inner_data col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                October 16, 2016
-                              </div>
                             </div>
                           </div>
-                          <div className="scene_item_inner_link">
-                            <a href="">
-                              SEE MORE DETAILS
-                            </a>
-                          </div>
                         </div>
-                      </div>
-
-                      <div className="scene_item col-xl-3 col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                        <div className="scene_item_inner">
-                          <div className="scene_item_inner_image">
-                            <img src="/static/img/scene.png" alt="" />
-                          </div>
-                          <div className="scene_item_inner_title_and_data">
-                            <div className="row">
-                              <div className="scene_item_inner_title col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                Los Angeles, CA
-                              </div>
-                              <div className="scene_item_inner_data col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                October 16, 2016
-                              </div>
-                            </div>
-                          </div>
-                          <div className="scene_item_inner_link">
-                            <a href="">
-                              SEE MORE DETAILS
-                            </a>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className="scene_item col-xl-3 col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                        <div className="scene_item_inner">
-                          <div className="scene_item_inner_image">
-                            <img src="/static/img/scene.png" alt="" />
-                          </div>
-                          <div className="scene_item_inner_title_and_data">
-                            <div className="row">
-                              <div className="scene_item_inner_title col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                Los Angeles, CA
-                              </div>
-                              <div className="scene_item_inner_data col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                October 16, 2016
-                              </div>
-                            </div>
-                          </div>
-                          <div className="scene_item_inner_link">
-                            <a href="">
-                              SEE MORE DETAILS
-                            </a>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className="scene_item col-xl-3 col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                        <div className="scene_item_inner">
-                          <div className="scene_item_inner_image">
-                            <img src="/static/img/scene.png" alt="" />
-                          </div>
-                          <div className="scene_item_inner_title_and_data">
-                            <div className="row">
-                              <div className="scene_item_inner_title col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                Los Angeles, CA
-                              </div>
-                              <div className="scene_item_inner_data col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                October 16, 2016
-                              </div>
-                            </div>
-                          </div>
-                          <div className="scene_item_inner_link">
-                            <a href="">
-                              SEE MORE DETAILS
-                            </a>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className="scene_item col-xl-3 col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                        <div className="scene_item_inner">
-                          <div className="scene_item_inner_image">
-                            <img src="/static/img/scene.png" alt="" />
-                          </div>
-                          <div className="scene_item_inner_title_and_data">
-                            <div className="row">
-                              <div className="scene_item_inner_title col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                Los Angeles, CA
-                              </div>
-                              <div className="scene_item_inner_data col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                October 16, 2016
-                              </div>
-                            </div>
-                          </div>
-                          <div className="scene_item_inner_link">
-                            <a href="">
-                              SEE MORE DETAILS
-                            </a>
-                          </div>
-                        </div>
-                      </div>
+                      ))}
                     </div>
-                  </div>
-                  <div className="see_all_button">
-                    <a href="">
-                      See All Shows
-                    </a>
                   </div>
                 </div>
               </div>
@@ -230,13 +145,16 @@ class ArtistInfo extends Component {
             <div className="container">
               <div className="clearfix">
                 <div className="testmonials_artist_general_page_view_more col-xl-6 col-md-12 col-sm-12">
-                  <div className="testmonials_artist_general_page_view_more_inner">
-                    <a href="">
-                      View More Testimonials
-                    </a>
-                  </div>
+                  <div className="testmonials_artist_general_page_view_more_inner"></div>
                   <div className="submit_work">
                     Submit your work and come take a look at our shows to see what you can be apart of!
+                  </div>
+                  <div className="button_submit_work clearfix">
+                    <Link href="/register">
+                      <a>
+                        Submit Your Work
+                      </a>
+                    </Link>
                   </div>
                 </div>
                 <div className="testmonials_artist_general_page_testmonial col-xl-6 col-md-12 col-sm-12">
@@ -245,7 +163,11 @@ class ArtistInfo extends Component {
                       TESTIMONIAL
                     </div>
                     <div className="testmonials_artist_general_page_testmonial_inner_bluetitle_text">
-                      "Conception is the most productive, organized, consistent -- and most importantly, artist-friendly team -- that I have had the pleasure of working with. They have figured out a non-traditional gallery model that is perfect both for helping build our careers as artists and providing an incredibly nurturing environment for our art. "
+                      "Conception is the most productive, organized, consistent -- and most importantly,
+                      artist-friendly team -- that I have had the pleasure of working with.
+                      They have figured out a non-traditional gallery model that is perfect both
+                      for helping build our careers as artists and providing an incredibly
+                      nurturing environment for our art. "
                     </div>
                     <div className="testmonial_autor">
                       - Artist, Ariel Shalit, New York City
@@ -253,16 +175,10 @@ class ArtistInfo extends Component {
                   </div>
                 </div>
               </div>
-              <div className="button_submit_work clearfix">
-                <Link href="/register">
-                  <a>
-                    Submit Your Work
-                  </a>
-                </Link>
 
-              </div>
             </div>
           </div>
+          <BottomMenu />
         </main>
         <Footer />
       </div>
@@ -270,4 +186,14 @@ class ArtistInfo extends Component {
   }
 }
 
-export default ArtistInfo;
+ArtistInfo.propTypes = {
+  shows: React.PropTypes.object,
+};
+
+function mapStateToProps(state) {
+  return {
+    shows: state.events,
+  };
+}
+
+export default nextConnect(mapStateToProps, null)(ArtistInfo);

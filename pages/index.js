@@ -89,11 +89,11 @@ class Home extends Component {
           <div className="more_of_wats_new">
             <div className="container">
               <div className="submit_index_page_wrap">
-                <div className="more_whats_new col-md-7 col-sm-7 col-xs-12">
+                {/* <div className="more_whats_new col-md-7 col-sm-7 col-xs-12">
                   <Link href="/whats-new">
                     <a>More of What’s New</a>
                   </Link>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>

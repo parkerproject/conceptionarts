@@ -38,11 +38,11 @@ class Collector extends Component {
                     Conception is proud to present curated exhibits of local art in multiple cities
                     throughout the U.S. and Europe.
                   </div>
-                  <div className="discover_art">
+                  {/* <div className="discover_art">
                     <a href="">
                       Discover art that inspires you
                     </a>
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </div>
@@ -79,7 +79,7 @@ class Collector extends Component {
             </div>
           </div>
 
-          <div className="category_filter">
+          {/* <div className="category_filter">
             <div className="container">
               <div className="block_small_title">
                 Click on a category to filter the features.
@@ -96,9 +96,9 @@ class Collector extends Component {
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
 
-          <div className="tabs">
+          {/* <div className="tabs">
             <div className="container">
               <div className="portfolio_items clearfix">
                 <div className="row row-eq-height">
@@ -223,7 +223,7 @@ class Collector extends Component {
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
 
           <div className="upcoming_show">
             <div className="container">
@@ -231,7 +231,9 @@ class Collector extends Component {
                 Check out our roster of upcoming exhibits
               </div>
               <div className="upcoming_show_block_pink">
-                UPCOMING SHOWS
+                <Link href="/shows">
+                  <a>UPCOMING SHOWS</a>
+                </Link>
               </div>
               <div className="upcoming_show_block">
                 <div className="big_title">

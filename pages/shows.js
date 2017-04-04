@@ -3,7 +3,6 @@ import Link from 'next/link';
 import Head from 'next/head';
 import axios from 'axios';
 import { map } from 'lodash';
-import moment from 'moment';
 import { nextConnect } from '../store';
 import { FETCH_EVENTS } from '../actions/types';
 import HeaderSocial from '../components/HeaderSocial';
@@ -13,13 +12,13 @@ import BottomMenu from '../components/Home/BottomMenu';
 import BottomLatestNews from '../components/Home/BottomLatestNews';
 import Footer from '../components/Footer';
 import ShowCity from '../components/Shows';
+import { BASE_URL } from '../actions';
 
-const BASE_URL = 'https://conceptionarts-api.herokuapp.com/api/events';
 
 class Shows extends Component {
   static async getInitialProps({ req, store }) {
-    if (req && req.params) {
-      const response = await axios.get(BASE_URL);
+    if (req) {
+      const response = await axios.get(`${BASE_URL}/events`);
       store.dispatch({
         type: FETCH_EVENTS,
         payload: response.data.events,
@@ -80,11 +79,11 @@ class Shows extends Component {
               </div>
             </div>
           </div>
-          <div className="buy_ticket_button">
+          {/* <div className="buy_ticket_button">
             <a href="">
               BUY TICKETS
             </a>
-          </div>
+          </div> */}
         </header>
 
         <main className="main_block_page portfolio_page">
