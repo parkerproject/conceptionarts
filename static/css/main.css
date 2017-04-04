@@ -2338,3 +2338,7 @@ small{
 .upcoming_show_block_pink a{
 	color: white;
 }
+
+.normal-height{
+	line-height: normal;
+}

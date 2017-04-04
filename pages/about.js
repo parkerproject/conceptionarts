@@ -34,6 +34,7 @@ class About extends Component {
       modalIsOpen: false,
       modalContent: '',
       modalName: '',
+      modalTitle: '',
     };
 
     this.openModal = this.openModal.bind(this);
@@ -41,8 +42,8 @@ class About extends Component {
     this.closeModal = this.closeModal.bind(this);
   }
 
-  openModal(modalName, modalContent) {
-    this.setState({ modalIsOpen: true, modalName, modalContent });
+  openModal(modalName, modalContent, modalTitle) {
+    this.setState({ modalIsOpen: true, modalName, modalContent, modalTitle });
   }
 
   afterOpenModal() {
@@ -212,7 +213,7 @@ class About extends Component {
                           <div className="portfolio_item_content">
                             <div className="portfolio_item_inner_image" >
                               <img
-                                onClick={() => this.openModal(person.name, person.bio)}
+                                onClick={() => this.openModal(person.name, person.bio, person.title)}
                                 src={person.photo}
                                 alt={person.name}
                               />
@@ -229,7 +230,7 @@ class About extends Component {
                               </div> */}
                             </div>
                             <div className="portfolio_item_inner_link">
-                              <a onClick={() => this.openModal(person.name, person.bio)}>
+                              <a onClick={() => this.openModal(person.name, person.bio, person.title)}>
                                 VIEW PROFILE
                               </a>
                             </div>
@@ -278,7 +279,8 @@ class About extends Component {
             onRequestClose={this.closeModal}
             style={customStyles}
             contentLabel="Example Modal"
-          > <h3>{this.state.modalName}</h3>
+          > <h3 className="normal-height">{this.state.modalName}</h3>
+            <span><strong>{this.state.modalTitle}</strong></span>
             <p>{this.state.modalContent}</p>
           </Modal>
         </main>
