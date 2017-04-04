@@ -10,11 +10,6 @@ const team = [
     photo: 'http://res.cloudinary.com/conceptionarts/image/upload/v1491270717/Jen_itz7z3.png',
   },
   {
-    name: 'Jennifer M. Blum, Esq',
-    bio: 'Jennifer is General Counsel and Co-Founder of Conception. She is one of the few members of Conception that comes from an athletic rather than artistic background.  Not being from an art background Jennifer has quickly grown to love the arts and deeply appreciates the enormous amount of talented artists that she has had the pleasure to work with at Conception.  In addition to her work at Conception, Jennifer is a private practice attorney in NY/NJ. She is obsessed with playing and watching football (that’s American football for you Kiwi’s and Brits and basically everyone else outside of the U.S.).  She adores all animals, traveling, and spending time with her beautiful wife, 3 fur babies and other family and friends.  Jen is so proud to be a finisher of her first ever half-marathon; the 2017 United Half-marathon which she ran on behalf of one of Conception’s favorite Charities: Pablove (pablove.org.) She would also like to mention two of Conception’s other favorite charities: Wild Baby Rescue (wildbabyrescue.org) & Blissful Bedrooms (blissfulbedrooms.org).  If you are looking for great places to donate your time please check them out.',
-    photo: 'http://res.cloudinary.com/conceptionarts/image/upload/v1491270717/Jen_itz7z3.png',
-  },
-  {
     name: 'Rebeca Tabares',
     bio: 'Beca is Conception’s Jane-of-all-trades.She makes sure that all things run smoothly behind the scenes. She has a B.A. in Art History and a Minor in Studio Art and loves being a part of such a collaborative and creative team. A spreadsheet enthusiast, she happily spends her days compiling data, color coding tabs, number crunching and managing projects to support every aspect of what goes into pulling the Conception Shows together successfully. When she’s not busy list making, you can find her stalking creatives on instagram, filling her sketchbooks with watercolor illustrations, or filling sheets of paper with modern calligraphy. She’s currently obsessed with her Pinterest dream kitchen board, mastering her grandmother’s cuban cooking, and nurturing her espresso addiction.',
     photo: 'http://res.cloudinary.com/conceptionarts/image/upload/v1491270717/BecaHeadshot_px0iit.jpg',
