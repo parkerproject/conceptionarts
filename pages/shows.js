@@ -58,7 +58,7 @@ class Shows extends Component {
           <div className="container">
             <div className="row">
               <div className="logo col-lg-6 col-md-5 col-sm-4 col-xs-12">
-                <Link href="/">
+                <Link prefetch href="/">
                   <a><img src="/static/img/logo_white.png" alt="" /></a>
                 </Link>
               </div>

@@ -41,7 +41,6 @@ class Dashboard extends Component {
   logout(e) {
     e.preventDefault();
     auth.logout();
-    console.log(this.props);
     this.props.authUser(false);
     Router.push('/login');
   }
@@ -58,7 +57,7 @@ class Dashboard extends Component {
           <div className="container">
             <div className="row">
               <div className="logo col-sm-6 col-xs-12">
-                <Link href="/index">
+                <Link prefetch href="/index">
                   <a><img src="/static/img/logo_white.png" alt="" /></a>
                 </Link>
               </div>

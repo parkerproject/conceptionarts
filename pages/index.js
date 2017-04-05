@@ -45,7 +45,7 @@ class Home extends Component {
           <div className="container">
             <div className="row">
               <div className="logo col-lg-6 col-md-5 col-sm-4 col-xs-12">
-                <Link href="/">
+                <Link prefetch href="/">
                   <a><img src="/static/img/logo_white.png" alt="" /></a>
                 </Link>
               </div>
@@ -60,8 +60,8 @@ class Home extends Component {
             <div className="page_title artist_page_title index_page_artist">
               <div className="art_for">
                 Art for art’s sake.
-                <Link href="/collector"><a>COLLECTOR</a></Link>
-                <Link href="/artist-info"><a>ARTIST</a></Link>
+                <Link prefetch href="/collector"><a>COLLECTOR</a></Link>
+                <Link prefetch href="/artist-info"><a>ARTIST</a></Link>
               </div>
               <div>
                 We are that art that you want to know more about art.
@@ -74,7 +74,7 @@ class Home extends Component {
             <div className="clearfix">
               <div className="submit_index_page_wrap">
                 <div className="submit_index_page col-md-6 col-sm-6 col-xs-12">
-                  <Link href="/register">
+                  <Link prefetch href="/register">
                     <a>SUBMIT YOUR WORK</a>
                   </Link>
                 </div>
@@ -101,7 +101,7 @@ class Home extends Component {
           <EventCities {...events} />
           <div className="view_more_shows clearfix">
             <div className="submit_index_page col-lg-4 col-md-6 col-sm-6 col-xs-12">
-              <Link href="/shows">
+              <Link prefetch href="/shows">
                 <a>View More Shows</a>
               </Link>
             </div>

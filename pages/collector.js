@@ -18,7 +18,7 @@ class Collector extends Component {
           <div className="container">
             <div className="row">
               <div className="logo col-sm-6 col-xs-12">
-                <Link href="index"><a>
+                <Link prefetch href="index"><a>
                   <img src="/static/img/logo_white.png" alt="" />
                 </a></Link>
               </div>
@@ -231,7 +231,7 @@ class Collector extends Component {
                 Check out our roster of upcoming exhibits
               </div>
               <div className="upcoming_show_block_pink">
-                <Link href="/shows">
+                <Link prefetch href="/shows">
                   <a>UPCOMING SHOWS</a>
                 </Link>
               </div>

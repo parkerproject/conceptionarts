@@ -65,7 +65,7 @@ class About extends Component {
           <div className="container">
             <div className="row">
               <div className="logo col-lg-6 col-md-5 col-sm-4 col-xs-12">
-                <Link href="/">
+                <Link prefetch href="/">
                   <a><img src="/static/img/logo_white.png" alt="" /></a>
                 </Link>
               </div>
@@ -99,7 +99,7 @@ class About extends Component {
         <main className="main_block_page about_page">
           <div className="attend_wrap clearfix">
             <div className="attend_wrap_link col-lg-6 col-md-8 col-xs-12">
-              <Link href="/shows">
+              <Link prefetch href="/shows">
                 <a>
                   ATTEND A SHOW
                 </a>
@@ -116,7 +116,7 @@ class About extends Component {
                       We welcome submissions from artists/ musicians/ performers of ALL mediums.
                     </div>
                     <div className="submit_work_about_inner_button">
-                      <Link href="/register">
+                      <Link prefetch href="/register">
                         <a>
                           SUBMIT WORK
                         </a>

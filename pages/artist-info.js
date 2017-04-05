@@ -39,7 +39,7 @@ class ArtistInfo extends Component {
           <div className="container">
             <div className="row">
               <div className="logo col-sm-6 col-xs-12">
-                <Link href="/index">
+                <Link prefetch href="/index">
                   <a>
                     <img src="/static/img/logo_white.png" alt="" />
                   </a></Link>
@@ -122,6 +122,7 @@ class ArtistInfo extends Component {
                             </div>
                             <div className="scene_item_inner_link">
                               <Link
+                                prefetch
                                 href="/show"
                                 as={`/show/${show.id}/${show.name.text}`}
                               >
@@ -150,7 +151,7 @@ class ArtistInfo extends Component {
                     Submit your work and come take a look at our shows to see what you can be apart of!
                   </div>
                   <div className="button_submit_work clearfix">
-                    <Link href="/register">
+                    <Link prefetch href="/register">
                       <a>
                         Submit Your Work
                       </a>

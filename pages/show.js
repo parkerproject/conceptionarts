@@ -7,7 +7,7 @@ import Router from 'next/router';
 import moment from 'moment';
 import { nextConnect } from '../store';
 import { FETCH_EVENTS } from '../actions/types';
-import { getVenue, getArtists } from '../actions';
+import { getVenue, getArtists, BASE_URL } from '../actions';
 import HeaderSocial from '../components/HeaderSocial';
 import HeaderNav from '../components/HeaderNav';
 import HeaderLogin from '../components/HeaderLogin';
@@ -15,13 +15,12 @@ import BottomMenu from '../components/Home/BottomMenu';
 import BottomLatestNews from '../components/Home/BottomLatestNews';
 import Footer from '../components/Footer';
 
-const BASE_URL = 'https://conceptionarts-api.herokuapp.com/api/events';
 const PHOTO_URL = 'http://res.cloudinary.com/conceptionarts/image/fetch/w_233,h_230,c_fill/https://artistworks.s3-us-west-2.amazonaws.com/artists_images';
 
 class Show extends Component {
   static async getInitialProps({ req, store }) {
-    if (req && req.params) {
-      const response = await axios.get(BASE_URL);
+    if (req) {
+      const response = await axios.get(`${BASE_URL}/events`);
       store.dispatch({
         type: FETCH_EVENTS,
         payload: response.data.events,
@@ -73,7 +72,7 @@ class Show extends Component {
           <div className="container">
             <div className="row">
               <div className="logo col-lg-6 col-md-5 col-sm-4 col-xs-12">
-                <Link href="/index">
+                <Link prefetch href="/index">
                   <a><img src="/static/img/logo_white.png" alt="" /></a>
                 </Link>
               </div>
@@ -161,6 +160,7 @@ class Show extends Component {
                         <div className="portfolio_item_content">
                           <div className="portfolio_item_inner_image">
                             <Link
+                              prefetch
                               href="/artist"
                               as={`/artist/${artist.user_token}`}
                             ><a><img src={`${PHOTO_URL}/${artist.photo}`} alt="" /></a>
@@ -178,6 +178,7 @@ class Show extends Component {
 
                           <div className="portfolio_item_inner_link">
                             <Link
+                              prefetch
                               href="/artist"
                               as={`/artist/${artist.user_token}`}
                             >

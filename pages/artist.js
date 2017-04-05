@@ -3,20 +3,19 @@ import Link from 'next/link';
 import Head from 'next/head';
 import axios from 'axios';
 import Router from 'next/router';
-import moment from 'moment';
 import HeaderSocial from '../components/HeaderSocial';
 import HeaderNav from '../components/HeaderNav';
 import HeaderLogin from '../components/HeaderLogin';
 import Footer from '../components/Footer';
+import { BASE_URL } from '../actions';
 
-const BASE_URL = 'https://conceptionarts-api.herokuapp.com/api/artist';
 const PHOTO_URL = 'https://res.cloudinary.com/conceptionarts/image/fetch/w_328,h_200,c_fill/https://artistworks.s3-us-west-2.amazonaws.com/artists_images';
 const THUMBNAIL_URL = 'https://res.cloudinary.com/conceptionarts/image/fetch/w_248,h_200,c_fill/https://artistworks.s3-us-west-2.amazonaws.com/artists_images';
 
 class Artist extends Component {
   static async getInitialProps({ req }) {
     if (req && req.params) {
-      const response = await axios.get(`${BASE_URL}/${req.params.user_token}`);
+      const response = await axios.get(`${BASE_URL}/artist/${req.params.user_token}`);
       return { artist: response.data[0] };
     }
     return {};
@@ -31,7 +30,7 @@ class Artist extends Component {
     if (!this.props.artist) {
       let userToken = decodeURI(Router.router.as);
       userToken = userToken.split('/')[2];
-      const response = await axios.get(`${BASE_URL}/${userToken}`);
+      const response = await axios.get(`${BASE_URL}/artist/${userToken}`);
       this.setState({ artist: response.data[0] });
     }
   }
@@ -51,7 +50,7 @@ class Artist extends Component {
           <div className="container">
             <div className="row">
               <div className="logo col-lg-6 col-md-5 col-sm-4 col-xs-12">
-                <Link href="/index">
+                <Link prefetch href="/index">
                   <a><img src="/static/img/logo_white.png" alt="" /></a>
                 </Link>
               </div>
