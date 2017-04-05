@@ -21,7 +21,7 @@ const team = [
     name: 'Renee Smith',
     title: 'Regional Director',
     bio: 'Renee was born and raised in Philadelphia, but has since spent a number of years in New York and now considers herself as an “official” New Yorker.  Her creative background and training is in dance, but she also has a BFA from Marymount Manhattan with a minor in business. She is an equal aficionada of fitness, chocolate and all carbs. She likes loud concerts, autobiographies, cats, and Shiba Inu dogs.    After a couple of years away, she is appreciative of this opportunity to be working in the arts again.',
-    photo: 'http://res.cloudinary.com/conceptionarts/image/upload/v1491270717/BecaHeadshot_px0iit.jpg',
+    photo: 'http://res.cloudinary.com/conceptionarts/image/upload/v1491270718/Renee_mqpkkt.jpg',
   },
   {
     name: 'Ginger Cochran',
