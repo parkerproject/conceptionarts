@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import moment from 'moment';
 import axios from 'axios';
 import Link from 'next/link';
+import { BASE_URL } from '../../actions';
 
 
 export default class ShowCity extends Component {
@@ -9,8 +10,11 @@ export default class ShowCity extends Component {
     super(props);
     this.state = { name: '' };
   }
-  async componentWillMount() {
-    const res = await axios.get(`https://conceptionarts-api.herokuapp.com/api/venues/${this.props.venue_id}`);
+  componentDidMount() {
+    this.prepareData();
+  }
+  async prepareData() {
+    const res = await axios.get(`${BASE_URL}/venues/${this.props.venue_id}`);
     this.setState({ name: res.data.name });
   }
 
@@ -20,7 +24,7 @@ export default class ShowCity extends Component {
       <div className="cities_buy_tickets_item clearfix">
         <div className="cities_buy_tickets_item_title">
           <Link
-            href="/show"
+            href={`/show?id=${this.props.id}&city=${this.props.name.text}`}
             as={`/show/${this.props.id}/${this.props.name.text}`}
           >
             <a>{this.props.name.text}</a></Link>

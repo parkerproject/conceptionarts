@@ -28,3 +28,10 @@ export function dataURItoBlob(dataURI) {
   // var blob = new Blob([dataView.buffer], { type: mimeString });
   return blob;
 }
+
+export function buildUrl(link, artist) {
+  let url = link;
+  url = url.split('?')[0];
+  url = `${url}?aff=${artist}`;
+  return url;
+}

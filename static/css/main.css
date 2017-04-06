@@ -2342,3 +2342,16 @@ small{
 .normal-height{
 	line-height: normal;
 }
+
+.modalLabel label{
+	font-size: 20px;
+	padding-left: 10px;
+	position: relative;
+	top: 2px;
+}
+
+.proceed{
+color: red;
+float: right;
+font-weight: bold;
+}

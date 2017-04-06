@@ -12,7 +12,8 @@ module.exports = {
       __CLIENT__: true
     },
     "rules":{
-        "no-console":0
+        "no-console":0,
+        "no-did-mount-set-state": 0
     },
     "parserOptions":{
      "ecmaFeatures":{

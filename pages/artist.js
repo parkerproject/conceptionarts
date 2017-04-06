@@ -3,18 +3,39 @@ import Link from 'next/link';
 import Head from 'next/head';
 import axios from 'axios';
 import Router from 'next/router';
+import Modal from 'react-modal';
+import moment from 'moment';
+import { size, filter, indexOf, map } from 'lodash';
+import { nextConnect } from '../store';
 import HeaderSocial from '../components/HeaderSocial';
 import HeaderNav from '../components/HeaderNav';
 import HeaderLogin from '../components/HeaderLogin';
 import Footer from '../components/Footer';
 import { BASE_URL } from '../actions';
+import { buildUrl } from '../helpers';
+
+const customStyles = {
+  content: {
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    marginRight: '-50%',
+    transform: 'translate(-50%, -50%)',
+    width: '50%',
+    lineHeight: '2',
+    fontSize: '13px',
+    border: '2px solid #e83796',
+    padding: '20px',
+  },
+};
 
 const PHOTO_URL = 'https://res.cloudinary.com/conceptionarts/image/fetch/w_328,h_200,c_fill/https://artistworks.s3-us-west-2.amazonaws.com/artists_images';
 const THUMBNAIL_URL = 'https://res.cloudinary.com/conceptionarts/image/fetch/w_248,h_200,c_fill/https://artistworks.s3-us-west-2.amazonaws.com/artists_images';
 
 class Artist extends Component {
   static async getInitialProps({ req }) {
-    if (req && req.params) {
+    if (req) {
       const response = await axios.get(`${BASE_URL}/artist/${req.params.user_token}`);
       return { artist: response.data[0] };
     }
@@ -23,23 +44,52 @@ class Artist extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { artist: null };
+    this.state = { artist: null, artistEvents: null, modalIsOpen: false, process: false };
+    this.openModal = this.openModal.bind(this);
+    this.closeModal = this.closeModal.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
   }
 
-  async componentWillMount() {
+  componentDidMount() {
+    this.prepareData();
+  }
+
+
+  onSubmit(url, user) {
+    this.setState({ checkedEvent: url, process: true });
+    const href = buildUrl(url, user);
+    location.href = href;
+  }
+
+  async prepareData() {
+    const anyEvents = size(this.props.shows);
     if (!this.props.artist) {
       let userToken = decodeURI(Router.router.as);
       userToken = userToken.split('/')[2];
       const response = await axios.get(`${BASE_URL}/artist/${userToken}`);
       this.setState({ artist: response.data[0] });
     }
+    if (anyEvents === 0) {
+      const events = await axios.get(`${BASE_URL}/events`);
+      const artist = this.props.artist || this.state.artist;
+      const liveEvents = events.data.events;
+      const artistEvents = filter(liveEvents, (event) =>
+      indexOf(artist.events, Number(event.id)) !== -1);
+      this.setState({ artistEvents });
+    }
   }
+
+  openModal() {
+    this.setState({ modalIsOpen: true });
+  }
+
+  closeModal() {
+    this.setState({ modalIsOpen: false });
+  }
+
 
   render() {
     const artist = this.props.artist || this.state.artist;
-    if (!artist) {
-      return <div>loading...</div>;
-    }
     return (
       <div>
         <Head>
@@ -78,7 +128,7 @@ class Artist extends Component {
                   {artist.full_name}
                 </div>
                 <div className="logout col-md-4 col-sm-12">
-                  <a href="">
+                  <a href="#" onClick={() => this.openModal()}>
                     BUY TICKETS
                   </a>
                 </div>
@@ -97,9 +147,9 @@ class Artist extends Component {
                   <div className="artist_content_top_text_title">
                     {artist.genre}
                   </div>
-                  <div className="artist_content_top_text_city">
+                  {/* <div className="artist_content_top_text_city">
                     <span>Dallas</span><span>TX</span>
-                  </div>
+                  </div> */}
                   <div className="artist_content_top_text_description">{artist.story}</div>
                 </div>
               </div>
@@ -157,11 +207,33 @@ class Artist extends Component {
                   </div>
                 }
 
-
               </div>
             </div>
           </div>
-          {this.state.modal && <div></div>}
+          {/* {this.state.modal && <div></div>} */}
+          <Modal
+            isOpen={this.state.modalIsOpen}
+            onAfterOpen={this.afterOpenModal}
+            onRequestClose={this.closeModal}
+            style={customStyles}
+            contentLabel="Example Modal"
+          > {this.state.process && <span className="proceed">Processing to Eventbrite...</span>}
+            <h3 className="normal-height">Select Show</h3>
+            <hr />
+
+            {map(this.state.artistEvents, (event) => (
+              <p className="modalLabel" key={event.id}>
+                <input
+                  type="radio"
+                  value={this.state.checkedEvent}
+                  checked={this.state.checkedEvent === event.url}
+                  onChange={() => this.onSubmit(event.url, artist.user_token)}
+                />
+                <label>{event.name.text} - {moment(event.start.local).format('MMMM Do YYYY')}
+                </label>
+              </p>
+            ))}
+          </Modal>
 
         </main>
         <Footer />
@@ -172,6 +244,16 @@ class Artist extends Component {
 
 Artist.propTypes = {
   artist: React.PropTypes.object,
+  shows: React.PropTypes.object,
 };
 
-export default Artist;
+function mapStateToProps(state) {
+  return {
+    shows: state.events,
+  };
+}
+
+/**
+ * Connect to Redux store.
+ */
+export default nextConnect(mapStateToProps, null)(Artist);

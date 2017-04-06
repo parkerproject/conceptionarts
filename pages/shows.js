@@ -48,6 +48,7 @@ class Shows extends Component {
 
 
   render() {
+    console.log(this.props.shows);
     return (
       <div>
         <Head>
@@ -72,7 +73,7 @@ class Shows extends Component {
             </div>
             <div className="page_title artist_page_title">
               <div className="artist_page_top_title">
-                EVENTS
+                SHOWS
               </div>
               <div>
                 Shows Coming Up

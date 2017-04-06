@@ -14,6 +14,7 @@ import HeaderLogin from '../components/HeaderLogin';
 import BottomMenu from '../components/Home/BottomMenu';
 import BottomLatestNews from '../components/Home/BottomLatestNews';
 import Footer from '../components/Footer';
+import { buildUrl } from '../helpers';
 
 const PHOTO_URL = 'http://res.cloudinary.com/conceptionarts/image/fetch/w_233,h_230,c_fill/https://artistworks.s3-us-west-2.amazonaws.com/artists_images';
 
@@ -61,9 +62,9 @@ class Show extends Component {
 
   onSubmit(e) {
     e.preventDefault();
+    const artist = this.state.artist;
     let url = this.state.show[0].url;
-    url = url.split('?')[0];
-    url = `${url}?aff=${this.state.artist}`;
+    url = buildUrl(url, artist);
     location.href = url;
   }
 
@@ -173,7 +174,7 @@ class Show extends Component {
                           <div className="portfolio_item_inner_image">
                             <Link
                               prefetch
-                              href="/artist"
+                              href={`/artist?user_token=${artist.user_token}`}
                               as={`/artist/${artist.user_token}`}
                             ><a><img src={`${PHOTO_URL}/${artist.photo}`} alt="" /></a>
                             </Link>
@@ -191,7 +192,7 @@ class Show extends Component {
                           <div className="portfolio_item_inner_link">
                             <Link
                               prefetch
-                              href="/artist"
+                              href={`/artist?user_token=${artist.user_token}`}
                               as={`/artist/${artist.user_token}`}
                             >
                               <a>

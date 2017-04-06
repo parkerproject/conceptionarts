@@ -9,25 +9,27 @@ const envset = {
   production: process.env.NODE_ENV === 'production',
 };
 
-// const hostname = envset.production ? (process.env.HOSTNAME || process.env.HOSTNAME) : 'localhost';
 const port = envset.production ? (process.env.PORT || process.env.PORT) : 5000;
-
 
 app.prepare()
 .then(() => {
   const server = express();
 
   server.get('/show/:id/:city', (req, res) => {
-    app.render(req, res, '/show', req.query);
+    console.log(1);
+    app.render(req, res, '/show', req.params);
   });
 
   server.get('/artist/:user_token', (req, res) => {
-    app.render(req, res, '/artist', req.query);
+    console.log(req.params);
+    app.render(req, res, '/artist', req.params);
   });
 
   // server.get('/b', (req, res) => app.render(req, res, '/a', req.query));
 
-  server.get('*', (req, res) => handle(req, res));
+  server.get('*', (req, res) => {
+    handle(req, res);
+  });
 
   server.listen(port, (err) => {
     if (err) throw err;
