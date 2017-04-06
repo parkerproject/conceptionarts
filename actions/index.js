@@ -182,3 +182,12 @@ export function selectEvent(text, eventId, userToken) {
       });
   };
 }
+
+export function latestNews(email) {
+  axios.post(`${BASE_URL}/latest-news`, { email }, {
+    headers: { authorization: localStorage.getItem('conception_token') },
+  })
+  .then(response => {
+    console.log(response);
+  });
+}
