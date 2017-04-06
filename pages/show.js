@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Link from 'next/link';
 import Head from 'next/head';
 import axios from 'axios';
-import { filter, map } from 'lodash';
+import { filter, map, sortBy } from 'lodash';
 import Router from 'next/router';
 import moment from 'moment';
 import { nextConnect } from '../store';
@@ -35,7 +35,8 @@ class Show extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { show: null, address: {}, artists: [] };
+    this.state = { show: null, address: {}, artists: [], artist: '' };
+    this.onSubmit = this.onSubmit.bind(this);
   }
 
   componentWillMount() {
@@ -58,9 +59,18 @@ class Show extends Component {
     });
   }
 
+  onSubmit(e) {
+    e.preventDefault();
+    let url = this.state.show[0].url;
+    url = url.split('?')[0];
+    url = `${url}?aff=${this.state.artist}`;
+    location.href = url;
+  }
+
 
   render() {
     const show = this.state.show || this.props.show;
+    const sortedArtists = sortBy(this.state.artists, 'full_name');
 
     return (
       <div>
@@ -135,16 +145,18 @@ class Show extends Component {
               </div>
               <div className="select_and_buy_tickets">
                 <div className="row">
-                  <div className="select_and_buy_tickets_select col-md-7 col-xs-12">
-                    <select name="" id="">
-                      <option value="">SELECT AN ARTIST ...</option>
-                      <option value="">SELECT AN ARTIST ...</option>
-                      <option value="">SELECT AN ARTIST ...</option>
-                    </select>
-                  </div>
-                  <div className="select_and_buy_tickets_button col-md-5 col-xs-12">
-                    <input type="submit" value="BUY TICKETS" />
-                  </div>
+                  <form onSubmit={this.onSubmit}>
+                    <div className="select_and_buy_tickets_select col-md-7 col-xs-12">
+                      <select name="" id="" onChange={(evt) => this.setState({ artist: evt.target.value })}>
+                        <option value="">SELECT AN ARTIST ...</option>
+                        {map(sortedArtists, (artist) =>
+                          <option value={artist.user_token} key={artist.user_token}>{artist.full_name}</option>)}
+                      </select>
+                    </div>
+                    <div className="select_and_buy_tickets_button col-md-5 col-xs-12">
+                      <input type="submit" value="BUY TICKETS" />
+                    </div>
+                  </form>
                 </div>
               </div>
             </div>
