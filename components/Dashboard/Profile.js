@@ -112,7 +112,7 @@ class Profile extends Component {
             <div className="artist_photo col-xl-4 col-lg-6 col-sm-6 col-xs-12">
               <div className="artist_photo_inner">
                 <div className="artist_photo_inner_displayed">
-                  {photo && !this.state.file && <img src={`${PHOTO_URL}/${photo}`} alt="" />}
+                  {photo && !this.state.file && <img src={`${PHOTO_URL}/${photo}?${+new Date()}`} alt="" />}
                   {this.state.file && <img src={this.state.file} alt="" />}
                 </div>
               </div>

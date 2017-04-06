@@ -24,13 +24,16 @@ class TicketTrackerDetails extends Component {
   totalSales() {
     let count = 0;
     forEach(this.state.sales, (sale) => {
-      count = count + sale.cost.base_price.value / 2000;
+      count = count + sale.costs.base_price.value / 2000;
       return count;
     });
     return count;
   }
 
   render() {
+    if (this.state.sales.length === 0) {
+      return <div>Loading ticket tracker...</div>;
+    }
     const totalAmtSold = this.totalSales();
     const remaining = 15 - totalAmtSold;
     return (
@@ -49,10 +52,10 @@ class TicketTrackerDetails extends Component {
             </thead>
             <tbody>
               {this.state.sales.length !== 0 && map(this.state.sales, (sale) => (
-                <tr>
+                <tr key={sale.id}>
                   <th>{sale.profile.name}</th>
-                  <td>{sale.cost.base_price.display}</td>
-                  <td>{sale.cost.base_price.value / 2000}</td>
+                  <td>{sale.costs.base_price.display}</td>
+                  <td>{sale.costs.base_price.value / 2000}</td>
                   <td>{sale.profile.email}</td>
                 </tr>))}
 
