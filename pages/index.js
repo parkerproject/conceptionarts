@@ -59,16 +59,15 @@ class Home extends Component {
             </div>
             <div className="page_title artist_page_title index_page_artist">
               <div className="art_for">
-                Art for art’s sake.
                 <Link prefetch href="/collector"><a>COLLECTOR</a></Link>
                 <Link prefetch href="/artist-info"><a>ARTIST</a></Link>
               </div>
               <div>
-                We are that art that you want to know more about art.
+                Where artists and collectors meet
               </div>
-              <div className="index_page_artist_scroll">
+              {/* <div className="index_page_artist_scroll">
                 Scroll down to learn more
-              </div>
+              </div> */}
             </div>
 
             <div className="clearfix">

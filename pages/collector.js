@@ -35,8 +35,8 @@ class Collector extends Component {
                     </div>
                   </div>
                   <div className="collector_text_title_text">
-                    Conception is proud to present curated exhibits of local art in multiple cities
-                    throughout the U.S. and Europe.
+                    Conception is proud to present curated exhibits of local art in multiple cities throughout the U.S.
+                    Discover art that inspires you.
                   </div>
                   {/* <div className="discover_art">
                     <a href="">
@@ -52,29 +52,35 @@ class Collector extends Component {
         <main className="main_block_page about_page">
           <div className="collector_page_text">
             <div className="container">
-              <div className="small_title">
-                CONCEPTION TESTIMONIALS
-              </div>
               <div className="collector_page_text_title">
-                Art as an Investment…
+                Art as an Investment
               </div>
               <div className="collector_page_text_text">
-                <p>
-                  Our pioneering platform is rapidly changing the landscape of the art
-                  industry by eliminating galleries completely from the selling environment
-                  in favor of a new model that pairs artists directly with collectors.
-                  Tradition has its place, but so does progression and revolution.
-                </p>
-                <p>
-                  By eliminating galleries, we eliminate commission, a premium charge of
-                  up to 60% added to artists work by galleries around the globe for decades.
-                  Saving you money on your investment and allowing artists to price their
-                  work fairly and within market range.
-                </p>
-                <p>
-                  We consider our artists to be at the “tipping point” of their careers
-                  and are proud to introduce and present their work directly to you, the collector.
-                </p>
+                <p>Our pioneering platform is rapidly changing the landscape of the art industry by
+                  eliminating galleries completely from the selling environment in favor of a new model
+                  that pairs artists directly with collectors. Tradition has its place, but so does progression
+                and revolution.</p>
+                <p>By eliminating galleries, we eliminate commission,
+                  a premium charge of up to 60% added to artists’ work by galleries around the globe.
+                  By eliminating the gallery commission, you, the collector, save money on your investment
+                and the artist is able to price her work fairly and within market range.</p>
+                <p>We consider our artists to be at the “tipping point” of their careers and are proud
+                to introduce and present their work directly to you, the collector.</p>
+              </div>
+            </div>
+            <div className="container">
+              <div className="collector_page_text_title">
+                A New Experience
+              </div>
+              <div className="collector_page_text_text">
+                <p>Maybe you are not looking for an investment, but our diverse talented artists have something
+                  for everyone. If you are looking to spice up a bare wall in your home or office,
+                  looking for a gift for the holidays or other special event, or simply just looking
+                  to have an evening out that offers you something new and exciting,
+                Conception Art events are the place for you.</p>
+                <p>You may not have given the arts much thought in the past, but we at Conception know
+                  that taking in an evening with our artists will open your eyes, and mind to a
+                whole new beautiful experience. We look forward to offering you something out of the ordinary.</p>
               </div>
             </div>
           </div>
@@ -244,11 +250,9 @@ class Collector extends Component {
                 </div>
               </div>
               <div className="upcoming_show_text">
-                Strengthening the Local Community - A Civic Economics study in Grand Rapids,
-                Michigan, recently found that when people buy art from local entrepreneurs,
-                including artists, a significant share of their money remains in the community,
-                thereby supporting its economic base. Roughly $68 of every $100 spent at a
-                local business stays in the local economy.
+                Shop Local - Did you know that when you buy art from local artists,
+                a significant share of your money remains in your community.
+                Roughly $68 of every $100 spent at a local business stays in the local economy.
               </div>
             </div>
           </div>

@@ -30,7 +30,7 @@ class ArtistsCollector extends Component {
                   <Link href="/collector"><a>For Collectors</a></Link>
                 </div>
                 <div className="for_artist_and_collectors_first_inner_title_text">
-                  Learn how your investment in art helps the local community
+                  Providing you with an alternative way to experience, interact, and purchase from local artists.
                 </div>
                 <div className="for_artist_and_collectors_first_inner_signup">
                   <div className="for_artist_and_collectors_first_inner_signup_title">
@@ -59,7 +59,7 @@ class ArtistsCollector extends Component {
                   <Link href="/artist-info"><a>For Artists</a></Link>
                 </div>
                 <div className="for_artist_and_collectors_first_inner_title_text">
-                  Let us work with you to get your art in front of the right people
+                  Connecting visionary artists with savvy collectors
                 </div>
                 <div className="for_artist_and_collectors_first_inner_signup">
                   <div className="submit_work_about_inner_button">
