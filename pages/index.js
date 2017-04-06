@@ -38,7 +38,7 @@ class Home extends Component {
     return (
       <div>
         <Head>
-          <title>About Conception arts</title>
+          <title>Conception arts</title>
           <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         </Head>
         <header className="page_header portfolio_header index_header">
