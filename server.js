@@ -16,12 +16,10 @@ app.prepare()
   const server = express();
 
   server.get('/show/:id/:city', (req, res) => {
-    console.log(1);
     app.render(req, res, '/show', req.params);
   });
 
   server.get('/artist/:user_token', (req, res) => {
-    console.log(req.params);
     app.render(req, res, '/artist', req.params);
   });
 

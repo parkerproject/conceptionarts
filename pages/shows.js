@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Link from 'next/link';
 import Head from 'next/head';
 import axios from 'axios';
-import { map } from 'lodash';
+import { map, size } from 'lodash';
 import { nextConnect } from '../store';
 import { FETCH_EVENTS } from '../actions/types';
 import HeaderSocial from '../components/HeaderSocial';
@@ -39,16 +39,20 @@ class Shows extends Component {
 
 
   componentDidMount() {
-    // const show = this.state.show || this.props.show;
-    // getVenue(show[0].venue_id, (address) => {
-    //   this.setState({ address });
-    // });
+    const anyShows = size(this.props.shows);
+    if (anyShows === 0) {
+      this.getData();
+    }
+  }
 
+  async getData() {
+    const response = await axios.get(`${BASE_URL}/events`);
+    this.setState({ shows: response.data.events });
   }
 
 
   render() {
-    console.log(this.props.shows);
+    const shows = this.props.shows || this.state.shows;
     return (
       <div>
         <Head>
@@ -91,7 +95,7 @@ class Shows extends Component {
           <div className="cities_buy_tickets">
             <div className="container">
 
-              {this.props.shows && map(this.props.shows, (show) => (
+              {shows && map(shows, (show) => (
                 <ShowCity {...show} key={show.id} />
               ))}
 

@@ -23,17 +23,17 @@ class HeaderLogin extends Component {
       <div className="header_nav_buttons col-md-6 col-sm-6 col-xs-12">
         {this.state.authenticated ?
           <Link href="/dashboard">
-            <a>Dashboard</a>
+            <a className="dash">Dashboard</a>
           </Link>
           :
           <Link href="/login">
             <a>login</a>
           </Link>
         }
-
-        <Link href="/register">
+        {!this.state.authenticated && <Link href="/register">
           <a className="submit_work">SUBMIT YOUR WORK</a>
-        </Link>
+        </Link>}
+
       </div>
     );
   }

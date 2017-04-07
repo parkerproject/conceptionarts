@@ -63,7 +63,8 @@ class Show extends Component {
   onSubmit(e) {
     e.preventDefault();
     const artist = this.state.artist;
-    let url = this.state.show[0].url;
+    const show = this.props.show || this.state.show;
+    let url = show[0].url;
     url = buildUrl(url, artist);
     location.href = url;
   }

@@ -54,7 +54,6 @@ class Artist extends Component {
     this.prepareData();
   }
 
-
   onSubmit(url, user) {
     this.setState({ checkedEvent: url, process: true });
     const href = buildUrl(url, user);

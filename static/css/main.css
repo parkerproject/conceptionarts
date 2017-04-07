@@ -2355,3 +2355,7 @@ color: red;
 float: right;
 font-weight: bold;
 }
+
+a.dash{
+	font-size: 14px;
+}
