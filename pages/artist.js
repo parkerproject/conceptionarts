@@ -30,7 +30,7 @@ const customStyles = {
   },
 };
 
-const PHOTO_URL = 'https://res.cloudinary.com/conceptionarts/image/fetch/w_328,h_200/https://artistworks.s3-us-west-2.amazonaws.com/artists_images';
+const PHOTO_URL = 'https://res.cloudinary.com/conceptionarts/image/fetch/w_328,h_200,c_fill/https://artistworks.s3-us-west-2.amazonaws.com/artists_images';
 const THUMBNAIL_URL = 'https://res.cloudinary.com/conceptionarts/image/fetch/w_248,h_200,c_fill/https://artistworks.s3-us-west-2.amazonaws.com/artists_images';
 
 class Artist extends Component {
@@ -53,6 +53,10 @@ class Artist extends Component {
 
   componentDidMount() {
     this.prepareData();
+
+    Router.onRouteChangeStart = (url) => {
+      console.log('App is changing to: ', url);
+    };
   }
 
   onSubmit(url, user) {
@@ -98,6 +102,7 @@ class Artist extends Component {
         <Head>
           <title>Artist - Conception arts</title>
           <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+          <link href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" />
         </Head>
         <header className="page_header portfolio_header">
           <div className="container">
@@ -115,6 +120,7 @@ class Artist extends Component {
                 </div>
               </div>
             </div>
+            <div className="back ion-android-arrow-back" onClick={() => window.history.back()}> Back to Show</div>
             <div className="page_title artist_page_title">
               <div>
                 Artist

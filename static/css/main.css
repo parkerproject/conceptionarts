@@ -2359,3 +2359,8 @@ font-weight: bold;
 a.dash{
 	font-size: 14px;
 }
+
+.back{
+	color: white;
+	cursor: pointer;
+}

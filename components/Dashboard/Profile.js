@@ -71,7 +71,6 @@ class Profile extends Component {
       this.setState({
         file: reader.result,
         disabled: false,
-        cropperOpen: true,
       });
     };
 
