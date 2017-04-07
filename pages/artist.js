@@ -34,9 +34,10 @@ const PHOTO_URL = 'https://res.cloudinary.com/conceptionarts/image/fetch/w_328,h
 const THUMBNAIL_URL = 'https://res.cloudinary.com/conceptionarts/image/fetch/w_248,h_200,c_fill/https://artistworks.s3-us-west-2.amazonaws.com/artists_images';
 
 class Artist extends Component {
-  static async getInitialProps({ req }) {
-    if (req) {
-      const response = await axios.get(`${BASE_URL}/artist/${req.params.user_token}`);
+  static async getInitialProps({ query: { user_token } }) {
+    // req.params.user_token
+    if (user_token) {
+      const response = await axios.get(`${BASE_URL}/artist/${user_token}`);
       return { artist: response.data[0] };
     }
     return {};
@@ -61,7 +62,9 @@ class Artist extends Component {
   }
 
   async prepareData() {
-    const anyEvents = size(this.props.shows);
+    let liveEvents = this.props.shows;
+    const anyEvents = size(liveEvents);
+
     if (!this.props.artist) {
       let userToken = decodeURI(Router.router.as);
       userToken = userToken.split('/')[2];
@@ -70,12 +73,13 @@ class Artist extends Component {
     }
     if (anyEvents === 0) {
       const events = await axios.get(`${BASE_URL}/events`);
-      const artist = this.props.artist || this.state.artist;
-      const liveEvents = events.data.events;
-      const artistEvents = filter(liveEvents, (event) =>
-      indexOf(artist.events, Number(event.id)) !== -1);
-      this.setState({ artistEvents });
+      liveEvents = events.data.events;
     }
+
+    const artist = this.props.artist || this.state.artist;
+    const artistEvents = filter(liveEvents, (event) =>
+    indexOf(artist.events, Number(event.id)) !== -1);
+    this.setState({ artistEvents });
   }
 
   openModal() {
@@ -113,7 +117,7 @@ class Artist extends Component {
             </div>
             <div className="page_title artist_page_title">
               <div>
-                Artists
+                Artist
               </div>
             </div>
           </div>
@@ -216,7 +220,7 @@ class Artist extends Component {
             onRequestClose={this.closeModal}
             style={customStyles}
             contentLabel="Example Modal"
-          > {this.state.process && <span className="proceed">Processing to Eventbrite...</span>}
+          > {this.state.process && <span className="proceed">Proceeding to Eventbrite...</span>}
             <h3 className="normal-height">Select Show</h3>
             <hr />
 
