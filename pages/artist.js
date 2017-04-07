@@ -30,7 +30,7 @@ const customStyles = {
   },
 };
 
-const PHOTO_URL = 'https://res.cloudinary.com/conceptionarts/image/fetch/w_328,h_200,c_fill/https://artistworks.s3-us-west-2.amazonaws.com/artists_images';
+const PHOTO_URL = 'https://res.cloudinary.com/conceptionarts/image/fetch/w_328,h_200/https://artistworks.s3-us-west-2.amazonaws.com/artists_images';
 const THUMBNAIL_URL = 'https://res.cloudinary.com/conceptionarts/image/fetch/w_248,h_200,c_fill/https://artistworks.s3-us-west-2.amazonaws.com/artists_images';
 
 class Artist extends Component {

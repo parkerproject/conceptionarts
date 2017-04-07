@@ -16,7 +16,7 @@ import BottomLatestNews from '../components/Home/BottomLatestNews';
 import Footer from '../components/Footer';
 import { buildUrl } from '../helpers';
 
-const PHOTO_URL = 'http://res.cloudinary.com/conceptionarts/image/fetch/w_233,h_230,c_fill/https://artistworks.s3-us-west-2.amazonaws.com/artists_images';
+const PHOTO_URL = 'https://res.cloudinary.com/conceptionarts/image/fetch/w_233,h_230,c_fill,g_north/https://artistworks.s3-us-west-2.amazonaws.com/artists_images';
 
 class Show extends Component {
   static async getInitialProps({ req, store }) {

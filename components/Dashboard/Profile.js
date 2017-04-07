@@ -71,6 +71,7 @@ class Profile extends Component {
       this.setState({
         file: reader.result,
         disabled: false,
+        cropperOpen: true,
       });
     };
 
@@ -100,7 +101,6 @@ class Profile extends Component {
       disabled,
       indicator } = this.state;
 
-
     return (
       <main className="main_block_page portfolio_page">
         {this.props.flash.show &&
@@ -112,8 +112,8 @@ class Profile extends Component {
             <div className="artist_photo col-xl-4 col-lg-6 col-sm-6 col-xs-12">
               <div className="artist_photo_inner">
                 <div className="artist_photo_inner_displayed">
-                  {photo && !this.state.file && <img src={`${PHOTO_URL}/${photo}?${+new Date()}`} alt="" />}
-                  {this.state.file && <img src={this.state.file} alt="" />}
+                  {photo && !this.state.file && <img alt="" src={`${PHOTO_URL}/${photo}?${+new Date()}`} />}
+                  {this.state.file && <img alt="" src={this.state.file} />}
                 </div>
               </div>
 
