@@ -32,7 +32,7 @@ class TicketTrackerDetails extends Component {
 
   render() {
     if (this.state.sales.length === 0) {
-      return <div>Loading ticket tracker...</div>;
+      return <div>No sales</div>;
     }
     const totalAmtSold = this.totalSales();
     const remaining = 15 - totalAmtSold;
