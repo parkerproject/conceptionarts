@@ -43,11 +43,13 @@ class Portfolio extends Component {
   }
 
   handleImageChange(files) {
+    if (files[0].size > (1024 * 1024 * 5)) {
+      alert('Holly molly! Image is too large');
+      return false;
+    }
+
     const formData = new FormData();
     formData.append('user_token', this.props.profile.user_token);
-    if (files[0].size > (1024 * 1024 * 5)) {
-      alert('Holly molly! That photo is too large');
-    }
 
     const reader = new FileReader();
     const filename = `${randtoken.generate(20)}.jpg`;
@@ -59,6 +61,7 @@ class Portfolio extends Component {
       formData.append('file', blob, filename);
       this.props.sendGalleryFile(formData);
     };
+    return true;
   }
 
 

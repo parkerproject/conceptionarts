@@ -1,9 +1,8 @@
+/* global cloudinary */
 import React, { Component } from 'react';
-import Dropzone from 'react-dropzone';
 import randtoken from 'rand-token';
 import { forEach } from 'lodash';
 import { updateProfile, updateProfileImage, hideFlash } from '../../actions';
-import { dataURItoBlob } from '../../helpers';
 import { nextConnect } from '../../store';
 
 const PHOTO_URL = 'https://artistworks.s3-us-west-2.amazonaws.com/artists_images';
@@ -23,6 +22,7 @@ class Profile extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    console.log(nextProps);
     this.setState({ ...nextProps });
     if (nextProps.flash.show) {
       this.props.hideFlash();
@@ -34,15 +34,6 @@ class Profile extends Component {
     event.preventDefault();
     const keys = Object.keys(this.state);
     const data = { user_token: this.state.user_token };
-    const formData = new FormData();
-
-    if (this.state.file) {
-      const filename = this.state.photo || `${randtoken.generate(20)}.jpg`;
-      const blob = dataURItoBlob(this.state.file);
-      formData.append('photo', blob, filename);
-      formData.append('user_token', this.state.user_token);
-      this.props.updateProfileImage(formData);
-    }
 
     if (this.state.changes) {
       forEach(keys, (key) => {
@@ -57,26 +48,30 @@ class Profile extends Component {
   }
 
 
-  handleImageChange(filesToUpload) {
-    const reader = new FileReader();
-    const file = filesToUpload[0];
-
-    if (file.size > (1024 * 1024 * 5)) {
-      alert('Holly molly! That photo is too large');
-
-      return false;
-    }
-
-    reader.onloadend = () => {
-      this.setState({
-        file: reader.result,
-        disabled: false,
-      });
-    };
-
-    reader.readAsDataURL(file);
-
-    return true;
+  handleImageChange() {
+    cloudinary.openUploadWidget({
+      cloud_name: 'conceptionarts',
+      upload_preset: 'rueyvhg1',
+      multiple: false,
+      cropping: 'server',
+      cropping_show_dimensions: true,
+      public_id: randtoken.generate(12),
+      max_image_width: 500,
+      max_image_height: 500,
+      theme: 'minimal',
+    },
+    (error, result) => {
+      if (result) {
+        this.setState({ file: result[0].secure_url });
+        const changes = {};
+        const newStates = {};
+        changes.photo = true; // hashing what has changed
+        changes.file = true;
+        newStates.disabled = false;
+        newStates.changes = { ...this.state.changes, ...changes };
+        this.setState(newStates);
+      }
+    });
   }
 
   handleTextChange(val, evt) {
@@ -91,13 +86,15 @@ class Profile extends Component {
 
 
   render() {
-    const { photo,
+    const {
       full_name: fullName,
       genre,
       email,
       url,
       story,
       disabled,
+      photo,
+      file,
       indicator } = this.state;
 
     return (
@@ -111,21 +108,13 @@ class Profile extends Component {
             <div className="artist_photo col-xl-4 col-lg-6 col-sm-6 col-xs-12">
               <div className="artist_photo_inner">
                 <div className="artist_photo_inner_displayed">
-                  {photo && !this.state.file && <img alt="" src={`${PHOTO_URL}/${photo}?${+new Date()}`} />}
-                  {this.state.file && <img alt="" src={this.state.file} />}
+                  {photo && !file && <img alt="" src={`${PHOTO_URL}/${photo}?${+new Date()}`} />}
+                  {file && <img alt="" src={file} />}
                 </div>
               </div>
-
-              <Dropzone
-                className="image-upload"
-                multiple={false}
-                onDrop={filesToUpload => this.handleImageChange(filesToUpload)}
-              >
-                <button className="change-upload">
-                  Change Photo
-                </button>
-                {/* <span className="ion-upload" style={innerStyles.icon}></span> */}
-              </Dropzone>
+              <button className="change-upload" onClick={this.handleImageChange}>
+                Click to change photo
+              </button>
             </div>
             <div className="artist_detalis col-xl-4 col-lg-6 col-sm-6 col-xs-12">
               <form onSubmit={this.handleSubmit}>

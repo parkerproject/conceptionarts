@@ -10,7 +10,7 @@ export default() => (
               MAGAZINE
             </div>
             <div className="medium_title">
-              Check Out What’s New in Our Art Showcases
+              Interviews with artists, curators and collectors
             </div>
             <div className="page_text">
               Conception provides a variety of services aimed at assisting artists in the promotion.

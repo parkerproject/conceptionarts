@@ -7,7 +7,7 @@ import Router from 'next/router';
 import moment from 'moment';
 import { nextConnect } from '../store';
 import { FETCH_EVENTS } from '../actions/types';
-import { getVenue, getArtists, BASE_URL } from '../actions';
+import { getVenue, getArtists, BASE_URL, IMAGE_URL } from '../actions';
 import HeaderSocial from '../components/HeaderSocial';
 import HeaderNav from '../components/HeaderNav';
 import HeaderLogin from '../components/HeaderLogin';
@@ -15,8 +15,6 @@ import BottomMenu from '../components/Home/BottomMenu';
 import BottomLatestNews from '../components/Home/BottomLatestNews';
 import Footer from '../components/Footer';
 import { buildUrl } from '../helpers';
-
-const PHOTO_URL = 'https://res.cloudinary.com/conceptionarts/image/fetch/w_233,h_230,c_fill,g_north/https://artistworks.s3-us-west-2.amazonaws.com/artists_images';
 
 class Show extends Component {
   static async getInitialProps({ req, store }) {
@@ -176,7 +174,7 @@ class Show extends Component {
                               prefetch
                               href={`/artist?user_token=${artist.user_token}`}
                               as={`/artist/${artist.user_token}`}
-                            ><a><img src={`${PHOTO_URL}/${artist.photo}`} alt="" /></a>
+                            ><a><img src={`${IMAGE_URL}/${artist.photo}`} alt="" /></a>
                             </Link>
                           </div>
 

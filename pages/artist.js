@@ -11,8 +11,10 @@ import HeaderSocial from '../components/HeaderSocial';
 import HeaderNav from '../components/HeaderNav';
 import HeaderLogin from '../components/HeaderLogin';
 import Footer from '../components/Footer';
-import { BASE_URL } from '../actions';
+import { BASE_URL, IMAGE_URL } from '../actions';
 import { buildUrl } from '../helpers';
+
+const THUMBNAIL_URL = `https://res.cloudinary.com/conceptionarts/image/fetch/w_248,h_200,c_fill/${IMAGE_URL}`;
 
 const customStyles = {
   content: {
@@ -29,9 +31,6 @@ const customStyles = {
     padding: '20px',
   },
 };
-
-const PHOTO_URL = 'https://res.cloudinary.com/conceptionarts/image/fetch/w_328,h_200,c_fill/https://artistworks.s3-us-west-2.amazonaws.com/artists_images';
-const THUMBNAIL_URL = 'https://res.cloudinary.com/conceptionarts/image/fetch/w_248,h_200,c_fill/https://artistworks.s3-us-west-2.amazonaws.com/artists_images';
 
 class Artist extends Component {
   static async getInitialProps({ query: { user_token } }) {
@@ -53,10 +52,6 @@ class Artist extends Component {
 
   componentDidMount() {
     this.prepareData();
-
-    Router.onRouteChangeStart = (url) => {
-      console.log('App is changing to: ', url);
-    };
   }
 
   onSubmit(url, user) {
@@ -148,7 +143,7 @@ class Artist extends Component {
                 <div className="artist_content_photo col-md-4 col-sm-4 col-xs-12">
                   <div className="artist_content_photo_inner">
                     <div className="artist_content_photo_inner_displayed">
-                      <img src={`${PHOTO_URL}/${artist.photo}`} alt="" />
+                      <img src={`${IMAGE_URL}/${artist.photo}`} alt="" />
                     </div>
                   </div>
                 </div>

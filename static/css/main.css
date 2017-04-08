@@ -647,7 +647,6 @@ artist_photo_inner_displayed img{
   font-family: 'Montserrat';
 	font-weight: bold;
 	font-size: 15px;
-	width: 200px;
 	cursor: pointer;
 	transition: .5s;
 	margin-top: 10px;
@@ -803,6 +802,8 @@ artist_photo_inner_displayed img{
 .artist_content_photo_inner_displayed {
 	height: 200px;
 	background: #d8d8d8;
+	overflow: hidden;
+	width:328px;
 }
 
 .artist_content_top_text_title {
@@ -869,6 +870,8 @@ artist_photo_inner_displayed img{
 .artist_photoe_item_inner {
 	height: 200px;
 	background: #d8d8d8;
+	width:248px;
+	overflow: hidden;
 }
 
 .artist_photoe_item {
