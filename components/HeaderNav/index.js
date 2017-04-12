@@ -9,7 +9,7 @@ export default() => (
         <li><a href="http://hiconceptmag.com">MAGAZINE</a></li>
         <li><Link prefetch href="/shows"><a>SHOWS</a></Link></li>
         <li><Link prefetch href="/press"><a>PRESS</a></Link></li>
-        <li><Link prefetch href="/contact"><a>CONTACT</a></Link></li>
+        <li><a href="mailto:info@conceptionevents.com">CONTACT</a></li>
       </ul>
     </div>
   </div>
