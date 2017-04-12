@@ -2377,3 +2377,11 @@ a.dash{
 .scroll_link{
 	cursor: pointer;
 }
+
+.wrap_select select{
+	padding: 15px;
+    background-color: transparent;
+    color: #fff;
+    border: 1px solid #fff;
+    border-radius: 0;
+}

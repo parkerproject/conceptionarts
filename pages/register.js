@@ -3,11 +3,12 @@ import Link from 'next/link';
 import Head from 'next/head';
 import randtoken from 'rand-token';
 import Dropzone from 'react-dropzone';
-
 import Footer from '../components/Footer';
+import moment from 'moment';
+import { size, map } from 'lodash';
 import { nextConnect } from '../store';
 import { dataURItoBlob } from '../helpers';
-import { register, hideFlash } from '../actions';
+import { register, hideFlash, getEvents } from '../actions';
 
 class Register extends Component {
   constructor() {
@@ -16,15 +17,19 @@ class Register extends Component {
       oldEnough: '',
       full_name: '',
       email: '',
-      photo: null,
-      artwork_1: null,
-      artwork_2: null,
-      artwork_3: null,
       terms: false,
       referral: '',
       url: '',
+      event: '',
     };
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  componentDidMount() {
+    const events = size(this.props.events);
+    if (events === 0) {
+      this.props.getEvents();
+    }
   }
 
   componentWillReceiveProps(nextProps) {
@@ -40,7 +45,7 @@ class Register extends Component {
     this.setState({ processing: true });
 
     const { email, terms, name } = this.state;
-    if (email === '' || !terms || name === '') {
+    if (email === '' || !terms || name === '' || event === '') {
       return false;
     }
 
@@ -277,6 +282,19 @@ class Register extends Component {
                               onChange={(evt) => this.setState({ referral: evt.target.value })}
                             />
                           </div>
+                          <div className="wrap_input wrap_select">
+                            <label className="wrap_label">Which show are you submiting for?</label>
+                            <select
+                              onChange={(evt) => this.setState({ event: Number(evt.target.value) })}
+                              value={this.state.event}
+                            >
+                              {map(this.props.events, (event) => (
+                                <option value={event.id} key={event.id}>
+                                  {event.name.text} - {moment(event.start.local).format('MMMM Do YYYY')}
+                                </option>
+                              ))}
+                            </select>
+                          </div>
                           <div className="wrap_checkbox">
                             <input
                               type="checkbox"
@@ -320,12 +338,16 @@ Register.propTypes = {
   hideFlash: React.PropTypes.func,
   register: React.PropTypes.func,
   flash: React.PropTypes.object,
+  events: React.PropTypes.object,
+  getEvents: React.PropTypes.func,
 };
 
 function mapStateToProps(state) {
+  console.log(state);
   return {
     flash: state.flash,
+    events: state.events,
   };
 }
 
-export default nextConnect(mapStateToProps, { register, hideFlash })(Register);
+export default nextConnect(mapStateToProps, { register, hideFlash, getEvents })(Register);
