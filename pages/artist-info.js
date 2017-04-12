@@ -15,7 +15,6 @@ class ArtistInfo extends Component {
   static async getInitialProps({ req, store }) {
     if (req) {
       const response = await axios.get(`${BASE_URL}/events`);
-      console.log('data=>', response.data.events);
       store.dispatch({
         type: FETCH_EVENTS,
         payload: response.data.events,
@@ -87,9 +86,13 @@ class ArtistInfo extends Component {
                     </div>
                     <div className="list_links_artist">
                       <ul>
-                        <li><a href="">An opportunity to exhibit at one of our quarterly exhibits </a></li>
-                        <li><a href="">An online profile on our growing artists platform </a></li>
-                        <li><a href="">Your work shared with our community of over 40,000 art lovers worldwide</a></li>
+                        <li><a href="">Exhibit artwork at one of our signature events.</a></li>
+                        <li><a href="">A digital portfolio on Conception’s online platform.</a></li>
+                        <li><a href="">Opportunity to sell and discuss your work with local collectors.</a></li>
+                        <li><a href="">Strategic social media marketing to over 40,000 art lovers worldwide.</a></li>
+                        <li><a href="">Opportunity to be selected for our prestigious “Award for Excellence.”</a></li>
+                        <li><a href="">  Network with local artistic peers and industry professionals.</a></li>
+                        <li><a href="">Guidance on exhibiting, selling, and promoting your work.</a></li>
                       </ul>
                     </div>
                   </div>

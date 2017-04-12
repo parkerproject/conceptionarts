@@ -2369,3 +2369,11 @@ a.dash{
 	color: white;
 	cursor: pointer;
 }
+
+.last-faq .faq_block_answer{
+	margin: 10px 0;
+}
+
+.scroll_link{
+	cursor: pointer;
+}

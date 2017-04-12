@@ -12,9 +12,6 @@ export default() => (
             <div className="medium_title">
               Interviews with artists, curators and collectors
             </div>
-            <div className="page_text">
-              Conception provides a variety of services aimed at assisting artists in the promotion.
-            </div>
             <div className="blue_link">
               <a href="http://hiconceptmag.com">
                 Click Here To Learn More
