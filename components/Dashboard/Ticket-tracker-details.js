@@ -17,14 +17,14 @@ class TicketTrackerDetails extends Component {
 
   componentWillReceiveProps(nextProps) {
     const { attendees, profile } = nextProps;
-    const sales = filter(attendees, (attendee) => attendee.affiliate === profile.user_token);
+    const sales = filter(attendees, (obj) => obj.attendee.affiliate === profile.user_token);
     this.setState({ sales });
   }
 
   totalSales() {
     let count = 0;
     forEach(this.state.sales, (sale) => {
-      count = count + sale.costs.base_price.value / 2000;
+      count = count + sale.attendee.quantity;
       return count;
     });
     return count;
@@ -49,11 +49,11 @@ class TicketTrackerDetails extends Component {
             </thead>
             <tbody>
               {this.state.sales.length !== 0 && map(this.state.sales, (sale) => (
-                <tr key={sale.id}>
-                  <th>{sale.profile.name}</th>
-                  <td>{sale.costs.base_price.display}</td>
-                  <td>{sale.costs.base_price.value / 2000}</td>
-                  <td>{sale.profile.email}</td>
+                <tr key={sale.attendee.id}>
+                  <th>{sale.attendee.first_name}</th>
+                  <td>{sale.attendee.amount_paid}</td>
+                  <td>{sale.attendee.quantity}</td>
+                  <td>{sale.attendee.email}</td>
                 </tr>))}
 
               {this.state.sales.length === 0 &&
@@ -82,7 +82,7 @@ class TicketTrackerDetails extends Component {
                   BUYOUT TICKETS
                 </button>
                 {/* <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!" /> */}
-                <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1" />
+                <img alt="" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1" />
               </form>
             </div>
           </div>
