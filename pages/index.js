@@ -1,3 +1,4 @@
+/* global ZAFClient */
 import React, { Component } from 'react';
 import Link from 'next/link';
 import Head from 'next/head';
@@ -29,6 +30,7 @@ class Home extends Component {
     });
   }
 
+
   render() {
     const events = {
       0: this.props.events[0],
@@ -40,6 +42,7 @@ class Home extends Component {
         <Head>
           <title>Conception arts</title>
           <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+          <script src="/static/js/zen.js"></script>
         </Head>
         <header className="page_header portfolio_header index_header">
           <div className="container">

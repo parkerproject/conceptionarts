@@ -58,6 +58,7 @@ class Shows extends Component {
         <Head>
           <title>Shows - Conception Arts</title>
           <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+          <script src="/static/js/zen.js"></script>
         </Head>
         <header className="page_header portfolio_header clearfix">
           <div className="container">

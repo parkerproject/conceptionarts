@@ -98,6 +98,7 @@ class Artist extends Component {
           <title>Artist - Conception arts</title>
           <meta name="viewport" content="initial-scale=1.0, width=device-width" />
           <link href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" />
+          <script src="/static/js/zen.js"></script>
         </Head>
         <header className="page_header portfolio_header">
           <div className="container">

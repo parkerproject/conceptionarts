@@ -5,7 +5,7 @@ export default() => (
     <div className="container">
       <div className="row">
         <div className="bringin_art_image col-xl-6 col-lg-6 col-md-12 col-sm-12">
-          <img src="/static/img/art.png" alt="" />
+          <img src="/static/img/collector.jpg" alt="" />
         </div>
         <div className="bringin_art_image_text col-xl-6 col-lg-6 col-md-12 col-sm-12">
           <div className="bringin_art_image_text_title">

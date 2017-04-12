@@ -33,6 +33,7 @@ class ArtistInfo extends Component {
         <Head>
           <title>How We Serve You, The Artist - Conception Arts</title>
           <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+          <script src="/static/js/zen.js"></script>
         </Head>
         <header className="page_header artist_general_header">
           <div className="container">
