@@ -157,7 +157,7 @@ class Profile extends Component {
                       </div>
                       <textarea
                         placeholder="Some text"
-                        maxLength="150"
+                        maxLength="550"
                         className="textarea_change"
                         value={story || ''}
                         onChange={evt => this.handleTextChange('story', evt)}

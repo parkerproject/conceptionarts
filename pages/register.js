@@ -39,12 +39,12 @@ class Register extends Component {
     }
   }
 
-  handleSubmit(event) {
-    event.preventDefault();
+  handleSubmit(e) {
+    e.preventDefault();
 
     this.setState({ processing: true });
 
-    const { email, terms, name } = this.state;
+    const { email, terms, name, event } = this.state;
     if (email === '' || !terms || name === '' || event === '') {
       return false;
     }
@@ -288,6 +288,7 @@ class Register extends Component {
                               onChange={(evt) => this.setState({ event: Number(evt.target.value) })}
                               value={this.state.event}
                             >
+                              <option value="">Pick event</option>
                               {map(this.props.events, (event) => (
                                 <option value={event.id} key={event.id}>
                                   {event.name.text} - {moment(event.start.local).format('MMMM Do YYYY')}
