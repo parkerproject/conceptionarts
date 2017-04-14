@@ -41,14 +41,12 @@ class Register extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-
-    this.setState({ processing: true });
-
     const { email, terms, name, event } = this.state;
     if (email === '' || !terms || name === '' || event === '') {
+      alert('Please complete all fields');
       return false;
     }
-
+    this.setState({ processing: true });
     const keys = Object.keys(this.state);
     const formData = new FormData();
     formData.append('user_token', randtoken.generate(5));
