@@ -9,7 +9,7 @@ import {
   FETCH_EVENTS,
  } from '../actions/types';
 
-export const BASE_URL = 'https://conceptionarts-api.herokuapp.com/api'; // api
+export const BASE_URL = 'http://api.conceptionevents.com/api';// 'https://conceptionarts-api.herokuapp.com/api'; // api
 export const IMAGE_URL = 'https://artistworks.s3-us-west-2.amazonaws.com/artists_images';
 
 export function register(formData) {
