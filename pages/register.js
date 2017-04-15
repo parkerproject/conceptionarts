@@ -10,6 +10,8 @@ import { nextConnect } from '../store';
 import { dataURItoBlob } from '../helpers';
 import { register, hideFlash, getEvents } from '../actions';
 
+// test
+
 class Register extends Component {
   constructor() {
     super();
