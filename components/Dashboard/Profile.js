@@ -22,7 +22,6 @@ class Profile extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log(nextProps);
     this.setState({ ...nextProps });
     if (nextProps.flash.show) {
       this.props.hideFlash();
@@ -62,7 +61,7 @@ class Profile extends Component {
     },
     (error, result) => {
       if (result) {
-        this.setState({ file: result[0].secure_url });
+        this.setState({ vFile: result[0].secure_url });
         const changes = {};
         const newStates = {};
         changes.photo = true; // hashing what has changed
@@ -94,7 +93,7 @@ class Profile extends Component {
       story,
       disabled,
       photo,
-      file,
+      vFile,
       indicator } = this.state;
 
     return (
@@ -108,8 +107,8 @@ class Profile extends Component {
             <div className="artist_photo col-xl-4 col-lg-6 col-sm-6 col-xs-12">
               <div className="artist_photo_inner">
                 <div className="artist_photo_inner_displayed">
-                  {photo && !file && <img alt="" src={`${PHOTO_URL}/${photo}?${+new Date()}`} />}
-                  {file && <img alt="" src={file} />}
+                  {photo && !vFile && <img alt="" src={`${PHOTO_URL}/${photo}?${+new Date()}`} />}
+                  {vFile && <img alt="" src={vFile} />}
                 </div>
               </div>
               <button className="change-upload" onClick={this.handleImageChange}>
